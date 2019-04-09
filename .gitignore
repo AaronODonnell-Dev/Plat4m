@@ -34,3 +34,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+Plat4m/Assets/StreamingAssets\.meta
