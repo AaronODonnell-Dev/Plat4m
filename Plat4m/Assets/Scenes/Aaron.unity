@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 330475439}
   - component: {fileID: 330475438}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,10 +209,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 330475437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec846203dfbd614c8a0ba2d6a4a8473, type: 3}
+  m_Script: {fileID: 11500000, guid: 9da56be76b337d54781523e37e873f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  force: 1
 --- !u!33 &330475442
 MeshFilter:
   m_ObjectHideFlags: 0
