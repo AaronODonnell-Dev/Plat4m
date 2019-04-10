@@ -47,7 +47,12 @@ public class PlayerMovement : MonoBehaviour
             MoveBackWard();
         }
 
-        if(_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _p1body.AddForce(Camera.main.transform.up * force * 10, ForceMode.Force);
+        }
+
+        if (_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
         {
             _current = PlayerIndex.PLAYERTWO;
             mainCamera.transform.position = cameraPosP2.transform.position;
