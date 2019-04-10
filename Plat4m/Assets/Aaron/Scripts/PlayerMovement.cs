@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float force;
+    float force = 10;
     float angle;
 
-    Rigidbody _body;
+    Rigidbody _p1body;
+    Rigidbody _p2body;
+    Rigidbody _currentBody;
+    GameObject mainCamera;
+
+    public GameObject cameraPosP1;
+    public GameObject cameraPosP2;
+
+    enum PlayerIndex { PLAYERONE, PLAYERTWO};
+    PlayerIndex _current;
 
     // Use this for initialization
     void Start()
     {
-        _body = GetComponent<Rigidbody>();
+        _p1body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
+        _current = PlayerIndex.PLAYERONE;
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
             MoveRight();
@@ -36,34 +47,64 @@ public class PlayerMovement : MonoBehaviour
             MoveBackWard();
         }
 
+        if(_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
+        {
+            _current = PlayerIndex.PLAYERTWO;
+            mainCamera.transform.position = cameraPosP2.transform.position;
+            mainCamera.transform.LookAt(_p2body.transform);
+        }
+        else if (_current == PlayerIndex.PLAYERTWO && Input.GetKeyDown(KeyCode.P))
+        {
+            _current = PlayerIndex.PLAYERONE;
+            mainCamera.transform.position = cameraPosP1.transform.position;
+            mainCamera.transform.LookAt(_p1body.transform);
+        }
+
+        PlayerSwitch();
         CameraRotate();
+    }
+
+    void PlayerSwitch()
+    {       
+        switch(_current)
+        {
+            case PlayerIndex.PLAYERONE:
+                mainCamera.transform.SetParent(_p1body.transform);
+                _currentBody = _p1body;
+                break;
+
+            case PlayerIndex.PLAYERTWO:
+                mainCamera.transform.SetParent(_p2body.transform);
+                _currentBody = _p2body;
+                break;
+        }
     }
 
     void CameraRotate()
     {
-        Camera.main.transform.RotateAround(_body.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
+        Camera.main.transform.RotateAround(_currentBody.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
     }
 
     #region-Movement Methods-
     void MoveFoward()
     {
-        _body.AddForce(Camera.main.transform.forward * force, ForceMode.Force);
+        _currentBody.AddForce(Camera.main.transform.forward * force, ForceMode.Force);
     }
 
     void MoveBackWard()
     {
-        _body.AddForce(-Camera.main.transform.forward * force, ForceMode.Force);
+        _currentBody.AddForce(-Camera.main.transform.forward * force, ForceMode.Force);
     }
 
     void MoveLeft()
     {
-        _body.AddForce(-Camera.main.transform.right * force, ForceMode.Force);
+        _currentBody.AddForce(-Camera.main.transform.right * force, ForceMode.Force);
 
     }
 
     void MoveRight()
     {
-        _body.AddForce(Camera.main.transform.right * force, ForceMode.Force);
+        _currentBody.AddForce(Camera.main.transform.right * force, ForceMode.Force);
     }
     #endregion
 
