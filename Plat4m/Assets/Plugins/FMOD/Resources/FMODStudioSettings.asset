@@ -15,12 +15,12 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:\Users\Alex\Documents\FMOD Studio\Plat4m\Plat4m.fspro
-  SourceProjectPathUnformatted: C:\Users\Alex\Documents\FMOD Studio\Plat4m\Plat4m.fspro
-  SourceBankPathUnformatted: C:\Users\Alex\Documents\FMOD Studio\Plat4m\Build
+  sourceProjectPath: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Plat4m.fspro
+  SourceProjectPathUnformatted: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Plat4m.fspro
+  SourceBankPathUnformatted: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Build
   AutomaticEventLoading: 1
   BankLoadType: 0
-  AutomaticSampleLoading: 0
+  AutomaticSampleLoading: 1
   ImportType: 0
   TargetAssetPath: 
   LoggingLevel: 2
