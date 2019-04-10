@@ -35,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveBackWard();
         }
+
+        CameraRotate();
+    }
+
+    void CameraRotate()
+    {
+        Camera.main.transform.RotateAround(_body.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
     }
 
     #region-Movement Methods-
