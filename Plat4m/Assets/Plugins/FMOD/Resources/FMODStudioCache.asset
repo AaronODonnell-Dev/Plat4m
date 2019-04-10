@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 114132249591337464}
-  - {fileID: 114101134592745080}
+  - {fileID: 114891030352633964}
+  - {fileID: 114230436373520446}
   EditorEvents: []
   EditorParameters: []
   MasterBanks:
-  - {fileID: 114101134592745080}
+  - {fileID: 114230436373520446}
   StringsBanks:
-  - {fileID: 114132249591337464}
-  stringsBankWriteTime: 636904227519631157
+  - {fileID: 114891030352633964}
+  stringsBankWriteTime: 636904245672748246
   cacheVersion: 3
 --- !u!114 &114101134592745080
 MonoBehaviour:
@@ -41,7 +41,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 976
-  Exists: 1
+  Exists: 0
 --- !u!114 &114132249591337464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,6 +56,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:\Users\Alex\Documents\FMOD Studio\Plat4m\Build\Desktop\Master.strings.bank
   lastModified: 636904227519631157
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 680
+  Exists: 0
+--- !u!114 &114230436373520446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Alex\Documents\GitHub\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.bank
+  lastModified: 636904245672638287
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 976
+  Exists: 1
+--- !u!114 &114891030352633964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Alex\Documents\GitHub\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.strings.bank
+  lastModified: 636904245672748246
   LoadResult: 0
   FileSizes:
   - Name: Desktop
