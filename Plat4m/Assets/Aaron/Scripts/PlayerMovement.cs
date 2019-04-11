@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float force = 10;
+    Vector3 jumpForce;
     float angle;
+    bool isGrounded = true;
+    bool isJumping = false;
+    int jumpLimit = 2;
 
     Rigidbody _p1body;
     Rigidbody _p2body;
@@ -25,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        jumpForce = Camera.main.transform.up * force * 10;
     }
 
     // Update is called once per frame
@@ -47,11 +52,20 @@ public class PlayerMovement : MonoBehaviour
             MoveBackWard();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0 )
         {
-            _p1body.AddForce(Camera.main.transform.up * force * 10, ForceMode.Force);
+            isGrounded = false;
+            isJumping = true;
+            jumpLimit--;
+            _p1body.velocity = new Vector3(0, 10, 0);
+
+            if(jumpLimit == 1)
+            {
+                _p1body.transform.Rotate(new Vector3(0, 0, 100), 360f);
+            }
         }
 
+        #region - Player Switch logic for camera
         if (_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
         {
             _current = PlayerIndex.PLAYERTWO;
@@ -64,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
             mainCamera.transform.position = cameraPosP1.transform.position;
             mainCamera.transform.LookAt(_p1body.transform);
         }
+        #endregion
 
         PlayerSwitch();
         CameraRotate();
@@ -88,6 +103,16 @@ public class PlayerMovement : MonoBehaviour
     void CameraRotate()
     {
         Camera.main.transform.RotateAround(_currentBody.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+            isJumping = false;
+            jumpLimit = 2;
+        }
     }
 
     #region-Movement Methods-
