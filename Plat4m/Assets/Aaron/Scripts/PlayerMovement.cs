@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float force = 10;
+    Vector3 jumpForce;
     float angle;
+    int jumpLimit = 2;
+    bool isJumping = false;
+    bool isGrounded = true;
 
     Rigidbody _p1body;
     Rigidbody _p2body;
     Rigidbody _currentBody;
+
     GameObject mainCamera;
 
     public GameObject cameraPosP1;
@@ -25,11 +30,13 @@ public class PlayerMovement : MonoBehaviour
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        jumpForce = Camera.main.transform.up * force * 10;
     }
 
     // Update is called once per frame
     void Update()
     {
+        #region - Player Movement calls & Jump-
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
             MoveRight();
@@ -47,11 +54,16 @@ public class PlayerMovement : MonoBehaviour
             MoveBackWard();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
         {
-            _p1body.AddForce(Camera.main.transform.up * force * 10, ForceMode.Force);
+            isJumping = true;
+            isGrounded = false;
+            _p1body.velocity = new Vector3(0, 10, 0);
+            jumpLimit--;
         }
+        #endregion
 
+        #region -Plaer logic for camera
         if (_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
         {
             _current = PlayerIndex.PLAYERTWO;
@@ -64,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
             mainCamera.transform.position = cameraPosP1.transform.position;
             mainCamera.transform.LookAt(_p1body.transform);
         }
+        #endregion
 
         PlayerSwitch();
         CameraRotate();
@@ -88,6 +101,21 @@ public class PlayerMovement : MonoBehaviour
     void CameraRotate()
     {
         Camera.main.transform.RotateAround(_currentBody.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag == "Ground")
+        {
+            isGrounded = true;
+            isJumping = false;
+            ResetJump();
+        }
+    }
+
+    void ResetJump()
+    {
+        jumpLimit = 2;
     }
 
     #region-Movement Methods-
