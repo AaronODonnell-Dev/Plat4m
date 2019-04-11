@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float force = 10;
+    Vector3 jumpForce;
     float angle;
     int jumpLimit = 2;
     bool isJumping = false;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        jumpForce = Camera.main.transform.up * force * 10;
     }
 
     // Update is called once per frame
