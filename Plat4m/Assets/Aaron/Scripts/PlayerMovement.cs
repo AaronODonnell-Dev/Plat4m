@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #region - Player Movement calls & Jump-
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
             MoveRight();
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
             _p1body.velocity = new Vector3(0, 10, 0);
             jumpLimit--;
         }
+        #endregion
 
         #region -Plaer logic for camera
         if (_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
