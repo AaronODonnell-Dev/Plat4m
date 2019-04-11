@@ -58,11 +58,6 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
             jumpLimit--;
             _p1body.velocity = new Vector3(0, 10, 0);
-
-            if(jumpLimit == 1)
-            {
-                _p1body.transform.Rotate(new Vector3(0, 0, 100), 360f);
-            }
         }
 
         #region - Player Switch logic for camera

@@ -142,7 +142,7 @@ Rigidbody:
   m_GameObject: {fileID: 330475437}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.8
+  m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 483984649}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
