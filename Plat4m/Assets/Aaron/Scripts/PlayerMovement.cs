@@ -7,13 +7,14 @@ public class PlayerMovement : MonoBehaviour
     float force = 10;
     Vector3 jumpForce;
     float angle;
-    bool isGrounded = true;
-    bool isJumping = false;
     int jumpLimit = 2;
+    bool isJumping = false;
+    bool isGrounded = true;
 
     Rigidbody _p1body;
     Rigidbody _p2body;
     Rigidbody _currentBody;
+
     GameObject mainCamera;
 
     public GameObject cameraPosP1;
@@ -52,15 +53,15 @@ public class PlayerMovement : MonoBehaviour
             MoveBackWard();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0 )
+        if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
         {
-            isGrounded = false;
             isJumping = true;
-            jumpLimit--;
+            isGrounded = false;
             _p1body.velocity = new Vector3(0, 10, 0);
+            jumpLimit--;
         }
 
-        #region - Player Switch logic for camera
+        #region -Plaer logic for camera
         if (_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
         {
             _current = PlayerIndex.PLAYERTWO;
@@ -100,14 +101,19 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.transform.RotateAround(_currentBody.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.transform.tag == "Ground")
         {
             isGrounded = true;
             isJumping = false;
-            jumpLimit = 2;
+            ResetJump();
         }
+    }
+
+    void ResetJump()
+    {
+        jumpLimit = 2;
     }
 
     #region-Movement Methods-
