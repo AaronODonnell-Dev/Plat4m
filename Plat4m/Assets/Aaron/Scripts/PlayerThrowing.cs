@@ -21,7 +21,7 @@ public class PlayerThrowing : MonoBehaviour
         _p1body = Player1.GetComponent<Rigidbody>();
         _p2body = Player2.GetComponent<Rigidbody>();
 
-        YeetForce = 100 * 25;
+        YeetForce = 100 * 15;
     }
 
     // Update is called once per frame
