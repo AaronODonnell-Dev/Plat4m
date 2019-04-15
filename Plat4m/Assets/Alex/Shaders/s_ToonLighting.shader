@@ -22,10 +22,13 @@
 	SubShader
 	{
 		Tags
-		{
-			"LightMode" = "ForwardBase"
+		{			
+			"LightMode" = "ForwardBase"			
 			"PassFlags" = "OnlyDirectional"
+		
 		}
+		
+
 		Pass
 		{
 			CGPROGRAM
@@ -58,8 +61,7 @@
 			
 			v2f vert (appdata v)
 			{
-				v2f o;
-				
+				v2f o;				
 				o.pos = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
@@ -70,11 +72,11 @@
 			
 			float4 _Color;
 			float4 _AmbientColor;
-			float _Glossines;
+			float  _Glossines;
 			float4 _SpecularColor;
 			float4 _RimColor;
-			float _RimAmount;
-			float _RimThreshold;
+			float  _RimAmount;
+			float  _RimThreshold;
 
 			float4 frag (v2f i) : SV_Target
 			{
@@ -82,29 +84,29 @@
 				// the normal vertex from the input
 				float3 normal = normalize(i.worldNormal);
 				float3 viewDir = normalize(i.viewDir);
-				float3 halfVector = normalize(_WorldSpaceLightPos0 +  + viewDir);
-				float NdotH = dot(normal, halfVector);
-				float shadow = SHADOW_ATTENUATION(i);
-
+				float3 halfVector = normalize(_WorldSpaceLightPos0 + viewDir);
+				float  NdotH = dot(normal, halfVector);
+				float  shadow = SHADOW_ATTENUATION(i);
+				
 				// theh normal dot product with the lights position to add shadow
 				float NdotL = dot(_WorldSpaceLightPos0, normal);
 
-				// the seperation between the two colors smoothed 
-				float lightIntensity = smoothstep(0, 0.1, NdotL * shadow);
+				// the seperation between the two colors smoothed  with added shadow
+				float lightIntensity = smoothstep(0, 0.01, NdotL * shadow);
 
 				// the color of the model is affected by the lighting
 				float4 light = lightIntensity * _LightColor0;
 
 				// Calcualted the specular light
-				float specularIntensity = pow(NdotH * lightIntensity, _Glossines * _Glossines);
-				float specularIntensitySmooth = smoothstep(0.005, 0.01, specularIntensity);
+				float  specularIntensity = pow(NdotH * lightIntensity, _Glossines * _Glossines);
+				float  specularIntensitySmooth = smoothstep(0.005, 0.01, specularIntensity);
 				float4 specular = specularIntensitySmooth * _SpecularColor;
 				float4 rimDot = 1 - dot(viewDir, normal);
-
-				float rimIntensity = rimDot * pow(NdotL, _RimThreshold);
-				rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity);
-
+				float  rimIntensity = rimDot * pow(NdotL, _RimThreshold);
+				rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity * shadow);
 				float4 rim = rimIntensity * _RimColor;
+
+
 
 				// the model is added to the color of the Ambient color and the light and the specular lighting
 				return _Color * sample * (_AmbientColor + light + specularIntensity + specular + rim);
