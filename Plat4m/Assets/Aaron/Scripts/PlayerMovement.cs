@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = true;
             isGrounded = false;
-            _p1body.velocity = new Vector3(0, 10, 0);
+            _p1body.velocity = new Vector3(0, 15, 0);
             jumpLimit--;
         }
         #endregion
