@@ -1,4 +1,4 @@
-﻿Shader "Alex/s_ToonLitShader"
+﻿Shader "Alex/ToonOutline"
 {
 	Properties
 	{
@@ -36,17 +36,18 @@
 	}
 	ENDCG
 
-		SubShader
+	SubShader
 	{
-		//Tags{"RenderType" = "Opaque"}
-		//UsePass "Alex/ToonLighting/FORWARD"
+		Tags{"RenderType" = "Opaque"}
+		
 		Pass
 		{
+		Name "OUTLINE"
 			Tags{"LightMode" = "Always"}
 			Cull Front
 			ZWrite On
 			ColorMask RGB
-			Blend Zero Zero
+			Blend SrcAlpha OneMinusSrcAlpha
 			
 			CGPROGRAM
 			#pragma vertex vert
@@ -54,15 +55,13 @@
 
 			float4 _Color;
 			fixed4 frag(v2f i) : SV_Target
-			{
-				
-				return i.color * _Color;
+			{				
+				return i.color;
 			}
 
 			ENDCG
-
-		}
-	}
+			
+		}	
+	}		
 		Fallback "Alex/ToonLighting"
-
 }
