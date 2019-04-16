@@ -1,22 +1,21 @@
 ﻿Shader "Alex/ToonLighting"
 {
+	
 	Properties
-	{
+	{	[HDR]
 		_Color("Color", Color) = (0.5, 0.65, 1, 1)
-		_MainTex("Main Texture", 2D) = "white" {}
-		_Outline("Outline", Range(0.002, 0.03)) = .005
-		_OutlineColor("Outline Color", Color) = (0.0,0.0,0.0,1.0)
 		[HDR]
-		_AmbientColor("Ambient Color", Color) = (0.4,0.4,0.4,1)
-
+		_AmbientColor("Ambient Color", Color) = (0.4, 0.4, 0.4, 1)
 		[HDR]
-		_SpecularColor("Specular Color", Color) = (0.9,0.9,0.9,1)
-		_Glossines("Glossiness", Float) = 32
-
+		_SpecularColor("Specular Color", Color) = (0.9, 0.9, 0.9, 1)
 		[HDR]
-		_RimColor("Rim Color", Color) = (1,1,1,1)
+		_RimColor("Rim Color", Color) = (1,1,1,1)	
+		_MainTex("Main Texture", 2D) = "white" {}		
+		_Glossines("Glossiness", Float) = 32		
 		_RimAmount("Rim Amount", Range(0, 1)) = 0.716
 		_RimThreshold("Rim Threshold", Range(0, 1)) = 0.1
+		_OutlineColor("Outline Color", Color) = (0.0, 0.0, 0.0, 1)
+		_Outline("Outline", Range(0.002,0.03)) = 0.005
 	    
 	}
 
@@ -30,6 +29,7 @@
 		float4 vertex : POSITION;
 		float4 uv : TEXCOORD0;
 		float3 normal : NORMAL;
+		
 	
 	};
 
@@ -39,7 +39,6 @@
 		float2 uv : TEXCOORD0;
 		float3 worldNormal : NORMAL;
 		float3 viewDir : TEXCOORD1;
-		fixed4 color : COLOR;
 		SHADOW_COORDS(2)
 
 	};
@@ -47,30 +46,24 @@
 	sampler2D _MainTex;
 	float4 _MainTex_ST;
 	
-	uniform float  _Outline;
-	uniform float4 _OutlineColor;
 	v2f vert(appdata v)
 	{
 		v2f o;
 		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 		o.worldNormal = UnityObjectToWorldNormal(v.normal);
-		o.viewDir = WorldSpaceViewDir(v.vertex);	
-		float3 outNorm = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, v.normal));
-		float2 offset = TransformViewToProjection(outNorm.xy);
-
-		o.pos.xy += offset * _Outline;
-		o.color = _OutlineColor;
+		o.viewDir = WorldSpaceViewDir(v.vertex);
 		TRANSFER_SHADOW(o);
 		return o;
 	}
 
 	ENDCG   
 	SubShader
-	{			
-
+	{	
+		UsePass "Alex/ToonOutline/OUTLINE"
 		Pass
 		{
+			Name "BASE"
 			Tags
 			{
 			"LightMode" = "ForwardBase"
@@ -103,10 +96,10 @@
 				float NdotL = dot(_WorldSpaceLightPos0, normal);
 
 				// the seperation between the two colors smoothed  with added shadow
-				float lightIntensity = smoothstep(0, 0.01, NdotL * shadow);
+				float lightIntensity = smoothstep(0, 0.01, NdotL);
 
 				// the color of the model is affected by the lighting
-				float4 light = lightIntensity * _LightColor0;
+				float4 light = lightIntensity * _LightColor0 * shadow;
 
 				// Calcualted the specular light
 				float  specularIntensity = pow(NdotH * lightIntensity, _Glossines * _Glossines);
@@ -114,11 +107,11 @@
 				float4 specular = specularIntensitySmooth * _SpecularColor;
 				float4 rimDot = 1 - dot(viewDir, normal);
 				float  rimIntensity = rimDot * pow(NdotL, _RimThreshold);
-				rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity * shadow);
+				rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity);
 				float4 rim = rimIntensity * _RimColor;						
-
+				
 				// the model is added to the color of the Ambient color and the light and the specular lighting
-				return _Color * sample * (_AmbientColor + light + specularIntensity + specular + rim) ; 
+				return _Color * sample * (_AmbientColor + light + specularIntensity + specular + rim);
 			}
 			ENDCG
 		
@@ -127,6 +120,7 @@
 		// All Other Lights
 		Pass
 		{
+			Name "FORWARD"
 			Tags
 			{
 			"LightMode" = "ForwardAdd"
@@ -184,33 +178,8 @@
 			}
 				ENDCG
 		}	
-
+	
 		
-		Pass
-		{
-			Tags{"LightMode" = "Always"}
-			Cull Front
-			ZWrite On
-			ColorMask RGB
-			Blend Zero Zero
-
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-
-			float4 _Color;
-			fixed4 frag(v2f i) : SV_Target
-			{
-
-				return i.color * _Color;
-			}
-
-			ENDCG
-
-		}
-		
-		
-			
 		// Shadow casting support.
 		UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
 		
