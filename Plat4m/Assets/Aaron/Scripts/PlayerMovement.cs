@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     float force = 10;
     Vector3 jumpForce;
     float angle;
-    int jumpLimit = 2;
+    public int jumpLimit = 2;
     bool isJumping = false;
     bool isGrounded = true;
 
@@ -53,17 +53,13 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveBackWard();
         }
-
         if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
         {
-            isJumping = true;
-            isGrounded = false;
-            _p1body.velocity = new Vector3(0, 15, 0);
-            jumpLimit--;
+            Jump();
         }
         #endregion
 
-        #region -Plaer logic for camera
+        #region -Player logic for camera
         if (_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
         {
             _current = PlayerIndex.PLAYERTWO;
@@ -119,6 +115,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region-Movement Methods-
+    void Jump()
+    {
+        isJumping = true;
+        isGrounded = false;
+        _p1body.velocity = new Vector3(0, 15, 0);
+        jumpLimit--;
+    }
+
     void MoveFoward()
     {
         _currentBody.AddForce(Camera.main.transform.forward * force, ForceMode.Force);
