@@ -1,10 +1,12 @@
-﻿Shader "Unlit/s_DrawWithMouse"
+﻿Shader "Alex/Drawing Shader"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-		_PlayerCoords ("Coords", vector) = (0,0,0,0)
+		_Coords("Coords", vector) = (0,0,0,0)
 		_Color("Draw Color", Color) = (1,0,0,0)
+		_BrushSize("Brush Size", Range(1,500)) = 200
+		_BrushStrength("Brush Strength", Range(0,1)) = 1
     }
     SubShader
     {
@@ -34,8 +36,8 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-			fixed4 _PlayerCoords, _Color;
-
+			fixed4 _Coords, _Color;
+			half _BrushSize, _BrushStrength;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -50,8 +52,11 @@
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
 				
-           
-                return col;
+				float draw = pow(saturate(1 - distance(i.uv, _Coords.xy)), 500 / _BrushSize * (1 - _Coords.z * 4));
+				fixed4 drawCol = _Color * (draw * _BrushStrength);
+				return saturate(col + drawCol);
+
+               
             }
             ENDCG
         }
