@@ -99,13 +99,26 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.transform.RotateAround(_currentBody.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collider)
     {
-        if(collision.transform.tag == "Ground")
+        if(collider.transform.tag == "Ground" || collider.transform.tag == "MovingPlatform")
         {
             isGrounded = true;
             isJumping = false;
             ResetJump();
+        }
+
+        if(collider.transform.tag == "MovingPlatform")
+        {
+            _p1body.transform.parent = collider.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.transform.tag == "MovingPlatform")
+        {
+            _p1body.transform.parent = null;
         }
     }
 
