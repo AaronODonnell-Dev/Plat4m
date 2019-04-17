@@ -9,6 +9,8 @@ TagManager:
   - EnemySightline
   - Player2
   - Ground
+  - MovingPlatform
+  - Switch
   layers:
   - Default
   - TransparentFX
