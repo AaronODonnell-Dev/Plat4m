@@ -108,13 +108,13 @@ public class PlayerMovement : MonoBehaviour
             ResetJump();
         }
 
-        if(collider.transform.tag == "MovingPlatform")
+        if (collider.transform.tag == "MovingPlatform")
         {
             _p1body.transform.parent = collider.transform;
         }
     }
 
-    private void OnTriggerExit(Collider collider)
+    private void OnCollisionExit(Collision collider)
     {
         if (collider.transform.tag == "MovingPlatform")
         {

@@ -13,7 +13,8 @@ public class ElevatorActivation : MonoBehaviour
 
     private void Start()
     {
-
+        move.GetComponent<Animation>();
+        move["Elevator"].speed = 0.15f;
     }
 
     void Update()
@@ -36,6 +37,7 @@ public class ElevatorActivation : MonoBehaviour
         if (activateLever)
         {
             move.Play("Elevator");
+            
         }
         else if (!activateLever)
         {
