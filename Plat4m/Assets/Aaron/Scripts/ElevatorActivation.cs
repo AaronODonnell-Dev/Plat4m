@@ -8,6 +8,7 @@ public class ElevatorActivation : MonoBehaviour
     private bool activateLever = false;
     public GameObject Player;
     public GameObject elevator;
+    public GameObject instructionMessage;
 
     public Animation move;
 
@@ -24,9 +25,15 @@ public class ElevatorActivation : MonoBehaviour
         var distance = heading.magnitude;
         var direction = heading / distance; // This is now the normalized direction.
 
-        if (heading.sqrMagnitude < 7 * 7 && Input.GetKeyDown(KeyCode.E))
+        if (heading.sqrMagnitude < 7 * 7)
         {
-            activateLever = !activateLever;
+            instructionMessage.SetActive(true);
+
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                activateLever = !activateLever;
+                instructionMessage.SetActive(false);
+            }
         }
 
         EnableAnimation();
