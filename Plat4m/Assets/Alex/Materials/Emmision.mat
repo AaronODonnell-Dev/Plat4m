@@ -68,14 +68,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Splat:
-        m_Texture: {fileID: 2800000, guid: 008405693a1c4a547b78b5bdada37237, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Displacement: 1
+    - _Displacement: 0.01
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossines: 32
@@ -98,9 +98,9 @@ Material:
     - _AmbientColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _Coords: {r: 0, g: 0, b: 0, a: 0}
-    - _DepthColor: {r: 0, g: 0, b: 0, a: 1}
+    - _DepthColor: {r: 0.4339623, g: 0.2876815, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+    - _MainColor: {r: 1, g: 0.5967225, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _PlayerCoords: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
