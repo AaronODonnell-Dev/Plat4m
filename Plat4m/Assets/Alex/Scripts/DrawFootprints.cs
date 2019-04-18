@@ -33,11 +33,12 @@ public class DrawFootprints : MonoBehaviour
     {
         raydist = _hit.distance;
        
+
         for (int i = 0; i < feet.Length; i++)
         {
             if (Physics.Raycast(feet[i].position, Vector3.down, out _hit, 1f, _layerMask))
             {
-                _drawMaterial.SetVector("_Coords", new Vector4(_hit.textureCoord.x, _hit.textureCoord.y, 0, 0));
+                _drawMaterial.SetVector("_Coords", new Vector4(_hit.textureCoord.x, _hit.textureCoord.y, _hit.distance, 0));
                 _drawMaterial.SetFloat("_BrushSize", brushSize);
                 _drawMaterial.SetFloat("_BrushStrength", brushStrength);
                 RenderTexture Temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
