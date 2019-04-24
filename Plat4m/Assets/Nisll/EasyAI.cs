@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,7 +9,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     {
         public NavMeshAgent agent;
         public ThirdPersonCharacter character;
-        //public GameObject character; 
 
         public enum State
         {
@@ -22,7 +20,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private bool alive;
 
         public GameObject[] waypoints;
-        private int waypointInd = 0;
+        private int waypointInd;
         public float patrolSpeed = 1.5f;
 
         public float chaseSpeed = 3f;
@@ -36,11 +34,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             agent.updatePosition = true;
             agent.updateRotation = false;
 
+            waypoints = GameObject.FindGameObjectsWithTag("Node");
+            waypointInd = Random.Range(0, waypoints.Length);
+
             state = EasyAI.State.PATROL;
 
             alive = true;
-
-            //StartCoroutine(FSM());
         }
 
         private void Update()
@@ -77,11 +76,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
             else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
             {
-                waypointInd += 1;
-                if (waypointInd > waypoints.Length)
-                {
-                    waypointInd = 0;
-                }
+                waypointInd = Random.Range(0, waypoints.Length);
             }
             else
             {

@@ -15,9 +15,9 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Plat4m.fspro
-  SourceProjectPathUnformatted: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Plat4m.fspro
-  SourceBankPathUnformatted: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Build
+  sourceProjectPath: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Plat4m.fspro
+  SourceProjectPathUnformatted: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Plat4m.fspro
+  SourceBankPathUnformatted: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Build
   AutomaticEventLoading: 1
   BankLoadType: 0
   AutomaticSampleLoading: 0
@@ -77,7 +77,6 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
-  Banks:
-  - Master.strings
+  Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
