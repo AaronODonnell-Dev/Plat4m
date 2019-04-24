@@ -5,30 +5,52 @@ using UnityEngine;
 [RequireComponent(typeof(Nodes))]
 public class AIController : MonoBehaviour
 {
+    public GameObject Target;
     public GameObject ObjectToMoveTo;
     public GameObject FieldOfView;
     private Nodes nodes;
 
+    //GameObject obj;
+    public Collider objCollider;
+
+    public Camera cam;
+    Plane[] planes;
+
     void Start()
     {
         nodes = GetComponent<Nodes>();
+
+        //cam = Camera.main;
+        planes = GeometryUtility.CalculateFrustumPlanes(cam);
+        objCollider = GetComponent<Collider>();
     }
 
     bool canMove = true;
     void Update()
     {
-        if (canMove)
-            nodes.MoveTo(ObjectToMoveTo);
 
-    }
-
-    private void SeePlayer()
-    {
-        if (FieldOfView)
+        if (GeometryUtility.TestPlanesAABB(planes, objCollider.bounds))
         {
+            Debug.Log(Target.name + " has been detected!");
+        }
+        else
+        {
+            Debug.Log("Nothing has been detected");
+        }
 
+        if (canMove)
+        {
+            nodes.MoveTo(ObjectToMoveTo);
         }
     }
+
+    //private void SeePlayer()
+    //{
+    //    if (FieldOfView)
+    //    {
+
+    //    }
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
