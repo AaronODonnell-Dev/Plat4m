@@ -25,6 +25,8 @@ public class BasicMovement : MonoBehaviour
             ball.transform.Translate(new Vector3(1f * Time.deltaTime, 0, 0));
         if (Input.GetKey(KeyCode.Q))
             ball.transform.Rotate(new Vector3(0,100f * Time.deltaTime,0));
+        if (Input.GetKey(KeyCode.E))
+            ball.transform.Rotate(new Vector3(0, -100f * Time.deltaTime, 0));
 
     }
 }
