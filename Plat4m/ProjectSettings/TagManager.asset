@@ -11,6 +11,10 @@ TagManager:
   - Ground
   - MovingPlatform
   - Switch
+  - PauseMenu
+  - PipUI
+  - MainMenu
+  - MenuCamPos
   layers:
   - Default
   - TransparentFX
