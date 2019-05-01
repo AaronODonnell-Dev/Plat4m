@@ -7,14 +7,23 @@ using UnityEngine.UI;
 
 public class PauseMenuController : UIController
 {
-    private void Start()    {
+
+    public PauseMenuController()
+    {
+    }
+    void Start()
+    {
+
     }
     void Update()
-    { }
+    {
+
+    }
     // When the Resume Button is Pressed
     public void Resume_OnClick()
     {
-        pauseMenu.SetActive(false);
+        pauseMenu.enabled = false;
+        togglePause = false;
         Time.timeScale = 1;
     }
     // When the Options Button is Pressed
