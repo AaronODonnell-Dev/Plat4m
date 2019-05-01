@@ -21,19 +21,37 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public State state;
         private bool alive;
 
+        #region Camera Stuffs
+        private bool playerInSight;
+        public float fieldOfView = 110f;
+        private SphereCollider sphereCollider;
+
+        //Sight
+        public GameObject player;
+        public Collider playerCollider;
+        public Camera myCamera;
+        private Plane[] planes;
+        #endregion
+
+        #region Variables
+        //Patrol
         public GameObject[] waypoints;
         private int waypointInd;
         public float patrolSpeed = 1.5f;
 
+        //Chase
         public float chaseSpeed = 3f;
         public GameObject target;
 
+        //Investigate
         private Vector3 investigateSpot;
-        private float timer = 0;
-        public float investigateWait = 10;
-
+        public float timer = 0;
+        public const float investigateWait = 10;
+    
+        //Sight
         public float heightMultiplier;
-        public float sightDistance = 10; 
+        public float sightDistance = 5;
+        #endregion
 
         void Start()
         {
@@ -46,6 +64,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             waypoints = GameObject.FindGameObjectsWithTag("Node");
             waypointInd = UnityEngine.Random.Range(0, waypoints.Length); //Might need System for Random
 
+            playerCollider = player.GetComponent<Collider>();
+
             state = enemyScript.State.PATROL;
 
             alive = true;
@@ -56,6 +76,20 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
             StartCoroutine(FSM());
+            Debug.Log(state);
+
+            #region Camera
+            planes = GeometryUtility.CalculateFrustumPlanes(myCamera);
+            if (GeometryUtility.TestPlanesAABB(planes, playerCollider.bounds))
+            {
+                Debug.Log("Player Spotted");
+                CheckForPlayer();
+            }
+            else
+            {
+
+            }
+            #endregion
         }
 
         IEnumerator FSM()
@@ -108,51 +142,38 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         void Investigate()
         {
             timer += Time.deltaTime;
-            RaycastHit hit;
-            Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, transform.forward * sightDistance, Color.green);
-            Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized * sightDistance, Color.green);
-            Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward - transform.right).normalized * sightDistance, Color.green);
-            if (Physics.Raycast (transform.position + Vector3.up * heightMultiplier, transform.forward, out hit, sightDistance))
-            {
-                if (hit.collider.gameObject.tag == "Player")
-                {
-                    state = enemyScript.State.CHASE;
-                    target = hit.collider.gameObject;
-                }
-            }
-            if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized, out hit, sightDistance))
-            {
-                if (hit.collider.gameObject.tag == "Player")
-                {
-                    state = enemyScript.State.CHASE;
-                    target = hit.collider.gameObject;
-                }
-            }
-            if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.forward - transform.right).normalized, out hit, sightDistance))
-            {
-                if (hit.collider.gameObject.tag == "Player")
-                {
-                    state = enemyScript.State.CHASE;
-                    target = hit.collider.gameObject;
-                }
-            }
-            agent.SetDestination(this.transform.position);
-            character.Move(Vector3.zero, false, false);
+
+            //agent.SetDestination(this.transform.position);
+            agent.SetDestination(investigateSpot);
+            //character.Move(Vector3.zero, false, false);
             transform.LookAt(investigateSpot);
             if (timer >= investigateWait)
             {
                 state = enemyScript.State.PATROL;
+                timer = 0;
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Player")
+            if (other.tag == "Player" && state == State.PATROL)
             {
-                //state = enemyScript.State.CHASE;
-                //target = other.gameObject;
-                //st
+                state = enemyScript.State.INVESTIGATE;
+                investigateSpot = other.gameObject.transform.position;
             }
         }
+
+        #region Camera 
+        void CheckForPlayer()
+        {
+            RaycastHit hit;
+            //Debug.DrawRay(myCamera.transform.position, transform.forward * 10, Color.green);
+            if (Physics.Raycast(myCamera.transform.position, transform.forward, out hit, 5) && (state != State.CHASE))
+            {
+                state = enemyScript.State.CHASE;
+                target = hit.collider.gameObject;
+            }
+        }
+        #endregion
     }
 }

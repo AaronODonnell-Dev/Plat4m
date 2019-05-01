@@ -89,27 +89,4 @@ public class AIController : MonoBehaviour
     //        var node = player.gameObject.GetComponent<PathNode>();
     //    }
     //}
-
-    /*
-     
-     using UnityEngine;
-    using System.Collections;
-
-    public class ExampleScript : MonoBehaviour {
-    public Camera camera;
-
-    void Start(){
-        RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        
-        if (Physics.Raycast(ray, out hit)) {
-            Transform objectHit = hit.transform;
-            
-            // Do something with the object that was hit by the raycast.
-        }
-    }
-}
-     
-     
-     */
 }
