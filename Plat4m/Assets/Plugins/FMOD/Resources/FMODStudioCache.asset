@@ -13,131 +13,17 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 114493193852581148}
-  - {fileID: 114151326198032984}
+  - {fileID: 114121139620626466}
+  - {fileID: 114960521115867074}
   EditorEvents: []
   EditorParameters: []
   MasterBanks:
-  - {fileID: 114151326198032984}
+  - {fileID: 114960521115867074}
   StringsBanks:
-  - {fileID: 114493193852581148}
+  - {fileID: 114121139620626466}
   stringsBankWriteTime: 636904240504113937
   cacheVersion: 3
---- !u!114 &114042708229268790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: Plat4mFmod\Build\Desktop\Master.strings.bank
-  lastModified: 636904242402774353
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 680
-  Exists: 0
---- !u!114 &114101134592745080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: C:\Users\Alex\Documents\FMOD Studio\Plat4m\Build\Desktop\Master.bank
-  lastModified: 636904227519480392
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 976
-  Exists: 0
---- !u!114 &114132249591337464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: C:\Users\Alex\Documents\FMOD Studio\Plat4m\Build\Desktop\Master.strings.bank
-  lastModified: 636904227519631157
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 680
-  Exists: 0
---- !u!114 &114151326198032984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.bank
-  lastModified: 636904240504074029
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 976
-  Exists: 1
---- !u!114 &114179597613658232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: D:\College GitRepos\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.bank
-  lastModified: 636904243952135875
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 976
-  Exists: 1
---- !u!114 &114230436373520446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: C:\Users\Alex\Documents\GitHub\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.bank
-  lastModified: 636904245672638287
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 976
-  Exists: 1
---- !u!114 &114493193852581148
+--- !u!114 &114121139620626466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,7 +42,7 @@ MonoBehaviour:
   - Name: Desktop
     Value: 680
   Exists: 1
---- !u!114 &114777654432661426
+--- !u!114 &114160778008885316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,14 +54,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: D:\College GitRepos\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.strings.bank
-  lastModified: 636904243952245922
+  Path: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.strings.bank
+  lastModified: 636909422196134273
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 680
   Exists: 1
---- !u!114 &114877183844654298
+--- !u!114 &114772157091937708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,10 +73,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: D:\College GitRepos\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.strings.bank
-  lastModified: 636904243952245922
+  Path: Plat4mFmod\Build\Desktop\Master.strings.bank
+  lastModified: 636909405843410460
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 680
+  Exists: 0
+--- !u!114 &114825834554573380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.bank
+  lastModified: 636909422196094228
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 976
+  Exists: 1
+--- !u!114 &114922002995840168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.strings.bank
+  lastModified: 636909422196134273
   LoadResult: 70
   FileSizes:
   - Name: Desktop
     Value: 680
+  Exists: 1
+--- !u!114 &114960521115867074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.bank
+  lastModified: 636904240504074029
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 976
   Exists: 1
