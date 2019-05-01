@@ -88,7 +88,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
+<<<<<<< HEAD
       spriteID: fe4dc57fc39f1c64692ec5aa0d82c543
+=======
+      spriteID: d7886dc69b5af5143bcddc3562f5e75d
+>>>>>>> master
       vertices: []
       indices: 
       edges: []
