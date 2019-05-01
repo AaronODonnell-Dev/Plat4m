@@ -50,8 +50,7 @@ public class DrawFootprints : MonoBehaviour
                  RenderTexture Temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
                  Graphics.Blit(_splatMap, Temp);
                  Graphics.Blit(Temp, _splatMap, _drawMaterial);
-                 RenderTexture.ReleaseTemporary(Temp);
-                
+                 RenderTexture.ReleaseTemporary(Temp);                
             }
         }
 
