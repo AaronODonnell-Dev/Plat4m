@@ -15,6 +15,7 @@ TagManager:
   - PipUI
   - MainMenu
   - MenuCamPos
+  - MovingWall
   layers:
   - Default
   - TransparentFX
