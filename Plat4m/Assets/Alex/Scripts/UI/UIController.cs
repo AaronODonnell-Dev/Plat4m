@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject player;
-    public Canvas pauseMenu, mainMenu; 
+    public GameObject pauseMenu, mainMenu, player;
     public static int pipLives = 9;
     public static int collectable;
     public static int score;
-    public static bool togglePause = false;
-    
+    bool togglePause = false;
+    Vector3 menuCamPos;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<Canvas>();
-        mainMenu.enabled = true;
-        pauseMenu.enabled = false;       
+        menuCamPos = new Vector3(1f, 2f, -3.5f);            
+        player = GameObject.FindGameObjectWithTag("Player");       
+        mainMenu.SetActive(true);
+        pauseMenu.SetActive(togglePause);
+        Camera.main.transform.position = player.transform.position + menuCamPos;  
+
     }
 
     // Update is called once per frame
     void Update()
-    {    
-        if (mainMenu.isActiveAndEnabled == false)
-        {           
+    {
+        if (mainMenu.activeInHierarchy == false)
+        {
             if (Input.GetKeyUp(KeyCode.Escape))
             {
-                pauseMenu.enabled = true;
-                togglePause = !togglePause;                               
+                togglePause = !togglePause;
+                pauseMenu.SetActive(togglePause);                
                 Time.timeScale = 0;
             }
             if (!togglePause)
             {
-                pauseMenu.enabled = false;
                 Time.timeScale = 1;
             }
         }
