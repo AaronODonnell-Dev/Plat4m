@@ -9,6 +9,7 @@ TagManager:
   - EnemySightline
   - Player2
   - Ground
+  - gameController
   layers:
   - Default
   - TransparentFX
