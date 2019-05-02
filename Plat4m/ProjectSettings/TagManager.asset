@@ -15,7 +15,11 @@ TagManager:
   - PipUI
   - MainMenu
   - MenuCamPos
+<<<<<<< HEAD
   - MovingWall
+=======
+  - gameController
+>>>>>>> master
   layers:
   - Default
   - TransparentFX
