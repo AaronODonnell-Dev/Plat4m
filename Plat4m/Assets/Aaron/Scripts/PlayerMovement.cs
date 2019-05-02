@@ -108,17 +108,29 @@ public class PlayerMovement : MonoBehaviour
             ResetJump();
         }
 
-        if(collider.transform.tag == "MovingPlatform")
+        if (collider.transform.tag == "MovingPlatform")
         {
             _p1body.transform.parent = collider.transform;
         }
+
+        if(collider.transform.tag == "MovingWall")
+        {
+            _p1body.transform.parent = collider.transform;
+            _p1body.AddForce(-10 * _p1body.mass * transform.up);
+            _p1body.freezeRotation = true;
+        }
     }
 
-    private void OnTriggerExit(Collider collider)
+    private void OnCollisionExit(Collision collider)
     {
         if (collider.transform.tag == "MovingPlatform")
         {
             _p1body.transform.parent = null;
+        }
+
+        if(collider.transform.tag == "MovingWall")
+        {
+            _p1body.freezeRotation = false;
         }
     }
 
