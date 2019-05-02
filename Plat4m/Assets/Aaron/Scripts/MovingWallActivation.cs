@@ -15,7 +15,7 @@ public class MovingWallActivation : MonoBehaviour
     private void Start()
     {
         move.GetComponent<Animation>();
-        move["MovingWall"].speed = 0.15f;
+        move["SideMovingPlatform"].speed = 0.15f;
     }
 
     void Update()
@@ -43,12 +43,12 @@ public class MovingWallActivation : MonoBehaviour
     {
         if (activateLever)
         {
-            move.Play("MovingWall");
+            move.Play("SideMovingPlatform");
             
         }
         else if (!activateLever)
         {
-            move.Stop("MovingWall");
+            move.Stop("SideMovingPlatform");
         }
     }
 }
