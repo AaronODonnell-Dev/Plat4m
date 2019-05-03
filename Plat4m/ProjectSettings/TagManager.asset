@@ -16,6 +16,7 @@ TagManager:
   - MainMenu
   - MenuCamPos
   - gameController
+  - GameCamPos
   layers:
   - Default
   - TransparentFX
