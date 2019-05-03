@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenuController : UIController
-{  
-  
+{
+    Canvas mMCCanvas;
+    void Start()
+    {
+        mMCCanvas = mainMenu;
+    }
     void Update()
     {
        
@@ -12,9 +16,12 @@ public class MainMenuController : UIController
 
     public void Start_OnClick()
     {
-        mainMenu.SetActive(false);
-        Camera.main.transform.LookAt(player.transform);       
-        Camera.main.transform.RotateAround(player.transform.position, Vector3.up, 180f);       
+        mMCCanvas.enabled = false;        
+    }
+
+    public void Load_OnClick()
+    {
+
     }
     public void Quit_OnClick()
     {
