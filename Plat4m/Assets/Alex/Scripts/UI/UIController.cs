@@ -4,38 +4,52 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject pauseMenu, mainMenu, player;
+    public GameObject player;
+    public Canvas pauseMenu, mainMenu;
     public static int pipLives = 9;
     public static int collectable;
     public static int score;
-    bool togglePause = false;
-    Vector3 menuCamPos;
+    public static bool togglePause;
+ 
+    
     // Start is called before the first frame update
-    void Start()
+    public UIController()
     {
-        menuCamPos = new Vector3(1f, 2f, -3.5f);            
-        player = GameObject.FindGameObjectWithTag("Player");       
-        mainMenu.SetActive(true);
-        pauseMenu.SetActive(togglePause);
-        Camera.main.transform.position = player.transform.position + menuCamPos;  
+       
+    }
 
+    void Start()
+    {              
+        player = GameObject.FindGameObjectWithTag("Player");
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>();
+        mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<Canvas>();
+        mainMenu.enabled = true;
+        pauseMenu.enabled = false;
+        togglePause = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (mainMenu.activeInHierarchy == false)
+        if (mainMenu.isActiveAndEnabled == false)
         {
-            if (Input.GetKeyUp(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 togglePause = !togglePause;
-                pauseMenu.SetActive(togglePause);                
-                Time.timeScale = 0;
+                pauseMenu.enabled  = togglePause;                               
             }
-            if (!togglePause)
+            if (pauseMenu.isActiveAndEnabled == true)
+            {
+                Time.timeScale = 0.1f;
+                Time.fixedDeltaTime = Time.timeScale * Time.deltaTime;
+            }
+            else if(pauseMenu.isActiveAndEnabled == false)
             {
                 Time.timeScale = 1;
+                togglePause = false;
+                Time.fixedDeltaTime = Time.deltaTime;
             }
         }
+
     }
 }

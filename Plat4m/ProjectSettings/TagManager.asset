@@ -19,7 +19,7 @@ TagManager:
   - MovingWall
 =======
   - gameController
->>>>>>> master
+  - GameCamPos
   layers:
   - Default
   - TransparentFX
