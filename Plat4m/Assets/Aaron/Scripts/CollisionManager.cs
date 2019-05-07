@@ -6,6 +6,7 @@ public class CollisionManager : MonoBehaviour
 {
     PlayerMovement Player;
     Rigidbody playerBody;
+    WallMovementController wallMovement;
 
     public Vector3 playerPosition;
 
@@ -22,13 +23,35 @@ public class CollisionManager : MonoBehaviour
         if (collision.transform.tag == "MovingWall")
         {
             playerPosition = playerBody.transform.position;
-            playerBody.transform.position = collision.transform.position;
-
-            //playerBody.AddForce(-10 * playerBody.mass * this.transform.up);
+            playerBody.transform.position = collision.transform.position + new Vector3(0, 0, 0.25f);
+            collidedWithWall = true;
+            playerBody.AddForce(-10 * playerBody.mass * this.transform.up);
             this.GetComponent<Rigidbody>().useGravity = false;
             playerBody.freezeRotation = true;
-            collidedWithWall = true;
             Player.ResetJump();
+
+            if (Input.GetKeyDown(KeyCode.Q) && collidedWithWall)
+            {
+                if(Input.GetKeyDown(KeyCode.Alpha8))
+                {
+                    wallMovement.MoveUp();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    wallMovement.MoveDown();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    wallMovement.MoveRight();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    wallMovement.MoveLeft();
+                }
+            }
         }
     }
 
@@ -59,7 +82,7 @@ public class CollisionManager : MonoBehaviour
         if (collider.transform.tag == "MovingWall")
         {
             playerBody.freezeRotation = true;
-            this.GetComponent<Rigidbody>().useGravity = false;
+            this.GetComponent<Rigidbody>().useGravity = true;
             collidedWithWall = false;
         }
     }
