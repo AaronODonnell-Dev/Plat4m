@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1949397762990316887}
   - component: {fileID: 1949397762990316883}
   - component: {fileID: 1949397762990316886}
+  - component: {fileID: 7828493094664925308}
   - component: {fileID: 1949397762990316873}
   - component: {fileID: 1949397762990316872}
   m_Layer: 0
@@ -88,6 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLimit: 2
+  isJumping: 0
+  isGrounded: 1
   cameraPosP1: {fileID: 1949397762212386235}
   cameraPosP2: {fileID: 0}
 --- !u!114 &1949397762990316883
@@ -141,6 +144,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7828493094664925308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949397762990316875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af5d58351abce941a19e51746274d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &1949397762990316873
 CapsuleCollider:
   m_ObjectHideFlags: 0
