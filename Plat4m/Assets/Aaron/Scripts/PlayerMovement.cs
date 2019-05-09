@@ -69,10 +69,9 @@ public class PlayerMovement : MonoBehaviour
 
         #region Collision with Wall Movement
 
-        if (collisionManager.collidedWithWall && !collisionManager.collisionEnded)
+        if (collisionManager.collidedWithWall)
         {
             jumpLimit = 1;
-            Debug.Log("Adding Force");
             p1Body.AddForce(-10 * p1Body.mass * p1Body.transform.up);
 
             if (Input.GetKeyDown(KeyCode.Q))
