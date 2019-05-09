@@ -8,8 +8,6 @@ public class CollisionManager : MonoBehaviour
     Rigidbody playerBody;
     WallMovementController wallMovement;
 
-    public Vector3 playerPosition;
-
     bool collidedWithWall = false;
 
     public void InstatiatePlayer(PlayerMovement player)
@@ -22,35 +20,40 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.transform.tag == "MovingWall")
         {
-            playerPosition = playerBody.transform.position;
-            playerBody.transform.position = collision.transform.position + new Vector3(0, 0, 0.25f);
             collidedWithWall = true;
-            playerBody.AddForce(-10 * playerBody.mass * this.transform.up);
-            this.GetComponent<Rigidbody>().useGravity = false;
+            Player.jumpLimit = 1;
+            playerBody.AddForce(-10 * playerBody.mass * playerBody.transform.up);
             playerBody.freezeRotation = true;
             Player.ResetJump();
 
-            if (Input.GetKeyDown(KeyCode.Q) && collidedWithWall)
+            if (collidedWithWall)
             {
-                if(Input.GetKeyDown(KeyCode.Alpha8))
+                playerBody.isKinematic = true;
+
+                while(collidedWithWall)
                 {
-                    wallMovement.MoveUp();
+                    if (Input.GetKeyDown(KeyCode.I))
+                    {
+                        wallMovement.MoveUp();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.K))
+                    {
+                        wallMovement.MoveDown();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.L))
+                    {
+                        wallMovement.MoveRight();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.J))
+                    {
+                        wallMovement.MoveLeft();
+                    }
                 }
 
-                if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
-                    wallMovement.MoveDown();
-                }
-
-                if (Input.GetKeyDown(KeyCode.Alpha6))
-                {
-                    wallMovement.MoveRight();
-                }
-
-                if (Input.GetKeyDown(KeyCode.Alpha4))
-                {
-                    wallMovement.MoveLeft();
-                }
+                collidedWithWall = false;
             }
         }
     }

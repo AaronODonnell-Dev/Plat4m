@@ -13,17 +13,17 @@ public class WallMovementController : MonoBehaviour
 
     public void MoveUp()
     {
-        playerBody.transform.Translate(new Vector3(0, 0.2f, 0));
+        playerBody.AddForce(-10 * playerBody.mass * playerBody.transform.up * 2);
     }
 
     public void MoveDown()
     {
-        playerBody.transform.Translate(new Vector3(0, -0.2f, 0));
+        playerBody.AddForce(-10 * playerBody.mass * -playerBody.transform.up * 2);
     }
 
     public void MoveLeft()
     {
-        playerBody.transform.Translate(new Vector3(0.2f, 0, 0));
+        playerBody.AddForce(-10 * playerBody.mass * new Vector3(0, 0,0) * 2);
     }
 
     public void MoveRight()
