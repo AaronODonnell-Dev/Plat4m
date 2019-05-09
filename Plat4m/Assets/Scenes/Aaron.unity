@@ -2062,6 +2062,11 @@ PrefabInstance:
       propertyPath: cameraPosP2
       value: 
       objectReference: {fileID: 1713722729}
+    - target: {fileID: 1949397762990316872, guid: 44e2b36b8333c6c42a6d54f5801b66ab,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44e2b36b8333c6c42a6d54f5801b66ab, type: 3}
 --- !u!1001 &7347056168897440991
