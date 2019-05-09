@@ -6,9 +6,9 @@ public class CollisionManager : MonoBehaviour
 {
     PlayerMovement Player;
     Rigidbody playerBody;
-    public WallMovementController wallMovement;
 
     public bool collidedWithWall = false;
+    public bool collisionEnded = false;
 
     public void InstatiatePlayer(PlayerMovement player)
     {
@@ -21,7 +21,7 @@ public class CollisionManager : MonoBehaviour
         if (collision.transform.tag == "MovingWall")
         {
             collidedWithWall = true;
-            Debug.Log(collidedWithWall);
+            //Debug.Log(collidedWithWall);
         }
     }
 
@@ -51,9 +51,10 @@ public class CollisionManager : MonoBehaviour
 
         if (collider.transform.tag == "MovingWall")
         {
-            playerBody.freezeRotation = true;
-            this.GetComponent<Rigidbody>().useGravity = true;
-            collidedWithWall = false;
+            collisionEnded = true;
+            //playerBody.freezeRotation = true;
+            //playerBody.useGravity = true;
+            //collidedWithWall = false;
         }
     }
 }
