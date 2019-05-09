@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1949397762990316884}
   - component: {fileID: 1949397762990316887}
   - component: {fileID: 1949397762990316883}
+  - component: {fileID: 6635283438365526407}
   - component: {fileID: 1949397762990316886}
   - component: {fileID: 1949397762990316873}
   - component: {fileID: 1949397762990316872}
@@ -88,6 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLimit: 2
+  isJumping: 0
+  isGrounded: 1
   cameraPosP1: {fileID: 1949397762212386235}
   cameraPosP2: {fileID: 0}
 --- !u!114 &1949397762990316883
@@ -104,6 +107,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1: {fileID: 1949397762990316875}
   Player2: {fileID: 0}
+--- !u!114 &6635283438365526407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949397762990316875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aa0578272d5b849920d342795ffdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
 --- !u!23 &1949397762990316886
 MeshRenderer:
   m_ObjectHideFlags: 0

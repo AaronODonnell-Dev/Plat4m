@@ -6,9 +6,9 @@ public class CollisionManager : MonoBehaviour
 {
     PlayerMovement Player;
     Rigidbody playerBody;
-    WallMovementController wallMovement;
+    public WallMovementController wallMovement;
 
-    bool collidedWithWall = false;
+    public bool collidedWithWall = false;
 
     public void InstatiatePlayer(PlayerMovement player)
     {
@@ -21,40 +21,7 @@ public class CollisionManager : MonoBehaviour
         if (collision.transform.tag == "MovingWall")
         {
             collidedWithWall = true;
-            Player.jumpLimit = 1;
-            playerBody.AddForce(-10 * playerBody.mass * playerBody.transform.up);
-            playerBody.freezeRotation = true;
-            Player.ResetJump();
-
-            if (collidedWithWall)
-            {
-                playerBody.isKinematic = true;
-
-                while(collidedWithWall)
-                {
-                    if (Input.GetKeyDown(KeyCode.I))
-                    {
-                        wallMovement.MoveUp();
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.K))
-                    {
-                        wallMovement.MoveDown();
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.L))
-                    {
-                        wallMovement.MoveRight();
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.J))
-                    {
-                        wallMovement.MoveLeft();
-                    }
-                }
-
-                collidedWithWall = false;
-            }
+            Debug.Log(collidedWithWall);
         }
     }
 
