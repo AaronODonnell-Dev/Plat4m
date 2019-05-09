@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping = false;
     public bool isGrounded = true;
 
+    bool onWall = false;
+
     Rigidbody p1Body;
     Rigidbody _p2body;
     Rigidbody _currentBody;
@@ -67,39 +69,52 @@ public class PlayerMovement : MonoBehaviour
 
         #region Collision with Wall Movement
 
-        if (collisionManager.collidedWithWall)
+        if (collisionManager.collidedWithWall && !collisionManager.collisionEnded)
         {
             jumpLimit = 1;
-            p1Body.isKinematic = true;
+            Debug.Log("Adding Force");
+            p1Body.AddForce(-10 * p1Body.mass * p1Body.transform.up);
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                p1Body.AddForce(-10 * p1Body.mass * p1Body.transform.up);
+                Debug.Log("Q was Pressed");
+                onWall = true;
                 p1Body.freezeRotation = true;
+                p1Body.isKinematic = true;
+
                 ResetJump();
 
-                if (Input.GetAxisRaw("Horizontal") == 1)
+                Debug.Log("Just About to Move");
+                if (Input.GetKeyDown(KeyCode.L))
                 {
                     //reference wall movement later
                     MoveRightOnWall();
                 }
-                else if (Input.GetAxisRaw("Horizontal") == -1)
+                else if (Input.GetKeyDown(KeyCode.J))
                 {
                     MoveLeftOnWall();
                 }
-                if (Input.GetAxisRaw("Vertical") == 1)
+
+                if (Input.GetKeyDown(KeyCode.I))
                 {
+                    Debug.Log("Just About to Move Up");
                     MoveUp();
                 }
-                else if (Input.GetAxisRaw("Vertical") == -1)
+                else if (Input.GetKeyDown(KeyCode.K))
                 {
                     MoveDown();
+                }
+                else
+                {
+                    p1Body.isKinematic = false;
                 }
             }
             else if (Input.GetKeyUp(KeyCode.Q))
             {
+                Debug.Log("Let go of Q");
                 p1Body.isKinematic = false;
-                collisionManager.collidedWithWall = false;
+                onWall = false;
+                //collisionManager.collidedWithWall = false;
             }
         }
 

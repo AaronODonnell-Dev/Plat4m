@@ -8,6 +8,7 @@ public class CollisionManager : MonoBehaviour
     Rigidbody playerBody;
 
     public bool collidedWithWall = false;
+    public bool collisionEnded = false;
 
     public void InstatiatePlayer(PlayerMovement player)
     {
@@ -50,6 +51,7 @@ public class CollisionManager : MonoBehaviour
 
         if (collider.transform.tag == "MovingWall")
         {
+            collisionEnded = true;
             //playerBody.freezeRotation = true;
             //playerBody.useGravity = true;
             //collidedWithWall = false;
