@@ -8,12 +8,14 @@ public class PlayerMovement : MonoBehaviour
     Vector3 jumpForce;
     float angle;
     public int jumpLimit = 2;
-    bool isJumping = false;
-    bool isGrounded = true;
+    public bool isJumping = false;
+    public bool isGrounded = true;
 
     Rigidbody _p1body;
     Rigidbody _p2body;
     Rigidbody _currentBody;
+
+    CollisionManager collisionManager;
 
     GameObject mainCamera;
 
@@ -30,7 +32,9 @@ public class PlayerMovement : MonoBehaviour
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        collisionManager = new CollisionManager();
         jumpForce = Camera.main.transform.up * force * 10;
+        collisionManager.InstatiatePlayer(this);
     }
 
     // Update is called once per frame
@@ -101,40 +105,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collider)
     {
-        if(collider.transform.tag == "Ground" || collider.transform.tag == "MovingPlatform")
-        {
-            isGrounded = true;
-            isJumping = false;
-            ResetJump();
-        }
-
-        if (collider.transform.tag == "MovingPlatform")
-        {
-            _p1body.transform.parent = collider.transform;
-        }
-
-        if(collider.transform.tag == "MovingWall")
-        {
-            _p1body.transform.parent = collider.transform;
-            _p1body.AddForce(-10 * _p1body.mass * transform.up);
-            _p1body.freezeRotation = true;
-        }
+        collisionManager.OnCollisionWithWall(collider);
+        collisionManager.BasicCollision(collider);
     }
 
     private void OnCollisionExit(Collision collider)
     {
-        if (collider.transform.tag == "MovingPlatform")
-        {
-            _p1body.transform.parent = null;
-        }
-
-        if(collider.transform.tag == "MovingWall")
-        {
-            _p1body.freezeRotation = false;
-        }
+        collisionManager.OnCollisionEnd(collider);
     }
 
-    void ResetJump()
+    public void ResetJump()
     {
         jumpLimit = 2;
     }
