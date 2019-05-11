@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElevatorActivation : MonoBehaviour
+public class MovingWallActivation : MonoBehaviour
 {
     public RaycastHit hit;
     private bool activateLever = false;
     public GameObject Player;
-    public GameObject elevator;
+    public GameObject movingWall;
     public GameObject instructionMessage;
 
     public Animation move;
@@ -15,7 +15,7 @@ public class ElevatorActivation : MonoBehaviour
     private void Start()
     {
         move.GetComponent<Animation>();
-        move["Elevator"].speed = 0.15f;
+        move["SideMovingPlatform"].speed = 0.15f;
     }
 
     void Update()
@@ -43,12 +43,12 @@ public class ElevatorActivation : MonoBehaviour
     {
         if (activateLever)
         {
-            move.Play("Elevator");
+            move.Play("SideMovingPlatform");
             
         }
         else if (!activateLever)
         {
-            move.Stop("Elevator");
+            move.Stop("SideMovingPlatform");
         }
     }
 }

@@ -5,58 +5,119 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float force = 10;
-    Vector3 jumpForce;
     float angle;
     public int jumpLimit = 2;
-    bool isJumping = false;
-    bool isGrounded = true;
+    public bool isJumping = false;
+    public bool isGrounded = true;
 
-    Rigidbody _p1body;
+    bool onWall = false;
+
+    Rigidbody p1Body;
     Rigidbody _p2body;
     Rigidbody _currentBody;
+
+    CollisionManager collisionManager;
 
     GameObject mainCamera;
 
     public GameObject cameraPosP1;
     public GameObject cameraPosP2;
 
-    enum PlayerIndex { PLAYERONE, PLAYERTWO};
+    enum PlayerIndex { PLAYERONE, PLAYERTWO };
     PlayerIndex _current;
 
     // Use this for initialization
     void Start()
     {
-        _p1body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        p1Body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        jumpForce = Camera.main.transform.up * force * 10;
+        collisionManager = new CollisionManager();
+        collisionManager.InstatiatePlayer(this);
     }
 
     // Update is called once per frame
     void Update()
     {
         #region - Player Movement calls & Jump-
-        if (Input.GetAxisRaw("Horizontal") == 1)
+        if (isGrounded)
         {
-            MoveRight();
+            if (Input.GetAxisRaw("Horizontal") == 1)
+            {
+                MoveRight();
+            }
+            else if (Input.GetAxisRaw("Horizontal") == -1)
+            {
+                MoveLeft();
+            }
+            if (Input.GetAxisRaw("Vertical") == 1)
+            {
+                MoveFoward();
+            }
+            else if (Input.GetAxisRaw("Vertical") == -1)
+            {
+                MoveBackWard();
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
+            {
+                Jump();
+            }
         }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
+
+        #endregion
+
+        #region Collision with Wall Movement
+
+        if (collisionManager.collidedWithWall)
         {
-            MoveLeft();
+            jumpLimit = 1;
+            p1Body.AddForce(-10 * p1Body.mass * p1Body.transform.up);
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Debug.Log("Q was Pressed");
+                onWall = true;
+                p1Body.freezeRotation = true;
+                p1Body.isKinematic = true;
+
+                ResetJump();
+
+                Debug.Log("Just About to Move");
+                if (Input.GetKeyDown(KeyCode.L))
+                {
+                    //reference wall movement later
+                    MoveRightOnWall();
+                }
+                else if (Input.GetKeyDown(KeyCode.J))
+                {
+                    MoveLeftOnWall();
+                }
+
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    Debug.Log("Just About to Move Up");
+                    MoveUp();
+                }
+                else if (Input.GetKeyDown(KeyCode.K))
+                {
+                    MoveDown();
+                }
+                else
+                {
+                    p1Body.isKinematic = false;
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.Q))
+            {
+                Debug.Log("Let go of Q");
+                p1Body.isKinematic = false;
+                onWall = false;
+                //collisionManager.collidedWithWall = false;
+            }
         }
-        if (Input.GetAxisRaw("Vertical") == 1)
-        {
-            MoveFoward();
-        }
-        else if (Input.GetAxisRaw("Vertical") == -1)
-        {
-            MoveBackWard();
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
-        {
-            Jump();
-        }
+
+
         #endregion
 
         #region -Player logic for camera
@@ -70,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _current = PlayerIndex.PLAYERONE;
             mainCamera.transform.position = cameraPosP1.transform.position;
-            mainCamera.transform.LookAt(_p1body.transform);
+            mainCamera.transform.LookAt(p1Body.transform);
         }
         #endregion
 
@@ -79,12 +140,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void PlayerSwitch()
-    {       
-        switch(_current)
+    {
+        switch (_current)
         {
             case PlayerIndex.PLAYERONE:
-                mainCamera.transform.SetParent(_p1body.transform);
-                _currentBody = _p1body;
+                mainCamera.transform.SetParent(p1Body.transform);
+                _currentBody = p1Body;
                 break;
 
             case PlayerIndex.PLAYERTWO:
@@ -101,28 +162,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collider)
     {
-        if(collider.transform.tag == "Ground" || collider.transform.tag == "MovingPlatform")
-        {
-            isGrounded = true;
-            isJumping = false;
-            ResetJump();
-        }
-
-        if(collider.transform.tag == "MovingPlatform")
-        {
-            _p1body.transform.parent = collider.transform;
-        }
+        collisionManager.OnCollisionWithWall(collider);
+        collisionManager.BasicCollision(collider);
     }
 
-    private void OnTriggerExit(Collider collider)
+    private void OnCollisionExit(Collision collider)
     {
-        if (collider.transform.tag == "MovingPlatform")
-        {
-            _p1body.transform.parent = null;
-        }
+        collisionManager.OnCollisionEnd(collider);
     }
 
-    void ResetJump()
+    public void ResetJump()
     {
         jumpLimit = 2;
     }
@@ -131,8 +180,8 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         isJumping = true;
-        isGrounded = false;
-        _p1body.velocity = new Vector3(0, 15, 0);
+        //isGrounded = false;
+        p1Body.velocity = new Vector3(0, 12, 0);
         jumpLimit--;
     }
 
@@ -155,6 +204,31 @@ public class PlayerMovement : MonoBehaviour
     void MoveRight()
     {
         _currentBody.AddForce(Camera.main.transform.right * force, ForceMode.Force);
+    }
+
+    //movement methods for wall
+    void MoveUp()
+    {
+        //playerBody.AddForce(-10 * playerBody.mass * playerBody.transform.up * 2);
+        p1Body.transform.position += new Vector3(0, 0.2f, 0);
+    }
+
+    void MoveDown()
+    {
+        //playerBody.AddForce(-10 * playerBody.mass * -playerBody.transform.up * 2);
+        p1Body.transform.position += new Vector3(0, -0.2f, 0);
+    }
+
+    void MoveLeftOnWall()
+    {
+        //playerBody.AddForce(-10 * playerBody.mass * new Vector3(0, 0,0) * 2);
+        p1Body.transform.position += new Vector3(-0.2f, 0, 0);
+    }
+
+    void MoveRightOnWall()
+    {
+        //playerBody.transform.Translate(new Vector3(-0.2f, 0, 0));
+        p1Body.transform.position += new Vector3(0.2f, 0, 0);
     }
     #endregion
 
