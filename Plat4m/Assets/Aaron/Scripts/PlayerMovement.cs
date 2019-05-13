@@ -77,9 +77,10 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Q was Pressed");
+                p1Body.isKinematic = true;
+                //p1Body.useGravity = false;
                 onWall = true;
                 p1Body.freezeRotation = true;
-                p1Body.isKinematic = true;
 
                 ResetJump();
 
