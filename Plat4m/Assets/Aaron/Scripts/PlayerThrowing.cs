@@ -8,12 +8,10 @@ public class PlayerThrowing : MonoBehaviour
     public GameObject Player2;
 
     Rigidbody _p1body;
-    Rigidbody _p2body;
     PlayerMovement Player;
 
-    YeetAiming Aim;
-
     float YeetForce;
+    public bool wasYeeted;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +19,11 @@ public class PlayerThrowing : MonoBehaviour
         Player1 = GameObject.FindGameObjectWithTag("Player");
         Player2 = GameObject.FindGameObjectWithTag("Player2");
         Player = new PlayerMovement();
-        Aim = new YeetAiming();
 
         _p1body = Player1.GetComponent<Rigidbody>();
-        _p2body = Player2.GetComponent<Rigidbody>();
 
         YeetForce = 100 * 17;
+
     }
 
     // Update is called once per frame
@@ -42,8 +39,7 @@ public class PlayerThrowing : MonoBehaviour
             // Target is within range.
             _p1body.AddForce(Vector3.up * YeetForce, ForceMode.Force);
             Player.jumpLimit--;
-            Aim.isYeeted = true;
-            Aim.StartYeet();
+            wasYeeted = true;
         }
     }
 }

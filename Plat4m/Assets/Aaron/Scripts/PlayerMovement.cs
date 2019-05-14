@@ -10,8 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping = false;
     public bool isGrounded = true;
 
-    bool onWall = false;
-
     Rigidbody p1Body;
     Rigidbody _p2body;
     Rigidbody _currentBody;
@@ -79,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Q was Pressed");
                 p1Body.isKinematic = true;
                 //p1Body.useGravity = false;
-                onWall = true;
                 p1Body.freezeRotation = true;
 
                 ResetJump();
@@ -113,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("Let go of Q");
                 p1Body.isKinematic = false;
-                onWall = false;
                 //collisionManager.collidedWithWall = false;
             }
         }

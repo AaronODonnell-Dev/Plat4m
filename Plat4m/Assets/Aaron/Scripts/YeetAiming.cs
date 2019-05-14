@@ -1,76 +1,56 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Script by Swati Patel Feb 2014
 
 public class YeetAiming : MonoBehaviour
 {
-    // TrajectoryPoint and Ball will be instantiated
-    public GameObject TrajectoryPointPrefeb;
-    public GameObject Player1;
+    public GameObject Ground;
+    public GameObject PlayerBody;
+    public Canvas Landing;
 
-    public bool isYeeted;
-    private float power = 25;
-    private int numOfTrajectoryPoints = 30;
-    private List<GameObject> trajectoryPoints;
-    //---------------------------------------    
-    public void StartYeet()
+    public PlayerThrowing player;
+
+    Vector3 groundHit;
+
+    void Start()
     {
-        trajectoryPoints = new List<GameObject>();
-        Player1 = GameObject.FindGameObjectWithTag("Player");
-        TrajectoryPointPrefeb = GameObject.FindGameObjectWithTag("PredictiveDot");
-        //isYeeted = false;
-        //TrajectoryPoints are instantiated
-        for (int i = 0; i < numOfTrajectoryPoints; i++)
+        PlayerBody = GameObject.FindGameObjectWithTag("Player");
+        Ground = GameObject.FindGameObjectWithTag("Ground");
+        player = new PlayerThrowing();
+    }
+
+    public void PredictedGroundHit(GameObject ground, GameObject player1)
+    {
+        Debug.Log(player.wasYeeted);
+
+        Rigidbody playerBody = player1.GetComponent<Rigidbody>();
+
+        float h = ground.transform.position.y - (transform.position.y + playerBody.transform.localScale.y);
+        float g = Physics.gravity.magnitude;
+        float vel = playerBody.velocity.y;
+
+        float t = vel / g + Mathf.Sqrt(vel * vel / (g * g) - 2 * h / g);
+
+        float x = transform.position.x + playerBody.velocity.x * t;
+        float z = transform.position.z + playerBody.velocity.z * t;
+
+        Debug.Log("Setting Ground position");
+        groundHit = new Vector3(x, Ground.transform.position.y, z);
+    }
+
+    void Update()
+    {
+        if (player.wasYeeted)
         {
-            TrajectoryPointPrefeb.GetComponent<Renderer>().enabled = false;
-            trajectoryPoints.Insert(i, TrajectoryPointPrefeb);
+            PredictedGroundHit(Ground, PlayerBody);
         }
 
-        YeetAim();
-    }
-    //---------------------------------------    
-    public void YeetAim()
-    {
-        Debug.Log(isYeeted);
-
-        // when mouse button is pressed, cannon is rotated as per mouse movement and projectile trajectory path is displayed.
-        if (isYeeted)
+        if (player.wasYeeted && groundHit != null)
         {
-            Debug.Log("Was Yeeted");
-            Vector3 vel = GetForceFrom(Player1.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            float angle = Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg;
-            Player1.transform.eulerAngles = new Vector3(0, 0, angle);
-            setTrajectoryPoints(transform.position, vel / Player1.GetComponent<Rigidbody>().mass);
-        }
-    }
-    //---------------------------------------    
-    // Following method returns force by calculating distance between given two points
-    //---------------------------------------    
-    private Vector2 GetForceFrom(Vector3 fromPos, Vector3 toPos)
-    {
-        return (new Vector2(toPos.x, toPos.y) - new Vector2(fromPos.x, fromPos.y)) * power;
-    }
-    //---------------------------------------    
-    // Following method displays projectile trajectory path. It takes two arguments, start position of object(ball) and initial velocity of object(ball).
-    //---------------------------------------    
-    void setTrajectoryPoints(Vector3 pStartPosition, Vector3 pVelocity)
-    {
-        Debug.Log("Setting traj points");
-        float velocity = Mathf.Sqrt((pVelocity.x * pVelocity.x) + (pVelocity.y * pVelocity.y));
-        float angle = Mathf.Rad2Deg * (Mathf.Atan2(pVelocity.y, pVelocity.x));
-        float fTime = 0;
-
-        fTime += 0.1f;
-        for (int i = 0; i < numOfTrajectoryPoints; i++)
-        {
-            float dx = velocity * fTime * Mathf.Cos(angle * Mathf.Deg2Rad);
-            float dy = velocity * fTime * Mathf.Sin(angle * Mathf.Deg2Rad) - (Physics2D.gravity.magnitude * fTime * fTime / 2.0f);
-            Vector3 pos = new Vector3(pStartPosition.x + dx, pStartPosition.y + dy, 2);
-            trajectoryPoints[i].transform.position = pos;
-            trajectoryPoints[i].GetComponent<Renderer>().enabled = true;
-            trajectoryPoints[i].transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(pVelocity.y - (Physics.gravity.magnitude) * fTime, pVelocity.x) * Mathf.Rad2Deg);
-            fTime += 0.1f;
+            Debug.Log("Into If");
+            Landing.enabled = true;
+            Landing.transform.position = groundHit;
+            player.wasYeeted = false;
         }
     }
 }
