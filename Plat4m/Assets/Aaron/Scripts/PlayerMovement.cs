@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     float force = 10;
     float angle;
+    int count = 0;
     public int jumpLimit = 2;
     public bool isJumping = false;
     public bool isGrounded = true;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     CollisionManager collisionManager;
 
     GameObject mainCamera;
+    GameObject Instructions;
 
     public GameObject cameraPosP1;
     public GameObject cameraPosP2;
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
         collisionManager = new CollisionManager();
         collisionManager.InstatiatePlayer(this);
     }
@@ -38,6 +41,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (count == 180)
+        {
+            Instructions.SetActive(false);
+            count = 0;
+        }
+        else count++;
+
         #region - Player Movement calls & Jump-
         if (isGrounded)
         {

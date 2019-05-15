@@ -10,6 +10,7 @@ TagManager:
   - Switch
   - MovingWall
   - PredictiveDot
+  - InstructionCanvas
   layers:
   - Default
   - TransparentFX
