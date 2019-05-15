@@ -6,11 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     float force = 10;
     float angle;
+    int count = 0;
     public int jumpLimit = 2;
     public bool isJumping = false;
     public bool isGrounded = true;
-
-    bool onWall = false;
 
     Rigidbody p1Body;
     Rigidbody _p2body;
@@ -19,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     CollisionManager collisionManager;
 
     GameObject mainCamera;
+    GameObject Instructions;
 
     public GameObject cameraPosP1;
     public GameObject cameraPosP2;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
         collisionManager = new CollisionManager();
         collisionManager.InstatiatePlayer(this);
     }
@@ -40,6 +41,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (count == 180)
+        {
+            Instructions.SetActive(false);
+            count = 0;
+        }
+        else count++;
+
         #region - Player Movement calls & Jump-
         if (isGrounded)
         {
@@ -77,9 +85,9 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Q was Pressed");
-                onWall = true;
-                p1Body.freezeRotation = true;
                 p1Body.isKinematic = true;
+                //p1Body.useGravity = false;
+                p1Body.freezeRotation = true;
 
                 ResetJump();
 
@@ -112,7 +120,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("Let go of Q");
                 p1Body.isKinematic = false;
-                onWall = false;
                 //collisionManager.collidedWithWall = false;
             }
         }
