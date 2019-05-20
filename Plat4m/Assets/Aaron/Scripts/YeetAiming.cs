@@ -28,7 +28,7 @@ public class YeetAiming : MonoBehaviour
         float x = transform.position.x + GetComponent<Rigidbody>().velocity.x * t;
         float z = transform.position.z + GetComponent<Rigidbody>().velocity.z * t;
 
-        groundHit = new Vector3(x, /*ground.transform.position.y*/0.1f, z);
+        groundHit = new Vector3(x, ground.transform.position.y, z);
     }
 
     void Update()
@@ -41,8 +41,9 @@ public class YeetAiming : MonoBehaviour
         if (player.wasYeeted && groundHit != null)
         {
             Landing.transform.position = groundHit;
-            Debug.Log(groundHit);
+            Landing.transform.localPosition = groundHit;
             Landing.SetActive(true);
+            Debug.Log(Landing.activeSelf);
             player.wasYeeted = false;
         }
     }
