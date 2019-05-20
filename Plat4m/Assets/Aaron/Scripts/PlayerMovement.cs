@@ -188,6 +188,8 @@ public class PlayerMovement : MonoBehaviour
     void MoveFoward()
     {
         _currentBody.AddForce(Camera.main.transform.forward * force, ForceMode.Force);
+        //for rotating the plapyer. slerp is slower than lerp
+        //transform.rotation = mainCamera.transform.rotation;
     }
 
     void MoveBackWard()
