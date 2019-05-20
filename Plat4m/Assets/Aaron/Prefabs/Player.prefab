@@ -38,14 +38,14 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7410352708195339322}
-  - component: {fileID: 7410352708195339297}
-  - component: {fileID: 7410352708195339296}
-  - component: {fileID: 7410352708195339303}
-  - component: {fileID: 7410352708195339302}
-  - component: {fileID: 7410352708195339301}
-  - component: {fileID: 7410352708195339300}
-  - component: {fileID: 7410352708195339323}
+  - component: {fileID: 1949397762990316885}
+  - component: {fileID: 1949397762990316884}
+  - component: {fileID: 1949397762990316887}
+  - component: {fileID: 1949397762990316883}
+  - component: {fileID: 5819368566258191506}
+  - component: {fileID: 1949397762990316886}
+  - component: {fileID: 1949397762990316873}
+  - component: {fileID: 1949397762990316872}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,8 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1: {fileID: 7410352708195339321}
   Player2: {fileID: 0}
-  wasYeeted: 0
---- !u!114 &7410352708195339302
+--- !u!114 &5819368566258191506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,13 +116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7410352708195339321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df428e35a92ac5a4fac1fe2acd7f644b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a7296c5f003ced42bc2dc0039d672c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ground: {fileID: 0}
-  Landing: {fileID: 3343960118166659391, guid: d57579cbab403c74a944cd87e46d059c, type: 3}
-  player: {fileID: 0}
---- !u!23 &7410352708195339301
+--- !u!23 &1949397762990316886
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

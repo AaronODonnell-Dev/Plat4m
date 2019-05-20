@@ -7,11 +7,12 @@ using UnityEngine.UI;
 
 public class PauseMenuController : UIController
 {
-    public PauseMenuController()    {}
+	
+	public PauseMenuController()    {}
     void Start()
     {
-       
-    }
+		
+	}
     void Update()   {}
 
     // When the Resume Button is Pressed
@@ -30,15 +31,16 @@ public class PauseMenuController : UIController
     // When the Save Button is Pressed
     public void Save_OnClick()
     {
-       // BinaryFormatter bf = new BinaryFormatter();
-       // FileStream file = File.Open(Application.persistentDataPath + "/PlayerInfo.dat", FileMode.Open);
-
-
-        //bf.Serialize(file,  );
+		Save();
     }
+	// When the Save Button is Pressed
+	public void Load_OnClick()
+	{
+		Load();
+	}
 
-    // When the Quit Button is pressed
-    public void Quit_OnClick()
+	// When the Quit Button is pressed
+	public void Quit_OnClick()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

@@ -2,24 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIController : MonoBehaviour
-{
-    public GameObject player;
-    public Canvas pauseMenu, mainMenu;
-    public static int pipLives = 9;
-    public static int collectable;
-    public static int score;
+public class UIController : GameController
+{	
+	GameObject player;
+    public Canvas pauseMenu, mainMenu;    
     public static bool togglePause;
  
     
     // Start is called before the first frame update
-    public UIController()
-    {
-       
-    }
+    public UIController()	{}
 
     void Start()
-    {              
+    {
+	
         player = GameObject.FindGameObjectWithTag("Player");
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>();
         mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<Canvas>();
