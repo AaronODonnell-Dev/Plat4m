@@ -4,13 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Player2
-  - MovingPlatform
   - Switch
-  - MovingWall
-  - PredictiveDot
-  - InstructionCanvas
+  - MovingPlatform
+  - Fire
+  - PauseMenu
+  - GameCamPos
+  - MenuCamPos
+  - MainMenu
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

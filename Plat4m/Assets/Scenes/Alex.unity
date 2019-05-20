@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028526, g: 0.22571549, b: 0.30692315, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028556, g: 0.22571613, b: 0.30692446, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -485,6 +485,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8283178415044266517}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1166272055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8283178413534013131, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 8283178415044266517}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fa047fa66dfa8438080a575f794dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1322528581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 489522, guid: 7737647c22c1fc64a88d5cd030c352ce,
@@ -668,7 +680,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f0e4066db4f3940bd3aba7552bf129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1995421307}
+  pipHealth: 0
+  squeakHealth: 0
+  minorCollectables: 0
+  majorCollectabels: 0
   pauseMenu: {fileID: 1510304988}
   mainMenu: {fileID: 387290715}
 --- !u!114 &1761394846
@@ -680,13 +695,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1761394841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1250378f1bd875f4782fef35d524b8ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 53318308869b1de42b4cd212f32310eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camPositions:
   - {fileID: 1088785927}
   - {fileID: 1463964455}
-  transistionSpeed: 1
+  transistionSpeed: 10
 --- !u!1001 &1777378189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -776,9 +791,11 @@ GameObject:
   - component: {fileID: 1951036443}
   - component: {fileID: 1951036442}
   - component: {fileID: 1951036441}
+  - component: {fileID: 1951036446}
+  - component: {fileID: 1951036445}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -855,6 +872,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1951036445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951036440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5479dbc602d2c44aba8da4840a3cd7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &1951036446
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951036440}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.4542723
+  m_Center: {x: 0, y: 0.04993534, z: 0}
 --- !u!1 &1995421307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 149790, guid: 7737647c22c1fc64a88d5cd030c352ce,
@@ -919,6 +961,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipHealth: 0
   squeakHealth: 0
+  minorCollectables: 0
+  majorCollectabels: 0
 --- !u!4 &2079271371
 Transform:
   m_ObjectHideFlags: 0
@@ -950,11 +994,21 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1761394843}
+    - target: {fileID: 8283178413534013131, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1995421307}
     - target: {fileID: 8283178413534013129, guid: 50f2b56b00c04e149b12d2e57cd228aa,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1761394843}
+    - target: {fileID: 8283178413534013129, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8278812912989559303, guid: 50f2b56b00c04e149b12d2e57cd228aa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1015,10 +1069,45 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1995421307}
-    - target: {fileID: 8283178413534013131, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+    - target: {fileID: 8283178415246247057, guid: 50f2b56b00c04e149b12d2e57cd228aa,
         type: 3}
-      propertyPath: player
+      propertyPath: m_AnchoredPosition.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283178414943440367, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283178415204679215, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283178414659083341, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897739256482679549, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897739256482679549, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 682681634825810083, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1995421307}
+      objectReference: {fileID: 1166272055}
+    - target: {fileID: 682681634825810083, guid: 50f2b56b00c04e149b12d2e57cd228aa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Load_OnClick
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50f2b56b00c04e149b12d2e57cd228aa, type: 3}
