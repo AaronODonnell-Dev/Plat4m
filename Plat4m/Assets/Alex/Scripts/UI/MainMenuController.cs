@@ -21,7 +21,7 @@ public class MainMenuController : UIController
 
     public void Load_OnClick()
     {
-
+		Load();
     }
     public void Quit_OnClick()
     {
