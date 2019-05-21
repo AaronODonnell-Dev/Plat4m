@@ -202,6 +202,9 @@ public class PlayerMovement : MonoBehaviour
     void MoveBackWard()
     {
         _currentBody.AddForce(-Camera.main.transform.forward * force, ForceMode.Force);
+        // allows for the rotation but the parented camera rotates with the object and
+        // causes a continious loop of rotationg!
+        transform.rotation = Quaternion.LookRotation(-mainCamera.transform.forward, transform.up);
     }
 
     void MoveLeft()
