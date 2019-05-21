@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3369355171018803910}
   - component: {fileID: 3369355171018803909}
   - component: {fileID: 3369355171018803908}
+  - component: {fileID: 8480984240154678314}
   - component: {fileID: 7357987888892893827}
-  - component: {fileID: 6565097979980611165}
   - component: {fileID: 3369355171018804539}
   - component: {fileID: 3369355171018804538}
   - component: {fileID: 3369355171018804537}
@@ -63,6 +63,23 @@ MonoBehaviour:
   isGrounded: 1
   cameraPosP1: {fileID: 3369355171757363491}
   cameraPosP2: {fileID: 3369355171757363491}
+--- !u!114 &8480984240154678314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369355171018804536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653ebab12b051ec44aeaf9fccf88e90e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  maxtime: 1
+  arrow: {fileID: 0}
+  effect: {fileID: 0}
+  wasYeeted: 0
 --- !u!114 &7357987888892893827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,22 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ground: {fileID: 0}
   Landing: {fileID: 0}
-  player: {fileID: 6565097979980611165}
---- !u!114 &6565097979980611165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369355171018804536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f82c94eac312eb44e9c01c8d30fc8ec5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player1: {fileID: 3369355171018804536}
-  Player2: {fileID: 0}
-  wasYeeted: 0
+  player: {fileID: 0}
 --- !u!23 &3369355171018804539
 MeshRenderer:
   m_ObjectHideFlags: 0

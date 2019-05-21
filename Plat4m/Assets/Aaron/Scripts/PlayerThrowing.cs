@@ -22,7 +22,7 @@ public class PlayerThrowing : MonoBehaviour
 
         _p1body = Player1.GetComponent<Rigidbody>();
 
-        YeetForce = 100 * 17;
+
 
     }
 
