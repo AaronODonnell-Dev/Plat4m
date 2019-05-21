@@ -4,11 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Node
-  - Enemy
-  - EnemySightline
-  - Player2
-  - Ground
+  - Switch
+  - MovingPlatform
+  - Fire
+  - PauseMenu
+  - GameCamPos
+  - MenuCamPos
+  - MainMenu
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - 
   - 
   - 
