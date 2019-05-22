@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
+        //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
         collisionManager = new CollisionManager();
         collisionManager.InstatiatePlayer(this);
     }
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (count == 180)
         {
-            Instructions.SetActive(false);
+            //Instructions.SetActive(false);
             count = 0;
         }
         else count++;
