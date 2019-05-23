@@ -7,14 +7,14 @@ public class YeetAiming : MonoBehaviour
     public GameObject Ground;
     public GameObject Landing;
 
-    public PlayerThrowing player;
+    public Yeet player;
 
     Vector3 groundHit;
 
     void Start()
     {
         Ground = GameObject.FindGameObjectWithTag("Ground");
-        player = GetComponent<PlayerThrowing>();
+        player = GetComponent<Yeet>();
     }
 
     public void PredictedGroundHit(GameObject ground)
@@ -41,7 +41,6 @@ public class YeetAiming : MonoBehaviour
         if (player.wasYeeted && groundHit != null)
         {
             Landing.transform.position = groundHit;
-            Landing.transform.localPosition = groundHit;
             Landing.SetActive(true);
             Debug.Log(Landing.activeSelf);
             player.wasYeeted = false;
