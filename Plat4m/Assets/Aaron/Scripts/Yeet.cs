@@ -12,6 +12,7 @@ public class Yeet : MonoBehaviour
     public Transform arrow;
     public GameObject effect;
     float YeetForce;
+    Animation arrowMove;
     public bool wasYeeted;
     public bool canYeet;
 
@@ -19,6 +20,8 @@ public class Yeet : MonoBehaviour
     void Start()
     {
         playerMovement = new PlayerMovement();
+        arrowMove = arrow.GetComponent<Animation>();
+        arrowMove["YeetArrow"].speed = 0.15f;
         arrow.gameObject.SetActive(false);
 
         YeetForce = 100 * 17;
@@ -47,41 +50,40 @@ public class Yeet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
+        var heading = transform.position - Player2.transform.position;
+
+        var distance = heading.magnitude;
+        var direction = heading / distance; // This is now the normalized direction.
+
+        StartCoroutine("Counter");
+
+        Time.timeScale = 0;
+
+        canYeet = true;
+        arrow.position = transform.position + (Camera.main.transform.forward * 2);
+        //arrow.Translate(0, 0, 10);
+
+        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        diff.Normalize();
+
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        arrow.transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
+        arrowMove.cullingType = AnimationCullingType.BasedOnRenderers;
+        //Instantiate(effect, transform.position, Quaternion.identity);
+
+        if (heading.sqrMagnitude < 3 * 3)
         {
-            var heading = transform.position - Player2.transform.position;
+            arrow.gameObject.SetActive(true);
 
-            var distance = heading.magnitude;
-            var direction = heading / distance; // This is now the normalized direction.
-
-            if (heading.sqrMagnitude < 2 * 2 && Input.GetKeyDown(KeyCode.Y))
+            if(Input.GetKeyDown(KeyCode.Y))
             {
-                // Target is within range.
-                transform.GetComponent<Rigidbody>().AddForce(Vector3.up * YeetForce, ForceMode.Force);
+                transform.GetComponent<Rigidbody>().AddForce(-arrow.transform.forward + Vector3.up * YeetForce, ForceMode.Force);
+                arrow.gameObject.SetActive(false);
                 playerMovement.jumpLimit--;
                 wasYeeted = true;
             }
-
-            StartCoroutine("Counter");
-
-            Time.timeScale = 0;
-
-            canYeet = true;
-            Debug.Log(canYeet);
-            arrow.position = transform.position;
-            arrow.Translate(0, 0, 10);
-
-            arrow.gameObject.SetActive(true);
-            Debug.Log(arrow.gameObject.activeSelf);
-
-            Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            diff.Normalize();
-
-            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-            arrow.transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
-            Instantiate(effect, transform.position, Quaternion.identity);
-            //break;
         }
+            //break;
     }
 
     //void OnDrawGizmos()
