@@ -41,7 +41,6 @@ public class YeetAiming : MonoBehaviour
         if (player.wasYeeted && groundHit != null)
         {
             Landing.transform.position = groundHit;
-            Landing.transform.localPosition = groundHit;
             Landing.SetActive(true);
             Debug.Log(Landing.activeSelf);
             player.wasYeeted = false;
