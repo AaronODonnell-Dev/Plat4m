@@ -2,31 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckPoint : MonoBehaviour
+public class CheckPoint : GameController
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-		Debug.Log(Test());
-		Debug.Log(Test1());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-		
-    }
-
-	int Test()
+	void Start()
 	{
 		
-		return 100/ 200;
 	}
 
-	float Test1()
+	void OnTriggerEnter(Collider other)
 	{
-
-		return 100f / 200f;
+		// if the player collides with the Checkpoint
+		// call the save function of the game controller
+		if (other.tag == "Player")
+		{
+			Save();
+		}
 	}
-	
 }
