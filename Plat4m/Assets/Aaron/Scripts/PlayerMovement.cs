@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
 
     CollisionManager collisionManager;
 
-    GameObject mainCamera;
     GameObject Instructions;
 
     public GameObject cameraPosP1;
@@ -32,10 +31,10 @@ public class PlayerMovement : MonoBehaviour
         p1Body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
         _current = PlayerIndex.PLAYERONE;
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
         collisionManager = new CollisionManager();
         collisionManager.InstatiatePlayer(this);
+
     }
 
     // Update is called once per frame
@@ -126,24 +125,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         #endregion
-
-        #region -Player logic for camera
-        if (_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
-        {
-            _current = PlayerIndex.PLAYERTWO;
-            mainCamera.transform.position = cameraPosP2.transform.position;
-            mainCamera.transform.LookAt(_p2body.transform);
-        }
-        else if (_current == PlayerIndex.PLAYERTWO && Input.GetKeyDown(KeyCode.P))
-        {
-            _current = PlayerIndex.PLAYERONE;
-            mainCamera.transform.position = cameraPosP1.transform.position;
-            mainCamera.transform.LookAt(p1Body.transform);
-        }
-        #endregion
-
+        
         PlayerSwitch();
-        CameraRotate();
     }
 
     void PlayerSwitch()
@@ -151,20 +134,15 @@ public class PlayerMovement : MonoBehaviour
         switch (_current)
         {
             case PlayerIndex.PLAYERONE:
-                mainCamera.transform.SetParent(p1Body.transform);
+                //mainCamera.transform.SetParent(p1Body.transform);
                 _currentBody = p1Body;
                 break;
 
             case PlayerIndex.PLAYERTWO:
-                mainCamera.transform.SetParent(_p2body.transform);
+                //mainCamera.transform.SetParent(_p2body.transform);
                 _currentBody = _p2body;
                 break;
         }
-    }
-
-    void CameraRotate()
-    {
-        Camera.main.transform.RotateAround(_currentBody.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
     }
 
     private void OnCollisionEnter(Collision collider)
@@ -188,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isJumping = true;
         //isGrounded = false;
-        p1Body.velocity = new Vector3(0, 12, 0);
+        p1Body.velocity = new Vector3(p1Body.velocity.x,0,p1Body.velocity.z) + new Vector3(0, 12, 0);
         jumpLimit--;
     }
 
@@ -204,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
         _currentBody.AddForce(-Camera.main.transform.forward * force, ForceMode.Force);
         // allows for the rotation but the parented camera rotates with the object and
         // causes a continious loop of rotationg!
-        transform.rotation = Quaternion.LookRotation(-mainCamera.transform.forward, transform.up);
+        //transform.rotation = Quaternion.LookRotation(-mainCamera.transform.forward, transform.up);
     }
 
     void MoveLeft()
