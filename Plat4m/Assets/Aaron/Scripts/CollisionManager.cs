@@ -10,6 +10,10 @@ public class CollisionManager : MonoBehaviour
     public bool collidedWithWall = false;
     public bool collisionEnded = false;
 
+    void Start()
+    {
+    }
+
     public void InstatiatePlayer(PlayerMovement player)
     {
         Player = player;
@@ -43,10 +47,11 @@ public class CollisionManager : MonoBehaviour
 
     public void OnCollisionEnd(Collision collider)
     {
-        if (collider.transform.tag == "MovingPlatform")
+        if (collider.transform.tag == "MovingPlatform" || collider.transform.tag == "Ground")
         {
             playerBody.transform.parent = null;
             playerBody.freezeRotation = true;
+            //Player.isGrounded = false;
         }
 
         if (collider.transform.tag == "MovingWall")

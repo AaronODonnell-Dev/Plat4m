@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     int count = 0;
     public int jumpLimit = 2;
     public bool isJumping = false;
-    public bool isGrounded = true;
+    public bool isGrounded;
 
     Rigidbody p1Body;
     Rigidbody _p2body;
@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
         //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
         collisionManager = new CollisionManager();
         collisionManager.InstatiatePlayer(this);
-
     }
 
     // Update is called once per frame
@@ -66,10 +65,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 MoveBackWard();
             }
-            if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
-            {
-                Jump();
-            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
+        {
+            Jump();
         }
 
         #endregion
@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         isJumping = true;
-        //isGrounded = false;
+        isGrounded = false;
         p1Body.velocity = new Vector3(p1Body.velocity.x,0,p1Body.velocity.z) + new Vector3(0, 12, 0);
         jumpLimit--;
     }
