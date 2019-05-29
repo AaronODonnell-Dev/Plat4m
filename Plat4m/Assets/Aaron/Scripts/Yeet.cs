@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Yeet : MonoBehaviour
 {
-    Vector3 direction;
     public GameObject Player2;
-    PlayerMovement playerMovement;
-    public Transform arrow;
+    public GameObject arrow;
+    public bool isYeeting;
+    public GameObject ArrowTip;
+
     float YeetForce = 17;
     Animation arrowMove;
-    public bool isYeeting;
+    PlayerMovement playerMovement;
+    Vector3 direction;
 
     // Use this for initialization
     void Start()
@@ -37,7 +39,7 @@ public class Yeet : MonoBehaviour
 
     public void Throw()
     {
-        GetComponent<Rigidbody>().AddForce(-direction * YeetForce * 85, ForceMode.Force);
+        GetComponent<Rigidbody>().AddForce(- direction * YeetForce * 100, ForceMode.Force);
 
         isYeeting = false;
         arrow.gameObject.SetActive(false);
@@ -66,18 +68,10 @@ public class Yeet : MonoBehaviour
 
     public void CalculateDirection()
     {
-        direction = - Vector3.up;
+        direction = arrow.transform.up;
 
-        float rot_z = 180;
+        float rot_z = Input.GetAxis("Mouse X") * 2;
 
-        arrow.transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
+        arrow.transform.RotateAround(ArrowTip.transform.position, new Vector3(0,0,1), - rot_z);
     }
-
-    //void OnDrawGizmos()
-    //{
-
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, 2f);
-
-    //}
 }

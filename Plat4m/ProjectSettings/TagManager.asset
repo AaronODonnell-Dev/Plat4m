@@ -12,6 +12,11 @@ TagManager:
   - MenuCamPos
   - MainMenu
   - CheckPoint
+  - Ground
+  - InstructionCanvas
+  - Player2
+  - MovingWall
+  - ArrowTip
   layers:
   - Default
   - TransparentFX

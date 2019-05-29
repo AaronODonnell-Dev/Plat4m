@@ -89,7 +89,7 @@ public class CameraFollow : MonoBehaviour
             LerpBetweenPoints(PTwoCamPos.transform.position, Time.deltaTime * 2);
             transform.LookAt(objectsTransform);
         }
-
+        
         if (inPosition)
         {
             if (Input.GetKey(KeyCode.LeftShift))
