@@ -12,6 +12,11 @@ TagManager:
   - MenuCamPos
   - MainMenu
   - CheckPoint
+  - Ground
+  - InstructionCanvas
+  - Player2
+  - MovingWall
+  - ArrowTip
   layers:
   - Default
   - TransparentFX
@@ -46,6 +51,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI_Layer
+    uniqueID: 2765065817
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
