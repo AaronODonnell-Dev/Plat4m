@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         else count++;
 
         #region - Player Movement calls & Jump-
+
         if (isGrounded)
         {
             if (Input.GetAxisRaw("Horizontal") == 1)
@@ -73,58 +74,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         #endregion
-
-        #region Collision with Wall Movement
-
-        if (collisionManager.collidedWithWall)
-        {
-            jumpLimit = 1;
-            p1Body.AddForce(-10 * p1Body.mass * p1Body.transform.up);
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Debug.Log("Q was Pressed");
-                p1Body.isKinematic = true;
-                //p1Body.useGravity = false;
-                p1Body.freezeRotation = true;
-
-                ResetJump();
-
-                Debug.Log("Just About to Move");
-                if (Input.GetKeyDown(KeyCode.L))
-                {
-                    //reference wall movement later
-                    MoveRightOnWall();
-                }
-                else if (Input.GetKeyDown(KeyCode.J))
-                {
-                    MoveLeftOnWall();
-                }
-
-                if (Input.GetKeyDown(KeyCode.I))
-                {
-                    Debug.Log("Just About to Move Up");
-                    MoveUp();
-                }
-                else if (Input.GetKeyDown(KeyCode.K))
-                {
-                    MoveDown();
-                }
-                else
-                {
-                    p1Body.isKinematic = false;
-                }
-            }
-            else if (Input.GetKeyUp(KeyCode.Q))
-            {
-                Debug.Log("Let go of Q");
-                p1Body.isKinematic = false;
-                //collisionManager.collidedWithWall = false;
-            }
-        }
-
-
-        #endregion
         
         PlayerSwitch();
     }
@@ -134,12 +83,10 @@ public class PlayerMovement : MonoBehaviour
         switch (_current)
         {
             case PlayerIndex.PLAYERONE:
-                //mainCamera.transform.SetParent(p1Body.transform);
                 _currentBody = p1Body;
                 break;
 
             case PlayerIndex.PLAYERTWO:
-                //mainCamera.transform.SetParent(_p2body.transform);
                 _currentBody = _p2body;
                 break;
         }
@@ -194,31 +141,6 @@ public class PlayerMovement : MonoBehaviour
     void MoveRight()
     {
         _currentBody.AddForce(Camera.main.transform.right * force, ForceMode.Force);
-    }
-
-    //movement methods for wall
-    void MoveUp()
-    {
-        //playerBody.AddForce(-10 * playerBody.mass * playerBody.transform.up * 2);
-        p1Body.transform.position += new Vector3(0, 0.2f, 0);
-    }
-
-    void MoveDown()
-    {
-        //playerBody.AddForce(-10 * playerBody.mass * -playerBody.transform.up * 2);
-        p1Body.transform.position += new Vector3(0, -0.2f, 0);
-    }
-
-    void MoveLeftOnWall()
-    {
-        //playerBody.AddForce(-10 * playerBody.mass * new Vector3(0, 0,0) * 2);
-        p1Body.transform.position += new Vector3(-0.2f, 0, 0);
-    }
-
-    void MoveRightOnWall()
-    {
-        //playerBody.transform.Translate(new Vector3(-0.2f, 0, 0));
-        p1Body.transform.position += new Vector3(0.2f, 0, 0);
     }
     #endregion
 
