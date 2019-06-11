@@ -22,15 +22,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cameraPosP1;
     public GameObject cameraPosP2;
 
-    enum PlayerIndex { PLAYERONE, PLAYERTWO };
-    PlayerIndex _current;
-
     // Use this for initialization
     void Start()
     {
         p1Body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
-        _current = PlayerIndex.PLAYERONE;
+        _currentBody = p1Body;
         //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
         collisionManager = new CollisionManager();
         collisionManager.InstatiatePlayer(this);
@@ -68,27 +65,27 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && _currentBody == p1Body && jumpLimit > 0)
         {
             Jump();
         }
 
         #endregion
-        
-        PlayerSwitch();
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerSwitch();
+        }
     }
 
     void PlayerSwitch()
     {
-        switch (_current)
+        if(_currentBody == p1Body)
         {
-            case PlayerIndex.PLAYERONE:
-                _currentBody = p1Body;
-                break;
-
-            case PlayerIndex.PLAYERTWO:
-                _currentBody = _p2body;
-                break;
+            _currentBody = _p2body;
+        }
+        else if(_currentBody == _p2body)
+        {
+            _currentBody = p1Body;
         }
     }
 
@@ -119,6 +116,8 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveFoward()
     {
+        Debug.Log(_currentBody);
+        Debug.Log("Moving Forward");
         _currentBody.AddForce(Camera.main.transform.forward * force, ForceMode.Force);
         //for rotating the plapyer. slerp is slower than lerp
         //transform.rotation = mainCamera.transform.rotation;
@@ -126,6 +125,8 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveBackWard()
     {
+        Debug.Log(_currentBody);
+        Debug.Log("Moving Back");
         _currentBody.AddForce(-Camera.main.transform.forward * force, ForceMode.Force);
         // allows for the rotation but the parented camera rotates with the object and
         // causes a continious loop of rotationg!
@@ -134,12 +135,15 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveLeft()
     {
+        Debug.Log(_currentBody);
+        Debug.Log("Moving Left");
         _currentBody.AddForce(-Camera.main.transform.right * force, ForceMode.Force);
-
     }
 
     void MoveRight()
     {
+        Debug.Log(_currentBody);
+        Debug.Log("Moving Right");
         _currentBody.AddForce(Camera.main.transform.right * force, ForceMode.Force);
     }
     #endregion
