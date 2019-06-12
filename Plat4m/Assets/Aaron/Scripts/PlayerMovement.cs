@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     int count = 0;
     public int jumpLimit = 2;
     public bool isJumping = false;
-    public bool isGrounded = true;
+    public bool isGrounded;
 
     Rigidbody p1Body;
     Rigidbody _p2body;
@@ -22,19 +22,15 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cameraPosP1;
     public GameObject cameraPosP2;
 
-    enum PlayerIndex { PLAYERONE, PLAYERTWO };
-    PlayerIndex _current;
-
     // Use this for initialization
     void Start()
     {
         p1Body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
-        _current = PlayerIndex.PLAYERONE;
+        _currentBody = p1Body;
         //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
         collisionManager = new CollisionManager();
         collisionManager.InstatiatePlayer(this);
-
     }
 
     // Update is called once per frame
@@ -48,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         else count++;
 
         #region - Player Movement calls & Jump-
+
         if (isGrounded)
         {
             if (Input.GetAxisRaw("Horizontal") == 1)
@@ -66,82 +63,29 @@ public class PlayerMovement : MonoBehaviour
             {
                 MoveBackWard();
             }
-            if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
-            {
-                Jump();
-            }
         }
 
-        #endregion
-
-        #region Collision with Wall Movement
-
-        if (collisionManager.collidedWithWall)
+        if (Input.GetKeyDown(KeyCode.Space) && _currentBody == p1Body && jumpLimit > 0)
         {
-            jumpLimit = 1;
-            p1Body.AddForce(-10 * p1Body.mass * p1Body.transform.up);
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Debug.Log("Q was Pressed");
-                p1Body.isKinematic = true;
-                //p1Body.useGravity = false;
-                p1Body.freezeRotation = true;
-
-                ResetJump();
-
-                Debug.Log("Just About to Move");
-                if (Input.GetKeyDown(KeyCode.L))
-                {
-                    //reference wall movement later
-                    MoveRightOnWall();
-                }
-                else if (Input.GetKeyDown(KeyCode.J))
-                {
-                    MoveLeftOnWall();
-                }
-
-                if (Input.GetKeyDown(KeyCode.I))
-                {
-                    Debug.Log("Just About to Move Up");
-                    MoveUp();
-                }
-                else if (Input.GetKeyDown(KeyCode.K))
-                {
-                    MoveDown();
-                }
-                else
-                {
-                    p1Body.isKinematic = false;
-                }
-            }
-            else if (Input.GetKeyUp(KeyCode.Q))
-            {
-                Debug.Log("Let go of Q");
-                p1Body.isKinematic = false;
-                //collisionManager.collidedWithWall = false;
-            }
+            Jump();
         }
 
-
         #endregion
-        
-        PlayerSwitch();
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerSwitch();
+        }
     }
 
     void PlayerSwitch()
     {
-        switch (_current)
+        if(_currentBody == p1Body)
         {
-            case PlayerIndex.PLAYERONE:
-                //mainCamera.transform.SetParent(p1Body.transform);
-                _currentBody = p1Body;
-                break;
-
-            case PlayerIndex.PLAYERTWO:
-                //mainCamera.transform.SetParent(_p2body.transform);
-                _currentBody = _p2body;
-                break;
+            _currentBody = _p2body;
+        }
+        else if(_currentBody == _p2body)
+        {
+            _currentBody = p1Body;
         }
     }
 
@@ -165,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         isJumping = true;
-        //isGrounded = false;
+        isGrounded = false;
         p1Body.velocity = new Vector3(p1Body.velocity.x,0,p1Body.velocity.z) + new Vector3(0, 12, 0);
         jumpLimit--;
     }
@@ -188,37 +132,11 @@ public class PlayerMovement : MonoBehaviour
     void MoveLeft()
     {
         _currentBody.AddForce(-Camera.main.transform.right * force, ForceMode.Force);
-
     }
 
     void MoveRight()
     {
         _currentBody.AddForce(Camera.main.transform.right * force, ForceMode.Force);
-    }
-
-    //movement methods for wall
-    void MoveUp()
-    {
-        //playerBody.AddForce(-10 * playerBody.mass * playerBody.transform.up * 2);
-        p1Body.transform.position += new Vector3(0, 0.2f, 0);
-    }
-
-    void MoveDown()
-    {
-        //playerBody.AddForce(-10 * playerBody.mass * -playerBody.transform.up * 2);
-        p1Body.transform.position += new Vector3(0, -0.2f, 0);
-    }
-
-    void MoveLeftOnWall()
-    {
-        //playerBody.AddForce(-10 * playerBody.mass * new Vector3(0, 0,0) * 2);
-        p1Body.transform.position += new Vector3(-0.2f, 0, 0);
-    }
-
-    void MoveRightOnWall()
-    {
-        //playerBody.transform.Translate(new Vector3(-0.2f, 0, 0));
-        p1Body.transform.position += new Vector3(0.2f, 0, 0);
     }
     #endregion
 

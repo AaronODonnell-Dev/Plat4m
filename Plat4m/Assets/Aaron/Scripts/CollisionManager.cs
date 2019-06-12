@@ -10,6 +10,10 @@ public class CollisionManager : MonoBehaviour
     public bool collidedWithWall = false;
     public bool collisionEnded = false;
 
+    void Start()
+    {
+    }
+
     public void InstatiatePlayer(PlayerMovement player)
     {
         Player = player;
@@ -41,15 +45,17 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnd(Collision collider)
+    public void OnCollisionEnd(Collision collision)
     {
-        if (collider.transform.tag == "MovingPlatform")
+        if (collision.transform.tag == "MovingPlatform" || collision.transform.tag == "Ground")
         {
             playerBody.transform.parent = null;
             playerBody.freezeRotation = true;
+            playerBody.MovePosition(new Vector3(playerBody.position.x, playerBody.position.y + 0.01f, playerBody.position.z));
+            //Player.isGrounded = false;
         }
 
-        if (collider.transform.tag == "MovingWall")
+        if (collision.transform.tag == "MovingWall")
         {
             collisionEnded = true;
             //playerBody.freezeRotation = true;
