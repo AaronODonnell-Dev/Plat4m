@@ -51,7 +51,6 @@ public class CollisionManager : MonoBehaviour
         {
             playerBody.transform.parent = null;
             playerBody.freezeRotation = true;
-            playerBody.MovePosition(new Vector3(playerBody.position.x, playerBody.position.y + 0.01f, playerBody.position.z));
             //Player.isGrounded = false;
         }
 

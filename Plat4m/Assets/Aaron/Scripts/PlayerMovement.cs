@@ -116,14 +116,14 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveFoward()
     {
-        _currentBody.AddForce(Camera.main.transform.forward * force, ForceMode.Force);
+        _currentBody.AddForce(_currentBody.transform.forward * force, ForceMode.Force);
         //for rotating the plapyer. slerp is slower than lerp
         //transform.rotation = mainCamera.transform.rotation;
     }
 
     void MoveBackWard()
     {
-        _currentBody.AddForce(-Camera.main.transform.forward * force, ForceMode.Force);
+        _currentBody.AddForce(-_currentBody.transform.forward * force, ForceMode.Force);
         // allows for the rotation but the parented camera rotates with the object and
         // causes a continious loop of rotationg!
         //transform.rotation = Quaternion.LookRotation(-mainCamera.transform.forward, transform.up);
@@ -131,12 +131,12 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveLeft()
     {
-        _currentBody.AddForce(-Camera.main.transform.right * force, ForceMode.Force);
+        _currentBody.AddForce(-_currentBody.transform.right * force, ForceMode.Force);
     }
 
     void MoveRight()
     {
-        _currentBody.AddForce(Camera.main.transform.right * force, ForceMode.Force);
+        _currentBody.AddForce(_currentBody.transform.right * force, ForceMode.Force);
     }
     #endregion
 
