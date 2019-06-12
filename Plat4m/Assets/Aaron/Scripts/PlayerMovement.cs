@@ -116,8 +116,6 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveFoward()
     {
-        Debug.Log(_currentBody);
-        Debug.Log("Moving Forward");
         _currentBody.AddForce(Camera.main.transform.forward * force, ForceMode.Force);
         //for rotating the plapyer. slerp is slower than lerp
         //transform.rotation = mainCamera.transform.rotation;
@@ -125,8 +123,6 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveBackWard()
     {
-        Debug.Log(_currentBody);
-        Debug.Log("Moving Back");
         _currentBody.AddForce(-Camera.main.transform.forward * force, ForceMode.Force);
         // allows for the rotation but the parented camera rotates with the object and
         // causes a continious loop of rotationg!
@@ -135,15 +131,11 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveLeft()
     {
-        Debug.Log(_currentBody);
-        Debug.Log("Moving Left");
         _currentBody.AddForce(-Camera.main.transform.right * force, ForceMode.Force);
     }
 
     void MoveRight()
     {
-        Debug.Log(_currentBody);
-        Debug.Log("Moving Right");
         _currentBody.AddForce(Camera.main.transform.right * force, ForceMode.Force);
     }
     #endregion
