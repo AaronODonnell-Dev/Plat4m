@@ -17,6 +17,13 @@ TagManager:
   - Player2
   - MovingWall
   - ArrowTip
+  - Climbable
+  - Node
+  - gameController
+  - EnemySightline
+  - Enemy
+  - MovingWall
+  - MovingClimbable
   layers:
   - Default
   - TransparentFX
