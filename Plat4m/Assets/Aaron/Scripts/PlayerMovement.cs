@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float force = 10;
+    [Range(0, 100)]
+    public float force = 10;
     float angle;
     int count = 0;
     public int jumpLimit = 2;
-    public bool isJumping = false;
+    public bool isJumping;
     public bool isGrounded;
 
     Rigidbody p1Body;

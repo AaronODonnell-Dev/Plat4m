@@ -7,14 +7,15 @@ public class Yeet : MonoBehaviour
     public GameObject Player2;
     public GameObject arrow;
     public bool isYeeting;
+    public bool wasYeeted;
     public GameObject ArrowTip;
     public Canvas Landing;
+    public RaycastHit hit;
 
     float YeetForce = 17;
     Animation arrowMove;
     PlayerMovement Player;
     Vector3 direction;
-    RaycastHit hit;
     bool isAirborne;
 
     // Use this for initialization
@@ -22,6 +23,7 @@ public class Yeet : MonoBehaviour
     {
         Player = GetComponent<PlayerMovement>();
         isYeeting = false;
+        wasYeeted = false;
         isAirborne = false;
         arrow.gameObject.SetActive(false);
         Landing.gameObject.SetActive(false);       
@@ -57,6 +59,7 @@ public class Yeet : MonoBehaviour
     {
         GetComponent<Rigidbody>().AddForce(- direction * YeetForce * 100, ForceMode.Force);
 
+        wasYeeted = true;
         isYeeting = false;
         Player.isGrounded = false;
         arrow.gameObject.SetActive(false);
@@ -94,7 +97,7 @@ public class Yeet : MonoBehaviour
 
     public void PredictedLanding()
     {
-        if(isAirborne)
+        if(isAirborne && wasYeeted)
         {
             if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
             {
