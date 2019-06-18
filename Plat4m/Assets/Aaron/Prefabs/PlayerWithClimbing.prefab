@@ -41,6 +41,8 @@ GameObject:
   - component: {fileID: 6239111245630696352}
   - component: {fileID: 6239111245630696353}
   - component: {fileID: 6239111245630696366}
+  - component: {fileID: 6076351142488178796}
+  - component: {fileID: 4709510506345741696}
   - component: {fileID: 491494276727172766}
   - component: {fileID: 6239111245630696364}
   - component: {fileID: 7621481871606273278}
@@ -92,10 +94,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   jumpLimit: 2
+--- !u!114 &6076351142488178796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239111245630696360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c37fed31fe01045b3f555f29c2e1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   isJumping: 0
-  isGrounded: 1
-  cameraPosP1: {fileID: 6239111246996700956}
-  cameraPosP2: {fileID: 0}
+  isGrounded: 0
+  currentBody: {fileID: 0}
+--- !u!114 &4709510506345741696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239111245630696360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af5d58351abce941a19e51746274d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
+  collidedWithWall: 0
+  collisionEnded: 0
 --- !u!114 &491494276727172766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +139,7 @@ MonoBehaviour:
   Player2: {fileID: 0}
   arrow: {fileID: 8130944649848834227}
   isYeeting: 0
+  wasYeeted: 0
   ArrowTip: {fileID: 907363221}
   Landing: {fileID: 0}
 --- !u!114 &6239111245630696364
@@ -125,7 +154,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7296c5f003ced42bc2dc0039d672c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugLine: 1
+  MinDistance: 0.7
+  MaxDistance: 10
   WithinClimbingRange: 0
+  wallToRight: 0
+  WallToLeft: 0
+  GroundCheck: 0
 --- !u!114 &7621481871606273278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d6b942f8018784d82509acca561ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClimbSpeed: 0
+  RotateOnWallSpeed: 0
+  ParentOrNot: 0
 --- !u!23 &6239111245630696365
 MeshRenderer:
   m_ObjectHideFlags: 0

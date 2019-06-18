@@ -14,14 +14,14 @@ public class Yeet : MonoBehaviour
 
     float YeetForce = 17;
     Animation arrowMove;
-    PlayerMovement Player;
+    Player player;
     Vector3 direction;
     bool isAirborne;
 
     // Use this for initialization
     void Start()
     {
-        Player = GetComponent<PlayerMovement>();
+        player = GetComponent<Player>();
         isYeeting = false;
         wasYeeted = false;
         isAirborne = false;
@@ -42,7 +42,7 @@ public class Yeet : MonoBehaviour
             Throw();
         }
 
-        if(!Player.isGrounded)
+        if(!player.isGrounded)
         {
             isAirborne = true;
             PredictedLanding();
@@ -61,7 +61,7 @@ public class Yeet : MonoBehaviour
 
         wasYeeted = true;
         isYeeting = false;
-        Player.isGrounded = false;
+        player.isGrounded = false;
         arrow.gameObject.SetActive(false);
 
         Time.timeScale = 1;
