@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Range(0, 100)]
+    [Range(1,100)]
     public float force = 10;
     float angle;
     int count = 0;
@@ -82,7 +82,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if(_currentBody == p1Body)
         {
-            _currentBody = _p2body;
+            case PlayerIndex.PLAYERONE:
+                _currentBody = p1Body;
+                break;
+
+            case PlayerIndex.PLAYERTWO:
+                _currentBody = _p2body;
+                break;
         }
         else if(_currentBody == _p2body)
         {
