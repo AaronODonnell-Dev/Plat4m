@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float force = 10;
+    [Range(1,100)]
+    public float force = 10;
     float angle;
     int count = 0;
     public int jumpLimit = 2;
@@ -134,12 +135,10 @@ public class PlayerMovement : MonoBehaviour
         switch (_current)
         {
             case PlayerIndex.PLAYERONE:
-                //mainCamera.transform.SetParent(p1Body.transform);
                 _currentBody = p1Body;
                 break;
 
             case PlayerIndex.PLAYERTWO:
-                //mainCamera.transform.SetParent(_p2body.transform);
                 _currentBody = _p2body;
                 break;
         }

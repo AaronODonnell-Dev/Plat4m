@@ -12,6 +12,16 @@ TagManager:
   - MenuCamPos
   - MainMenu
   - CheckPoint
+  - Ground
+  - Player2
+  - Climbable
+  - Node
+  - gameController
+  - EnemySightline
+  - Enemy
+  - InstructionCanvas
+  - MovingWall
+  - MovingClimbable
   layers:
   - Default
   - TransparentFX

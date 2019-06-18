@@ -102,7 +102,15 @@ public class CameraFollow : MonoBehaviour
                     camOffset = camTurnAngle * camOffset;
                 }
                 float horz = Input.GetAxis("Mouse X") * rotateSpeed;
-                objectsTransform.Rotate(0, horz, 0);
+
+                //this code needs to be moved. causes dificulty after wall climbing.
+                //else when the user has pressed a directional button the player will rotata to face the 
+                //same direction as the cam to get around this.
+                if (!GameObject.FindGameObjectWithTag("Player").GetComponent<WallCheck>().WithinClimbingRange)
+                {
+                    objectsTransform.Rotate(0, horz, 0);
+                }
+                
             }
             
             newPos = objectsTransform.position + camOffset;

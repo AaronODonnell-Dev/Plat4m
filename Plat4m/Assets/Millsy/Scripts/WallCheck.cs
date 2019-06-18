@@ -4,22 +4,52 @@ using UnityEngine;
 
 public class WallCheck : MonoBehaviour
 {
-    RaycastHit hit;
+    public RaycastHit hitFront;
+    public RaycastHit hitRight;
+    public RaycastHit hitLeft;
+    public RaycastHit HitDown;
+
+    // public trigger for debugging with the ray.
+    public bool debugLine = true;
+
+    // used for the min disance for the cast to be red and max for the ray to be blue
+    // colour used for debugging
+    [Range(0, 5)]
+    public float MinDistance = 0.7f;
+    [Range(5, 20)]
+    public float MaxDistance = 10;
+
     Vector3 ForwardOffset;
-    // Start is called before the first frame update
+    Vector3 RightOffset;
+
+    // for external use in the climbing script
+    public bool WithinClimbingRange = false;
+    public bool wallToRight;
+    public bool WallToLeft;
+    public bool GroundCheck;
+
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
         // used for debugging the cast.
-        RaycatsFromFeet();
+        Raycast(transform.position, transform.forward, Color.red, Color.yellow, Color.blue,ref hitFront,ref WithinClimbingRange);
+
+        // needs to be done so that grounded is set to true rather than climbing.
+        Raycast(transform.position + -transform.up/2, -transform.up, Color.red, Color.yellow, Color.blue,ref hitRight,ref GroundCheck);
+
+
+        Raycast(transform.position, transform.right, Color.red, Color.yellow, Color.blue,ref hitRight,ref wallToRight);
+        Raycast(transform.position, -transform.right, Color.red, Color.yellow, Color.blue,ref hitLeft,ref WallToLeft);
     }
 
-    public void RaycatsFromFeet()
+    public void Raycast(Vector3 StartOffset, Vector3 Direction,
+        Color NearColor, Color MidColour, Color FarColor,
+        ref RaycastHit hit,ref bool check)
     {
         // gets the transform. positon and takes away an offset of the objects local scale,
         // this is used to draw the Ray from the feet of the player character.
@@ -27,19 +57,44 @@ public class WallCheck : MonoBehaviour
         // the raycast hits within the distance, the sidtance is curently set to Mathf.Infinate
         // which is a infanite line. the draw method uses information from the raycats hit to
         // only draw for the distance that the raycast travels before contact.
-        ForwardOffset = transform.position + new Vector3(0, 0, transform.localScale.z - 0.5f);
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+
+        if (Physics.Raycast(StartOffset, Direction, out hit, Mathf.Infinity))
         {
-            if (hit.distance < 2)
+            // Contact with wall is acheivable.
+            if (hit.distance < MinDistance)
             {
-                Debug.DrawLine(ForwardOffset,
-                    hit.point, Color.red);
+                if (debugLine)
+                {
+                    Debug.DrawLine(StartOffset,
+                    hit.point, NearColor);
+                }
+                check = true;
             }
-            else if (hit.distance > 2 && hit.distance < 5)
+            // close to objects
+            else if (hit.distance > MinDistance && hit.distance < MaxDistance)
             {
-                Debug.DrawLine(ForwardOffset,
-                    hit.point, Color.blue);
+                if (debugLine)
+                {
+                    Debug.DrawLine(StartOffset,
+                    hit.point, MidColour);
+                }
+                check = false;
             }
+            // objects far away
+            else if (hit.distance > MaxDistance)
+            {
+                if (debugLine)
+                {
+                    Debug.DrawLine(StartOffset,
+                    hit.point, FarColor);
+                }
+                check = false;
+            }
+        }
+        else
+        {
+            // anything in hear will happen when the the ray hits nothing.
+            check = false;
         }
     }
 }
