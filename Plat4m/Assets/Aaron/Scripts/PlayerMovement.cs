@@ -4,125 +4,110 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float force = 10;
-    Vector3 jumpForce;
+    [Range(1,100)]
+    public float force = 10;
     float angle;
+    int count = 0;
     public int jumpLimit = 2;
-    bool isJumping = false;
-    bool isGrounded = true;
+    public bool isJumping = false;
+    public bool isGrounded;
 
-    Rigidbody _p1body;
+    Rigidbody p1Body;
     Rigidbody _p2body;
     Rigidbody _currentBody;
 
-    GameObject mainCamera;
+    CollisionManager collisionManager;
+
+    GameObject Instructions;
 
     public GameObject cameraPosP1;
     public GameObject cameraPosP2;
 
-    enum PlayerIndex { PLAYERONE, PLAYERTWO};
-    PlayerIndex _current;
-
     // Use this for initialization
     void Start()
     {
-        _p1body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        p1Body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         _p2body = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody>();
-        _current = PlayerIndex.PLAYERONE;
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        jumpForce = Camera.main.transform.up * force * 10;
+        _currentBody = p1Body;
+        //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
+        collisionManager = new CollisionManager();
+        collisionManager.InstatiatePlayer(this);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (count == 180)
+        {
+            //Instructions.SetActive(false);
+            count = 0;
+        }
+        else count++;
+
         #region - Player Movement calls & Jump-
-        if (Input.GetAxisRaw("Horizontal") == 1)
+
+        if (isGrounded)
         {
-            MoveRight();
+            if (Input.GetAxisRaw("Horizontal") == 1)
+            {
+                MoveRight();
+            }
+            else if (Input.GetAxisRaw("Horizontal") == -1)
+            {
+                MoveLeft();
+            }
+            if (Input.GetAxisRaw("Vertical") == 1)
+            {
+                MoveFoward();
+            }
+            else if (Input.GetAxisRaw("Vertical") == -1)
+            {
+                MoveBackWard();
+            }
         }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
-        {
-            MoveLeft();
-        }
-        if (Input.GetAxisRaw("Vertical") == 1)
-        {
-            MoveFoward();
-        }
-        else if (Input.GetAxisRaw("Vertical") == -1)
-        {
-            MoveBackWard();
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && _current == PlayerIndex.PLAYERONE && jumpLimit > 0)
+
+        if (Input.GetKeyDown(KeyCode.Space) && _currentBody == p1Body && jumpLimit > 0)
         {
             Jump();
         }
-        #endregion
 
-        #region -Player logic for camera
-        if (_current == PlayerIndex.PLAYERONE && Input.GetKeyDown(KeyCode.P))
-        {
-            _current = PlayerIndex.PLAYERTWO;
-            mainCamera.transform.position = cameraPosP2.transform.position;
-            mainCamera.transform.LookAt(_p2body.transform);
-        }
-        else if (_current == PlayerIndex.PLAYERTWO && Input.GetKeyDown(KeyCode.P))
-        {
-            _current = PlayerIndex.PLAYERONE;
-            mainCamera.transform.position = cameraPosP1.transform.position;
-            mainCamera.transform.LookAt(_p1body.transform);
-        }
         #endregion
-
-        PlayerSwitch();
-        CameraRotate();
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerSwitch();
+        }
     }
 
     void PlayerSwitch()
-    {       
-        switch(_current)
+    {
+        if(_currentBody == p1Body)
         {
             case PlayerIndex.PLAYERONE:
-                mainCamera.transform.SetParent(_p1body.transform);
-                _currentBody = _p1body;
+                _currentBody = p1Body;
                 break;
 
             case PlayerIndex.PLAYERTWO:
-                mainCamera.transform.SetParent(_p2body.transform);
                 _currentBody = _p2body;
                 break;
         }
-    }
-
-    void CameraRotate()
-    {
-        Camera.main.transform.RotateAround(_currentBody.transform.position, Vector3.up, Input.GetAxis("Mouse X"));
+        else if(_currentBody == _p2body)
+        {
+            _currentBody = p1Body;
+        }
     }
 
     private void OnCollisionEnter(Collision collider)
     {
-        if(collider.transform.tag == "Ground" || collider.transform.tag == "MovingPlatform")
-        {
-            isGrounded = true;
-            isJumping = false;
-            ResetJump();
-        }
-
-        if(collider.transform.tag == "MovingPlatform")
-        {
-            _p1body.transform.parent = collider.transform;
-        }
+        collisionManager.OnCollisionWithWall(collider);
+        collisionManager.BasicCollision(collider);
     }
 
-    private void OnTriggerExit(Collider collider)
+    private void OnCollisionExit(Collision collider)
     {
-        if (collider.transform.tag == "MovingPlatform")
-        {
-            _p1body.transform.parent = null;
-        }
+        collisionManager.OnCollisionEnd(collider);
     }
 
-    void ResetJump()
+    public void ResetJump()
     {
         jumpLimit = 2;
     }
@@ -132,24 +117,28 @@ public class PlayerMovement : MonoBehaviour
     {
         isJumping = true;
         isGrounded = false;
-        _p1body.velocity = new Vector3(0, 15, 0);
+        p1Body.velocity = new Vector3(p1Body.velocity.x,0,p1Body.velocity.z) + new Vector3(0, 12, 0);
         jumpLimit--;
     }
 
     void MoveFoward()
     {
         _currentBody.AddForce(Camera.main.transform.forward * force, ForceMode.Force);
+        //for rotating the plapyer. slerp is slower than lerp
+        //transform.rotation = mainCamera.transform.rotation;
     }
 
     void MoveBackWard()
     {
         _currentBody.AddForce(-Camera.main.transform.forward * force, ForceMode.Force);
+        // allows for the rotation but the parented camera rotates with the object and
+        // causes a continious loop of rotationg!
+        //transform.rotation = Quaternion.LookRotation(-mainCamera.transform.forward, transform.up);
     }
 
     void MoveLeft()
     {
         _currentBody.AddForce(-Camera.main.transform.right * force, ForceMode.Force);
-
     }
 
     void MoveRight()
