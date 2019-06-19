@@ -95,6 +95,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (other.tag == "Player")
             {
+                Debug.Log("OnTriggerEnter");
                 state = EasyAI.State.CHASE;
                 target = other.gameObject;
             }
