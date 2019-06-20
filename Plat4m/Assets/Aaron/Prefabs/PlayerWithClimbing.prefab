@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 7621481871606273278}
   - component: {fileID: 6239111245630696365}
   - component: {fileID: 6239111245630696363}
-  - component: {fileID: 6958117915466969641}
+  - component: {fileID: 6522669588162100507}
   m_Layer: 0
   m_Name: PlayerWithClimbing
   m_TagString: Player
@@ -79,7 +79,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6239111245630696360}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &6239111245630696366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 10
-  jumpLimit: 2
 --- !u!114 &6076351142488178796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +108,7 @@ MonoBehaviour:
   isJumping: 0
   isGrounded: 0
   currentBody: {fileID: 0}
+  jumpLimit: 2
 --- !u!114 &4709510506345741696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,8 +229,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &6958117915466969641
-SphereCollider:
+--- !u!136 &6522669588162100507
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -239,8 +239,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6239111246996700956
 GameObject:

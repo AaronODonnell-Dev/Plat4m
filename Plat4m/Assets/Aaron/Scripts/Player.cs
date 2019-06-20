@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     CollisionManager collisionManager;
 
-    float jumpLimit = 2;
+    public float jumpLimit = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     {
         isJumping = true;
         isGrounded = false;
-        p1Body.velocity = new Vector3(p1Body.velocity.x, 0, p1Body.velocity.z) + new Vector3(0, 12, 0);
+        p1Body.velocity = new Vector3(p1Body.velocity.x, 0, p1Body.velocity.z) + new Vector3(0, 11, 0);
         jumpLimit--;
     }
 

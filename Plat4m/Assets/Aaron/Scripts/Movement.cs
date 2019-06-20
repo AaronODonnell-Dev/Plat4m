@@ -5,10 +5,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Range(1,100)]
-    public float force = 10;
+    public float force = 5;
     float angle;
     int count = 0;
-    public int jumpLimit = 2;
 
     Player player;
     Rigidbody _currentBody; 
@@ -19,7 +18,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
-        _currentBody = player.currentBody;
         //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
     }
 
@@ -35,29 +33,28 @@ public class Movement : MonoBehaviour
         //else count++;
         #endregion
 
+        _currentBody = player.currentBody;
+
         #region - Player Movement calls & Jump-
 
-        if (player.isGrounded)
+        if (Input.GetAxisRaw("Horizontal") == 1)
         {
-            if (Input.GetAxisRaw("Horizontal") == 1)
-            {
-                MoveRight();
-            }
-            else if (Input.GetAxisRaw("Horizontal") == -1)
-            {
-                MoveLeft();
-            }
-            if (Input.GetAxisRaw("Vertical") == 1)
-            {
-                MoveFoward();
-            }
-            else if (Input.GetAxisRaw("Vertical") == -1)
-            {
-                MoveBackWard();
-            }
+            MoveRight();
+        }
+        else if (Input.GetAxisRaw("Horizontal") == -1)
+        {
+            MoveLeft();
+        }
+        if (Input.GetAxisRaw("Vertical") == 1)
+        {
+            MoveFoward();
+        }
+        else if (Input.GetAxisRaw("Vertical") == -1)
+        {
+            MoveBackWard();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpLimit > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && player.jumpLimit > 0)
         {
             player.Jump();
         }

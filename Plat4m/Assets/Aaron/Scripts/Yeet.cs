@@ -12,7 +12,7 @@ public class Yeet : MonoBehaviour
     public Canvas Landing;
     public RaycastHit hit;
 
-    float YeetForce = 17;
+    float YeetForce = 15;
     Animation arrowMove;
     Player player;
     Vector3 direction;
@@ -92,7 +92,7 @@ public class Yeet : MonoBehaviour
 
         float rot_z = Input.GetAxis("Mouse X") * 2;
 
-        arrow.transform.RotateAround(ArrowTip.transform.position, new Vector3(0,0,1), - rot_z);
+        arrow.transform.RotateAround(ArrowTip.transform.position, new Vector3(0,0,1), + rot_z);
     }
 
     public void PredictedLanding()
