@@ -13,13 +13,15 @@ TagManager:
   - MainMenu
   - CheckPoint
   - Ground
+  - InstructionCanvas
   - Player2
+  - MovingWall
+  - ArrowTip
   - Climbable
   - Node
   - gameController
   - EnemySightline
   - Enemy
-  - InstructionCanvas
   - MovingWall
   - MovingClimbable
   layers:
@@ -56,6 +58,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI_Layer
+    uniqueID: 2765065817
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
