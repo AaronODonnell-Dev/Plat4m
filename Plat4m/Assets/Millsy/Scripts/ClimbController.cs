@@ -17,8 +17,9 @@ public class ClimbController : MonoBehaviour
     [Range(10,100)]
     public int WallJumpForce = 10;
     bool HasWallJumped;
-    float Remounttime = 0.5f;
+    float Remounttime = 0.3f;
     bool WallJumpCorutine;
+    public float WallMountTimer = 2f;
 
     void Start()
     {
@@ -34,12 +35,17 @@ public class ClimbController : MonoBehaviour
         // the constant test on the bool inside the WallCheck.
         canClimb = check.WithinClimbingRange;
 
-
+        Dismount();
+        GroundDetection();
 
         // statement to makse sure nothing happens unless can climb is true.
         if (canClimb && (check.hitFront.collider.tag == "Climbable" || check.hitFront.collider.tag == "MovingClimbable"))
         {
             helper.transform.rotation = Quaternion.LookRotation(-check.hitFront.normal);
+            Quaternion FallRotation = new Quaternion(0, helper.transform.rotation.y, 0, 0);
+
+            WallJumps = 1;
+
             HitDetectionLerpToPoint();
             WallMovement();
             check.MinDistance = 1;
@@ -78,7 +84,7 @@ public class ClimbController : MonoBehaviour
 
         if (WallJumpCorutine)
         {
-            StartCoroutine(RotateOffWalJump(Vector3.up * 180, 0.5f));
+            StartCoroutine(RotateOffWalJump(Vector3.up * 180, 0.3f));
             WallJumpCorutine = false;
         }
 
@@ -99,7 +105,7 @@ public class ClimbController : MonoBehaviour
 
     void WallJump()
     {
-        if (canClimb == true && WallJumps >= 0 && Input.GetKeyDown(KeyCode.Space))
+        if (canClimb == true && WallJumps > 0 && Input.GetKeyDown(KeyCode.Space))
         {
             HasWallJumped = true;
             WallJumpCorutine = true;
@@ -109,11 +115,13 @@ public class ClimbController : MonoBehaviour
         }
     }
 
+
+
     // for testing
     IEnumerator RotateOffWalJump(Vector3 byAngles, float inTime)
     {
         var fromAngle = transform.rotation;
-        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles - new Vector3(transform.eulerAngles.x,0,transform.eulerAngles.z));
         for (var t = 0f; t <= 1; t += Time.deltaTime / inTime)
         {
             transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
@@ -129,6 +137,11 @@ public class ClimbController : MonoBehaviour
             GetComponent<PlayerMovement>().isGrounded = true;
             GetComponent<PlayerMovement>().jumpLimit = 2;
             WallJumps = 1;
+            if (transform.rotation != Quaternion.Euler(0,transform.eulerAngles.y,0))
+            {
+                StartCoroutine(RotateOffWalJump(new Vector3(0, transform.eulerAngles.y, 0), 0.1f));
+            }
+            
         }
         else
         {
@@ -138,7 +151,10 @@ public class ClimbController : MonoBehaviour
 
     void Dismount()
     {
-        
+        if (check.GroundCheck == true && check.WithinClimbingRange == true)
+        {
+            canClimb = false;
+        }
     }
 
     void RemountTimer()
@@ -153,7 +169,7 @@ public class ClimbController : MonoBehaviour
         if (Remounttime  <= 0)
         {
             HasWallJumped = false;
-            Remounttime = 0.5f;
+            Remounttime = 0.3f;
         }
     }
 
