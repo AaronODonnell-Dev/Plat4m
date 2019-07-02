@@ -13,6 +13,14 @@ public class ClimbController : MonoBehaviour
     bool hasRotatedOnWall = false;
     public bool ParentOrNot = false;
 
+    public float WallJumps = 1;
+    [Range(10,100)]
+    public int WallJumpForce = 10;
+    bool HasWallJumped;
+    float Remounttime = 0.3f;
+    bool WallJumpCorutine;
+    public float WallMountTimer = 2f;
+
     void Start()
     {
         check = GetComponent<WallCheck>();
@@ -27,20 +35,28 @@ public class ClimbController : MonoBehaviour
         // the constant test on the bool inside the WallCheck.
         canClimb = check.WithinClimbingRange;
 
+        Dismount();
+        GroundDetection();
+
         // statement to makse sure nothing happens unless can climb is true.
         if (canClimb && (check.hitFront.collider.tag == "Climbable" || check.hitFront.collider.tag == "MovingClimbable"))
         {
+            helper.transform.rotation = Quaternion.LookRotation(-check.hitFront.normal);
+            Quaternion FallRotation = new Quaternion(0, helper.transform.rotation.y, 0, 0);
+
+            WallJumps = 1;
+
             HitDetectionLerpToPoint();
             WallMovement();
             check.MinDistance = 1;
+            WallJump();
+            RemountTimer();
+            GroundDetection();
 
-            if (GetComponent<Rigidbody>().isKinematic == false)
+            if (GetComponent<Rigidbody>().isKinematic == false && HasWallJumped == false)
             {
                 KinimaticSwitch();
             }
-
-
-            helper.transform.rotation = Quaternion.LookRotation(-check.hitFront.normal);
 
             if (!check.wallToRight && !check.WallToLeft)
             {
@@ -65,18 +81,97 @@ public class ClimbController : MonoBehaviour
             KinimaticSwitch();
             check.MinDistance = 0.7f;
         }
-        else if (canClimb == false && hasRotatedOnWall == true)
+
+        if (WallJumpCorutine)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, 0, 0, 1), RotateOnWallSpeed * 5);
-            if (transform.rotation == new Quaternion(0, 0, 0, 1))
-            {
-                hasRotatedOnWall = false;
-            }
+            StartCoroutine(RotateOffWalJump(Vector3.up * 180, 0.3f));
+            WallJumpCorutine = false;
         }
+
+
+
+        //else if (canClimb == false && hasRotatedOnWall == true)
+        //{
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, 0, 0, 1), RotateOnWallSpeed * 5);
+        //    if (transform.rotation == new Quaternion(0, 0, 0, 1))
+        //    {
+        //        hasRotatedOnWall = false;
+        //    }
+        //}
 
        
     }
     #endregion
+
+    void WallJump()
+    {
+        if (canClimb == true && WallJumps > 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            HasWallJumped = true;
+            WallJumpCorutine = true;
+            KinimaticSwitch();
+            GetComponent<Rigidbody>().AddForce((-transform.forward + Vector3.up) * WallJumpForce, ForceMode.VelocityChange);
+            WallJumps--;
+        }
+    }
+
+
+
+    // for testing
+    IEnumerator RotateOffWalJump(Vector3 byAngles, float inTime)
+    {
+        var fromAngle = transform.rotation;
+        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles - new Vector3(transform.eulerAngles.x,0,transform.eulerAngles.z));
+        for (var t = 0f; t <= 1; t += Time.deltaTime / inTime)
+        {
+            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
+            yield return null;
+        }
+        transform.rotation = toAngle;
+    }
+
+    void GroundDetection()
+    {
+        if (check.GroundCheck == true)
+        {
+            GetComponent<PlayerMovement>().isGrounded = true;
+            GetComponent<PlayerMovement>().jumpLimit = 2;
+            WallJumps = 1;
+            if (transform.rotation != Quaternion.Euler(0,transform.eulerAngles.y,0))
+            {
+                StartCoroutine(RotateOffWalJump(new Vector3(0, transform.eulerAngles.y, 0), 0.1f));
+            }
+            
+        }
+        else
+        {
+            GetComponent<PlayerMovement>().isGrounded = false;
+        }
+    }
+
+    void Dismount()
+    {
+        if (check.GroundCheck == true && check.WithinClimbingRange == true)
+        {
+            canClimb = false;
+        }
+    }
+
+    void RemountTimer()
+    {
+        if (HasWallJumped == true)
+        {
+            canClimb = false;
+            Remounttime -= Time.deltaTime;
+        }
+        
+
+        if (Remounttime  <= 0)
+        {
+            HasWallJumped = false;
+            Remounttime = 0.3f;
+        }
+    }
 
     //turning kinimatic so gravity is no longer applyed
     void HitDetectionLerpToPoint()
