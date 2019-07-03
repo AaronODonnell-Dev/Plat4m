@@ -23,8 +23,11 @@ public class alexEnemyScript : MonoBehaviour
     private Vector3 _destination;
     private Quaternion _desiredRotation;
     private Vector3 _direction;
-    private alexEnemyScript _target;
+    //public alexEnemyScript _target; //GameObject
+    public GameObject _target;
     private State _currentState;
+    [Range(0,5)]
+    public float SightRayHeight; //1.4 seems good for default character.
 
     //public State state;
     //private bool alive;
@@ -56,6 +59,7 @@ public class alexEnemyScript : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Target is " + _target);
 
         switch (_currentState)
         {
@@ -84,7 +88,8 @@ public class alexEnemyScript : MonoBehaviour
                 var targetToAggro = CheckForAggro();
                 if (targetToAggro != null)
                 {
-                    _target = targetToAggro.GetComponent<alexEnemyScript>();
+                    //_target = targetToAggro.GetComponent<alexEnemyScript>();
+                    _target = targetToAggro.GetComponent<GameObject>();
                     _currentState = State.CHASE;
                 }
                 break;
@@ -92,6 +97,7 @@ public class alexEnemyScript : MonoBehaviour
             case State.CHASE:
                 if (_target == null)
                 {
+                    Debug.Log("CHASE");
                     _currentState = State.PATROL;
                     return;
                 }
@@ -108,6 +114,7 @@ public class alexEnemyScript : MonoBehaviour
             case State.ATTACK:
                 if (_target != null)
                 {
+                    Debug.Log("ATTACK");
                     Destroy(_target.gameObject);
                 }
 
@@ -166,22 +173,23 @@ public class alexEnemyScript : MonoBehaviour
         var pos = transform.position;
         for (var i = 0; i < 24; i++)
         {
-            if (Physics.Raycast(pos, direction, out hit, aggroRadius))
+            if (Physics.Raycast(pos + new Vector3(0, SightRayHeight, 0), direction, out hit, aggroRadius))
             {
-                var drone = hit.collider.GetComponent<alexEnemyScript>();
-                if (drone != null)
+                //var targetEnemy = hit.collider.GetComponent<alexEnemyScript>();
+                var targetEnemy = hit.collider.GetComponent<GameObject>();
+                if (targetEnemy != null)
                 {
-                    Debug.DrawRay(pos, direction * hit.distance, Color.red);
-                    return drone.transform;
+                    Debug.DrawRay(pos + new Vector3(0, SightRayHeight, 0), direction * hit.distance, Color.red);
+                    return targetEnemy.transform;
                 }
                 else
                 {
-                    Debug.DrawRay(pos, direction * hit.distance, Color.yellow);
+                    Debug.DrawRay(pos + new Vector3(0, SightRayHeight, 0), direction * hit.distance, Color.yellow);
                 }
             }
             else
             {
-                Debug.DrawRay(pos, direction * aggroRadius, Color.black);
+                Debug.DrawRay(pos + new Vector3(0, SightRayHeight, 0), direction * aggroRadius, Color.black);
             }
             direction = stepAngle * direction;
         }
