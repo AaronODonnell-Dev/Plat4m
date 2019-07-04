@@ -18,6 +18,8 @@ public class Yeet : MonoBehaviour
     Vector3 direction;
     bool isAirborne;
 
+    GameObject TutorialCanvas;
+
     // Use this for initialization
     void Start()
     {
@@ -26,7 +28,9 @@ public class Yeet : MonoBehaviour
         wasYeeted = false;
         isAirborne = false;
         arrow.gameObject.SetActive(false);
-        Landing.gameObject.SetActive(false);       
+        Landing.gameObject.SetActive(false);
+        TutorialCanvas = GameObject.FindGameObjectWithTag("TutorialCanvas");
+        TutorialCanvas.gameObject.SetActive(true);
     }
 
 
@@ -36,6 +40,7 @@ public class Yeet : MonoBehaviour
         if (Input.GetKey(KeyCode.Y))
         {
             possibleYeets();
+            TutorialCanvas.gameObject.SetActive(false);
         }
         else if(Input.GetKeyUp(KeyCode.Y) && isYeeting)
         {

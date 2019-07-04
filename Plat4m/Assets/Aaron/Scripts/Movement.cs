@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [Range(1,100)]
+    [Range(1, 100)]
     public float force = 5;
     float angle;
     int count = 0;
 
     Player player;
-    Rigidbody _currentBody; 
+    Rigidbody _currentBody;
 
-    //GameObject Instructions;
+    GameObject Instructions;
 
     // Use this for initialization
     void Start()
     {
         player = GetComponent<Player>();
-        //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
+        Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
     }
 
     // Update is called once per frame
     void Update()
     {
         #region count for instructions
-        //if (count == 180)
-        //{
-        //    //Instructions.SetActive(false);
-        //    count = 0;
-        //}
-        //else count++;
+        if (count == 180)
+        {
+            Instructions.SetActive(false);
+            count = 0;
+        }
+        else count++;
         #endregion
 
         _currentBody = player.currentBody;
@@ -61,7 +61,7 @@ public class Movement : MonoBehaviour
 
         #endregion
 
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             player.PlayerSwitch();
         }
