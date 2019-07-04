@@ -78,17 +78,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-
     void PlayerSwitch()
     {
         if(_currentBody == p1Body)
         {
+            case PlayerIndex.PLAYERONE:
+                _currentBody = p1Body;
+                break;
+
+            case PlayerIndex.PLAYERTWO:
                 _currentBody = _p2body;
-        }
-        else if(_currentBody == _p2body)
-        {
-            _currentBody = p1Body;
+                break;
         }
         else if(_currentBody == _p2body)
         {
