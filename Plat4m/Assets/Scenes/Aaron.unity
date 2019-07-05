@@ -2290,7 +2290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da56be76b337d54781523e37e873f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 10
 --- !u!33 &1457476737
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2792,6 +2791,11 @@ PrefabInstance:
       propertyPath: ArrowTip
       value: 
       objectReference: {fileID: 1779254482122474505}
+    - target: {fileID: 2526567059386533802, guid: 0b0f987ff065653498bf1384ff459a30,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.78
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8125290075645493082, guid: 0b0f987ff065653498bf1384ff459a30, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0b0f987ff065653498bf1384ff459a30, type: 3}
