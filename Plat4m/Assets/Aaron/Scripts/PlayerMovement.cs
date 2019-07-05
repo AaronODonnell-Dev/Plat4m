@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Range(1,100)]
+    [Range(1, 100)]
     public float force = 10;
     float angle;
     int count = 0;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         _currentBody = p1Body;
         //Instructions = GameObject.FindGameObjectWithTag("InstructionCanvas");
         collisionManager = new CollisionManager();
-        collisionManager.InstatiatePlayer(this);
+        //collisionManager.InstatiatePlayer(this);
     }
 
     // Update is called once per frame
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         #endregion
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             PlayerSwitch();
         }
@@ -80,17 +80,11 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerSwitch()
     {
-        if(_currentBody == p1Body)
+        if (_currentBody == p1Body)
         {
-            case PlayerIndex.PLAYERONE:
-                _currentBody = p1Body;
-                break;
-
-            case PlayerIndex.PLAYERTWO:
-                _currentBody = _p2body;
-                break;
+            _currentBody = _p2body;
         }
-        else if(_currentBody == _p2body)
+        else if (_currentBody == _p2body)
         {
             _currentBody = p1Body;
         }
@@ -98,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collider)
     {
-        collisionManager.OnCollisionWithWall(collider);
+        //collisionManager.OnCollisionWithWall(collider);
         collisionManager.BasicCollision(collider);
     }
 
@@ -117,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isJumping = true;
         isGrounded = false;
-        p1Body.velocity = new Vector3(p1Body.velocity.x,0,p1Body.velocity.z) + new Vector3(0, 12, 0);
+        p1Body.velocity = new Vector3(p1Body.velocity.x, 0, p1Body.velocity.z) + new Vector3(0, 12, 0);
         jumpLimit--;
     }
 
