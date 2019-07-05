@@ -134,8 +134,8 @@ public class ClimbController : MonoBehaviour
     {
         if (check.GroundCheck == true)
         {
-            GetComponent<PlayerMovement>().isGrounded = true;
-            GetComponent<PlayerMovement>().jumpLimit = 2;
+            GetComponent<Player>().isGrounded = true;
+            GetComponent<Player>().jumpLimit = 2;
             WallJumps = 1;
             if (transform.rotation != Quaternion.Euler(0,transform.eulerAngles.y,0))
             {
@@ -145,7 +145,7 @@ public class ClimbController : MonoBehaviour
         }
         else
         {
-            GetComponent<PlayerMovement>().isGrounded = false;
+            GetComponent<Player>().isGrounded = false;
         }
     }
 
