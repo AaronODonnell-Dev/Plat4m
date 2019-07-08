@@ -13,16 +13,36 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 114121139620626466}
-  - {fileID: 114960521115867074}
+  - {fileID: 114490355681396156}
+  - {fileID: 114095075290306338}
   EditorEvents: []
   EditorParameters: []
   MasterBanks:
-  - {fileID: 114960521115867074}
+  - {fileID: 114095075290306338}
   StringsBanks:
-  - {fileID: 114121139620626466}
-  stringsBankWriteTime: 636904240504113937
+  - {fileID: 114490355681396156}
+  stringsBankWriteTime: 636954246073573574
   cacheVersion: 3
+--- !u!114 &114095075290306338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Liam\Documents\GitHub\Plat4m\Plat4m\Plat4mLiam\Build\Desktop\Master.bank
+  SubDir: 
+  lastModified: 636954246073424006
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1000
+  Exists: 1
 --- !u!114 &114121139620626466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,6 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.strings.bank
+  SubDir: 
   lastModified: 636904240504113937
   LoadResult: 0
   FileSizes:
@@ -55,11 +76,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.strings.bank
+  SubDir: 
   lastModified: 636909422196134273
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 680
+  Exists: 1
+--- !u!114 &114490355681396156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Liam\Documents\GitHub\Plat4m\Plat4m\Plat4mLiam\Build\Desktop\Master.strings.bank
+  SubDir: 
+  lastModified: 636954246073573574
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 688
   Exists: 1
 --- !u!114 &114772157091937708
 MonoBehaviour:
@@ -74,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Plat4mFmod\Build\Desktop\Master.strings.bank
+  SubDir: 
   lastModified: 636909405843410460
   LoadResult: 0
   FileSizes:
@@ -93,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.bank
+  SubDir: 
   lastModified: 636909422196094228
   LoadResult: 0
   FileSizes:
@@ -112,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: C:\Users\Niall Connolly\Documents\College\VertHorse\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.strings.bank
+  SubDir: 
   lastModified: 636909422196134273
   LoadResult: 70
   FileSizes:
@@ -131,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Build\Desktop\Master.bank
+  SubDir: 
   lastModified: 636904240504074029
   LoadResult: 0
   FileSizes:
