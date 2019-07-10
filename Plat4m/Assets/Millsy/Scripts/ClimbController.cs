@@ -137,10 +137,10 @@ public class ClimbController : MonoBehaviour
             GetComponent<Player>().isGrounded = true;
             GetComponent<Player>().jumpLimit = 2;
             WallJumps = 1;
-            if (transform.rotation != Quaternion.Euler(0,transform.eulerAngles.y,0))
-            {
-                StartCoroutine(RotateOffWalJump(new Vector3(0, transform.eulerAngles.y, 0), 0.1f));
-            }
+            //if (transform.rotation != Quaternion.Euler(0,transform.eulerAngles.y,0))
+            //{
+            //    StartCoroutine(RotateOffWalJump(new Vector3(0, transform.eulerAngles.y, 0), 0.1f));
+            //}
             
         }
         else

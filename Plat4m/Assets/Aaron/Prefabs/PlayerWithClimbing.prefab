@@ -59,15 +59,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6239111245630696360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da56be76b337d54781523e37e873f7e, type: 3}
+  m_Script: {fileID: 11500000, guid: c7a1dba81995ca1459b9d53e155b417a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 10
-  jumpLimit: 2
-  isJumping: 0
-  isGrounded: 0
-  cameraPosP1: {fileID: 0}
-  cameraPosP2: {fileID: 0}
+  force: 5
 --- !u!114 &6076351142488178796
 MonoBehaviour:
   m_ObjectHideFlags: 0
