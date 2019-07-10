@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class alexEnemyScript : MonoBehaviour
+public class FinalAIScript : MonoBehaviour
 {
     public NavMeshAgent agent;
     public ThirdPersonCharacter character;
@@ -23,10 +23,10 @@ public class alexEnemyScript : MonoBehaviour
     private Vector3 _destination;
     private Quaternion _desiredRotation;
     private Vector3 _direction;
-    //public alexEnemyScript _target; //GameObject
+    //public FinalAIScript _target; //GameObject
     public GameObject _target;
     private State _currentState;
-    [Range(0,5)]
+    [Range(0, 5)]
     public float SightRayHeight; //1.4 seems good for default character.
 
     #region Legacy Code (All Commented)
@@ -75,12 +75,12 @@ public class alexEnemyScript : MonoBehaviour
                 transform.rotation = _desiredRotation;
 
                 transform.Translate(Vector3.forward * Time.deltaTime * 5f);
-                
+
 
                 var targetToAggro = CheckForAggro();
                 if (targetToAggro != null)
                 {
-                    //_target = targetToAggro.GetComponent<alexEnemyScript>();
+                    //_target = targetToAggro.GetComponent<FinalAIScript>();
                     _target = targetToAggro.GetComponent<GameObject>();
                     _currentState = State.CHASE;
                 }
@@ -117,7 +117,7 @@ public class alexEnemyScript : MonoBehaviour
                 break;
         }
     }
-    
+
 
     private void GetDestination()
     {
@@ -161,7 +161,7 @@ public class alexEnemyScript : MonoBehaviour
         {
             if (Physics.Raycast(pos + new Vector3(0, SightRayHeight, 0), direction, out hit, aggroRadius))
             {
-                //var targetEnemy = hit.collider.GetComponent<alexEnemyScript>();
+                //var targetEnemy = hit.collider.GetComponent<FinalAIScript>();
                 var targetEnemy = hit.collider.GetComponent<GameObject>();
                 if (targetEnemy != null && (targetEnemy.tag == "Player" || targetEnemy.tag == "Player2"))
                 {
