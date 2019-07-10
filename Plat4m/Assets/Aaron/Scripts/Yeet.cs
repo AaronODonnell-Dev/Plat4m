@@ -7,24 +7,30 @@ public class Yeet : MonoBehaviour
     public GameObject Player2;
     public GameObject arrow;
     public bool isYeeting;
+    public bool wasYeeted;
     public GameObject ArrowTip;
     public Canvas Landing;
+    public RaycastHit hit;
 
-    float YeetForce = 17;
+    float YeetForce = 15;
     Animation arrowMove;
-    PlayerMovement Player;
+    Player player;
     Vector3 direction;
-    RaycastHit hit;
     bool isAirborne;
+
+    GameObject TutorialCanvas;
 
     // Use this for initialization
     void Start()
     {
-        Player = GetComponent<PlayerMovement>();
+        player = GetComponent<Player>();
         isYeeting = false;
+        wasYeeted = false;
         isAirborne = false;
         arrow.gameObject.SetActive(false);
-        Landing.gameObject.SetActive(false);       
+        Landing.gameObject.SetActive(false);
+        TutorialCanvas = GameObject.FindGameObjectWithTag("TutorialCanvas");
+        TutorialCanvas.gameObject.SetActive(true);
     }
 
 
@@ -34,13 +40,14 @@ public class Yeet : MonoBehaviour
         if (Input.GetKey(KeyCode.Y))
         {
             possibleYeets();
+            TutorialCanvas.gameObject.SetActive(false);
         }
         else if(Input.GetKeyUp(KeyCode.Y) && isYeeting)
         {
             Throw();
         }
 
-        if(!Player.isGrounded)
+        if(!player.isGrounded)
         {
             isAirborne = true;
             PredictedLanding();
@@ -57,8 +64,9 @@ public class Yeet : MonoBehaviour
     {
         GetComponent<Rigidbody>().AddForce(- direction * YeetForce * 100, ForceMode.Force);
 
+        wasYeeted = true;
         isYeeting = false;
-        Player.isGrounded = false;
+        player.isGrounded = false;
         arrow.gameObject.SetActive(false);
 
         Time.timeScale = 1;
@@ -89,12 +97,12 @@ public class Yeet : MonoBehaviour
 
         float rot_z = Input.GetAxis("Mouse X") * 2;
 
-        arrow.transform.RotateAround(ArrowTip.transform.position, new Vector3(0,0,1), - rot_z);
+        arrow.transform.RotateAround(ArrowTip.transform.position, new Vector3(0,0,1), + rot_z);
     }
 
     public void PredictedLanding()
     {
-        if(isAirborne)
+        if(isAirborne && wasYeeted)
         {
             if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
             {

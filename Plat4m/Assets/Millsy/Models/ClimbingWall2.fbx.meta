@@ -1,50 +1,37 @@
 fileFormatVersion: 2
-guid: 2ecf746060018054f8cb93a79b9bd684
+guid: 69051dbf468a6774eb8f727ebc44bd7e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pCube1
-    100004: pCube2
-    100006: polySurface1
-    100008: polySurface2
-    100010: polySurface3
-    100012: polySurface4
-    100014: polySurface5
-    100016: polySurface6
-    100018: polySurface7
-    100020: transform1
-    100022: transform2
-    100024: transform3
-    100026: transform4
-    100028: transform5
-    100030: transform6
-    100032: transform7
-    100034: transform8
+    100002: Cone
+    100004: Cone.001
+    100006: Cube
+    100008: Cube.001
+    100010: Cube.002
     400000: //RootNode
-    400002: pCube1
-    400004: pCube2
-    400006: polySurface1
-    400008: polySurface2
-    400010: polySurface3
-    400012: polySurface4
-    400014: polySurface5
-    400016: polySurface6
-    400018: polySurface7
-    400020: transform1
-    400022: transform2
-    400024: transform3
-    400026: transform4
-    400028: transform5
-    400030: transform6
-    400032: transform7
-    400034: transform8
-    2100000: blinn2
-    2300000: polySurface7
-    3300000: polySurface7
-    4300000: polySurface7
-    7400000: Take 001
-    9500000: //RootNode
+    400002: Cone
+    400004: Cone.001
+    400006: Cube
+    400008: Cube.001
+    400010: Cube.002
+    2100000: Material
+    2100002: No Name
+    2300000: Cone
+    2300002: Cone.001
+    2300004: Cube
+    2300006: Cube.001
+    2300008: Cube.002
+    3300000: Cone
+    3300002: Cone.001
+    3300004: Cube
+    3300006: Cube.001
+    3300008: Cube.002
+    4300000: Cube
+    4300002: Cube.001
+    4300004: Cone
+    4300006: Cone.001
+    4300008: Cube.002
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -98,7 +85,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -125,7 +112,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
