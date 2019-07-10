@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     Player player;
-    Rigidbody playerBody;
+    public Rigidbody playerBody;
     RaycastHit Hit;
     Yeet yeet;
 
@@ -16,7 +16,6 @@ public class CollisionManager : MonoBehaviour
     {
         yeet = GetComponent<Yeet>();
         player = GetComponent<Player>();
-        playerBody = GetComponent<Rigidbody>();
         Hit = yeet.hit;
     }
 
