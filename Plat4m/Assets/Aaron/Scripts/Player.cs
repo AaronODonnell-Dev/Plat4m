@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
 
     CollisionManager collisionManager;
 
+    public SimpleHealthBar healthBar;
+    public PlayerHealth playerHealth;
+
     public float jumpLimit = 2;
 
     // Start is called before the first frame update
@@ -55,7 +58,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        healthBar.UpdateBar(playerHealth.currentHealth, playerHealth.startingHealth);
     }
 
     private void OnCollisionEnter(Collision collider)

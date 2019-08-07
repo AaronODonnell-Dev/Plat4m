@@ -12,6 +12,8 @@ public class CollisionManager : MonoBehaviour
     public bool collidedWithWall = false;
     public bool collisionEnded = false;
 
+    PlayerHealth playerHealth;
+
     void Start()
     {
         yeet = GetComponent<Yeet>();
@@ -36,6 +38,11 @@ public class CollisionManager : MonoBehaviour
         if (collision.transform.tag == "MovingPlatform")
         {
             playerBody.transform.parent = collision.transform;
+        }
+
+        if(collision.transform.tag == "Untagged")
+        {
+            playerHealth.TakeDamage(10);
         }
     }
 
