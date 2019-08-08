@@ -37,11 +37,11 @@ public class Movement : MonoBehaviour
 
         #region - Player Movement calls & Jump-
 
-        if (Input.GetAxisRaw("Horizontal") == 1)
+        if (Input.GetAxisRaw("Horizontal") == 1 && player.isGrounded)
         {
             MoveRight();
         }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
+        else if (Input.GetAxisRaw("Horizontal") == -1 && player.isGrounded)
         {
             MoveLeft();
         }
@@ -49,12 +49,12 @@ public class Movement : MonoBehaviour
         {
             MoveFoward();
         }
-        else if (Input.GetAxisRaw("Vertical") == -1)
+        else if (Input.GetAxisRaw("Vertical") == -1 && player.isGrounded)
         {
             MoveBackWard();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && player.jumpLimit > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && player.jumpLimit > 0 && player.isGrounded)
         {
             player.Jump();
         }
@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
     void MoveFoward()
     {
         _currentBody.AddForce(_currentBody.transform.forward * force, ForceMode.Force);
-        //for rotating the plapyer. slerp is slower than lerp
+        //for rotating the player. slerp is slower than lerp
         //transform.rotation = mainCamera.transform.rotation;
     }
 

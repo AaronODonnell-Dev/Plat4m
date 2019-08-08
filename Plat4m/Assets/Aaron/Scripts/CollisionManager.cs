@@ -18,6 +18,8 @@ public class CollisionManager : MonoBehaviour
     {
         yeet = GetComponent<Yeet>();
         player = GetComponent<Player>();
+        playerBody = player.GetComponent<Rigidbody>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         Hit = yeet.hit;
     }
 
@@ -29,7 +31,7 @@ public class CollisionManager : MonoBehaviour
             {
                 yeet.wasYeeted = false;
             }
-            playerBody.freezeRotation = true;
+    
             player.isGrounded = true;
             player.isJumping = false;
             player.ResetJump();
