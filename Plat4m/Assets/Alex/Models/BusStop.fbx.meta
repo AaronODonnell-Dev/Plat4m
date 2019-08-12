@@ -1,33 +1,60 @@
 fileFormatVersion: 2
-guid: e19cdb916b5f14841892ec26df454765
+guid: b960135d2dc3411419e564fff878384d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Point
-    100002: //RootNode
-    100004: Tree.01
-    400000: Point
-    400002: //RootNode
-    400004: Tree.01
-<<<<<<< HEAD
-    2100000: m_Tree.01
-=======
-    2100000: m_Tree_1
->>>>>>> master
-    2300000: Tree.01
-    3300000: Tree.01
-    4300000: Tree.01
-    10800000: Point
-<<<<<<< HEAD
-  externalObjects: {}
-=======
+    100000: //RootNode
+    100002: Cube
+    100004: Cube.001
+    100006: Cube.003
+    100008: Cube.004
+    100010: Cube.005
+    400000: //RootNode
+    400002: Cube
+    400004: Cube.001
+    400006: Cube.003
+    400008: Cube.004
+    400010: Cube.005
+    2100000: m_BusStop_Back
+    2100002: m_BusStop_BenchTop
+    2100004: m_BusStop_Bench
+    2100006: m_BusStop_Roof
+    2300000: Cube
+    2300002: Cube.001
+    2300004: Cube.003
+    2300006: Cube.004
+    2300008: Cube.005
+    3300000: Cube
+    3300002: Cube.001
+    3300004: Cube.003
+    3300006: Cube.004
+    3300008: Cube.005
+    4300000: Cube.001
+    4300002: Cube.005
+    4300004: Cube.004
+    4300006: Cube.003
+    4300008: Cube
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: m_Tree_1
-    second: {fileID: 2100000, guid: 5edcd01f8291d20469312ef5ded797f0, type: 2}
->>>>>>> master
+      name: m_BusStop_Back
+    second: {fileID: 2100000, guid: 5ca7a1a5ffd6cd746adabc7cce32a19a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_BusStop_Bench
+    second: {fileID: 2100000, guid: 64fc6a158d9b99540983324a391ea8aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_BusStop_BenchTop
+    second: {fileID: 2100000, guid: f60e6444adfb4c648aace0c148965c32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_BusStop_Roof
+    second: {fileID: 2100000, guid: eb7cf9d172e4df343b5331d30f19844f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

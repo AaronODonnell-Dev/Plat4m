@@ -1,33 +1,32 @@
 fileFormatVersion: 2
-guid: e19cdb916b5f14841892ec26df454765
+guid: 45420e0babe575f419227249bbfd5d8a
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Point
-    100002: //RootNode
-    100004: Tree.01
-    400000: Point
-    400002: //RootNode
-    400004: Tree.01
-<<<<<<< HEAD
-    2100000: m_Tree.01
-=======
-    2100000: m_Tree_1
->>>>>>> master
-    2300000: Tree.01
-    3300000: Tree.01
-    4300000: Tree.01
-    10800000: Point
-<<<<<<< HEAD
-  externalObjects: {}
-=======
+    100000: //RootNode
+    400000: //RootNode
+    2100000: m_Battery_Top
+    2100002: m_Battery_Copper
+    2100004: m_Battery_Bottom
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Battery
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: m_Tree_1
-    second: {fileID: 2100000, guid: 5edcd01f8291d20469312ef5ded797f0, type: 2}
->>>>>>> master
+      name: m_Battery_Bottom
+    second: {fileID: 2100000, guid: a04b3f624d5583a408cd2d89947f0641, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Battery_Copper
+    second: {fileID: 2100000, guid: 07521ed0765f9df4d962637b75601f84, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Battery_Top
+    second: {fileID: 2100000, guid: 19c0a6223cbd9864a816630e3f888ba9, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

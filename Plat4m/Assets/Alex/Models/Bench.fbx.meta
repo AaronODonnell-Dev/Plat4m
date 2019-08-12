@@ -1,33 +1,41 @@
 fileFormatVersion: 2
-guid: e19cdb916b5f14841892ec26df454765
+guid: dc43ec0f20f71ec40b2aade1fdd5a3f5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Point
-    100002: //RootNode
-    100004: Tree.01
-    400000: Point
-    400002: //RootNode
-    400004: Tree.01
-<<<<<<< HEAD
-    2100000: m_Tree.01
-=======
-    2100000: m_Tree_1
->>>>>>> master
-    2300000: Tree.01
-    3300000: Tree.01
-    4300000: Tree.01
-    10800000: Point
-<<<<<<< HEAD
-  externalObjects: {}
-=======
+    100000: //RootNode
+    100002: Cube
+    100004: Cylinder
+    100006: Cylinder.001
+    100008: Sun
+    400000: //RootNode
+    400002: Cube
+    400004: Cylinder
+    400006: Cylinder.001
+    400008: Sun
+    2100000: m_Bench_Top
+    2100002: m_Bench_Legs
+    2300000: Cube
+    2300002: Cylinder
+    2300004: Cylinder.001
+    3300000: Cube
+    3300002: Cylinder
+    3300004: Cylinder.001
+    4300000: Cube
+    4300002: Cylinder.001
+    4300004: Cylinder
+    10800000: Sun
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: m_Tree_1
-    second: {fileID: 2100000, guid: 5edcd01f8291d20469312ef5ded797f0, type: 2}
->>>>>>> master
+      name: m_Bench_Legs
+    second: {fileID: 2100000, guid: 071b52e01830565489e9e30ab8158b53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Bench_Top
+    second: {fileID: 2100000, guid: 1f9d07fe590ad56469a08efac52c7a98, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -1,33 +1,20 @@
 fileFormatVersion: 2
-guid: e19cdb916b5f14841892ec26df454765
+guid: 5250750ee42d04b489d917bda6dfa310
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Point
-    100002: //RootNode
-    100004: Tree.01
-    400000: Point
-    400002: //RootNode
-    400004: Tree.01
-<<<<<<< HEAD
-    2100000: m_Tree.01
-=======
-    2100000: m_Tree_1
->>>>>>> master
-    2300000: Tree.01
-    3300000: Tree.01
-    4300000: Tree.01
-    10800000: Point
-<<<<<<< HEAD
-  externalObjects: {}
-=======
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Material.001
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Dumpster
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: m_Tree_1
-    second: {fileID: 2100000, guid: 5edcd01f8291d20469312ef5ded797f0, type: 2}
->>>>>>> master
+      name: Material.001
+    second: {fileID: 2100000, guid: d1989fd3caea0b349b02a6571a4e38e1, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

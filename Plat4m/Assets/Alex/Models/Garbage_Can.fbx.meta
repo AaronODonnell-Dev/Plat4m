@@ -1,33 +1,32 @@
 fileFormatVersion: 2
-guid: e19cdb916b5f14841892ec26df454765
+guid: 9ace93b860d22004082e8788707c2bd7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Point
-    100002: //RootNode
-    100004: Tree.01
-    400000: Point
-    400002: //RootNode
-    400004: Tree.01
-<<<<<<< HEAD
-    2100000: m_Tree.01
-=======
-    2100000: m_Tree_1
->>>>>>> master
-    2300000: Tree.01
-    3300000: Tree.01
-    4300000: Tree.01
-    10800000: Point
-<<<<<<< HEAD
-  externalObjects: {}
-=======
+    100000: Circle
+    100002: Circle.001
+    100004: Cylinder
+    100006: //RootNode
+    400000: Circle
+    400002: Circle.001
+    400004: Cylinder
+    400006: //RootNode
+    2100000: m_Garbage
+    2300000: Circle
+    2300002: Circle.001
+    2300004: Cylinder
+    3300000: Circle
+    3300002: Circle.001
+    3300004: Cylinder
+    4300000: Circle.001
+    4300002: Circle
+    4300004: Cylinder
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: m_Tree_1
-    second: {fileID: 2100000, guid: 5edcd01f8291d20469312ef5ded797f0, type: 2}
->>>>>>> master
+      name: m_Garbage
+    second: {fileID: 2100000, guid: eff2e1203726b394589e6c1537a908e3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
