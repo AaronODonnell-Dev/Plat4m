@@ -4,12 +4,26 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Node
-  - Enemy
-  - EnemySightline
-  - Player2
+  - Switch
+  - MovingPlatform
+  - Fire
+  - PauseMenu
+  - GameCamPos
+  - MenuCamPos
+  - MainMenu
+  - CheckPoint
   - Ground
+  - InstructionCanvas
+  - Player2
+  - ArrowTip
+  - Climbable
+  - Node
   - gameController
+  - EnemySightline
+  - Enemy
+  - MovingWall
+  - MovingClimbable
+  - TutorialCanvas
   layers:
   - Default
   - TransparentFX
@@ -19,7 +33,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - 
   - 
   - 
@@ -44,6 +58,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI_Layer
+    uniqueID: 2765065817
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -36,7 +36,12 @@ sysinfo.txt
 *.unitypackage
 
 Plat4m/Assets/StreamingAssets\.meta
+
+Plat4m/fmod_editor\.log
+
+*.meta
 
-Plat4m/fmod_editor\.log
+Plat4m/Assets/Alex/Scripts\.meta
 
-*.meta
+Plat4m/Assets/StreamingAssets/Master\.bank\.meta
+
