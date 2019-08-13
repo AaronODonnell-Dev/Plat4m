@@ -60,14 +60,95 @@ public class FinalAIScript : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Target is " + _target);
+        StartCoroutine(FSM());
+        #region
+        //Debug.Log("Target is " + _target);
+
+        //switch (_currentState)
+        //{
+        //    case State.PATROL:
+
+        //        #region Node Pathing
+        //        agent.speed = patrolSpeed;  
+        //        if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
+        //        {
+        //            agent.SetDestination(waypoints[waypointInd].transform.position);
+        //            character.Move(agent.desiredVelocity, false, false);
+        //        }
+        //        else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
+        //        {
+        //            waypointInd = Random.Range(0, waypoints.Length);
+        //        }
+        //        else
+        //        {
+        //            character.Move(Vector3.zero, false, false);
+        //        }
+        //        #endregion
+
+        //        //if (NeedsDestination())
+        //        {
+        //            GetDestination();
+        //        }
+
+        //        //transform.rotation = _desiredRotation;
+
+        //        //transform.Translate(Vector3.forward * Time.deltaTime * 5f);
+
+
+        //        var targetToAggro = CheckForAggro();
+
+        //        if (targetToAggro != null)
+        //        {
+        //            _target = targetToAggro.GetComponent<BoxCollider>();
+        //            _currentState = State.CHASE;
+        //        }
+        //        break;
+
+        //    case State.CHASE:
+        //        if (_target == null)
+        //        {
+        //            Debug.Log("CHASE");
+        //            _currentState = State.PATROL;
+        //            return;
+        //        }
+
+        //        transform.LookAt(_target.transform);
+        //        transform.Translate(Vector3.forward * Time.deltaTime * 5f);
+
+        //        if (Vector3.Distance(transform.position, _target.transform.position) < _attackRange)
+        //        {
+        //            _currentState = State.ATTACK;
+        //        }
+        //        break;
+
+        //    case State.ATTACK:
+        //        if (_target != null && playerHealth.currentHealth != 0)
+        //        {
+        //            Debug.Log("ATTACK");
+        //            //playerHealth.currentHealth--;
+        //            //Destroy(_target.gameObject);
+        //            //Need to set instance to lower player health and fix the 45 degree angle the enemy kills him at
+        //        }
+
+        //        _currentState = State.PATROL;
+        //        break;
+
+        //    default:
+        //        break;
+        //}
+        #endregion
+    }
+
+    IEnumerator FSM()
+    {
+        //Debug.Log("Target is " + _target);
 
         switch (_currentState)
         {
             case State.PATROL:
 
                 #region Node Pathing
-                agent.speed = patrolSpeed;  
+                agent.speed = patrolSpeed;
                 if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
                 {
                     agent.SetDestination(waypoints[waypointInd].transform.position);
@@ -107,7 +188,7 @@ public class FinalAIScript : MonoBehaviour
                 {
                     Debug.Log("CHASE");
                     _currentState = State.PATROL;
-                    return;
+                    //return;
                 }
 
                 transform.LookAt(_target.transform);
@@ -123,7 +204,7 @@ public class FinalAIScript : MonoBehaviour
                 if (_target != null)
                 {
                     Debug.Log("ATTACK");
-                    Destroy(_target.gameObject);
+                    //Destroy(_target.gameObject);
                     //Need to set instance to lower player health and fix the 45 degree angle the enemy kills him at
                 }
 
@@ -133,8 +214,8 @@ public class FinalAIScript : MonoBehaviour
             default:
                 break;
         }
+        yield return null;
     }
-
 
     private void GetDestination()
     {
@@ -182,13 +263,14 @@ public class FinalAIScript : MonoBehaviour
                 if (targetPlayer != null && (targetPlayer.tag == "Player" || targetPlayer.tag == "Player2"))
                 {
                     Debug.DrawRay(pos + new Vector3(0, SightRayHeight, 0), direction * hit.distance, Color.red);
-                    Debug.Log("targetPlayer is " + targetPlayer);
+                    Debug.Log("(if) targetPlayer is " + targetPlayer);
                     return targetPlayer.transform;
                 }
+
                 else
                 {
                     Debug.DrawRay(pos + new Vector3(0, SightRayHeight, 0), direction * hit.distance, Color.yellow);
-                    Debug.Log("targetPlayer is " + targetPlayer);
+                    Debug.Log("(else) targetPlayer is " + targetPlayer);
                 }
             }
             else
@@ -201,3 +283,7 @@ public class FinalAIScript : MonoBehaviour
         return null;
     }
 }
+
+/*
+ Use Time.DeltaTime for the enemys attack. Deals 50 damage
+     */

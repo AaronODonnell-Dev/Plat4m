@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1576,6 +1576,7 @@ GameObject:
   - component: {fileID: 1287431113}
   - component: {fileID: 1287431117}
   - component: {fileID: 1287431118}
+  - component: {fileID: 1287431119}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1684,6 +1685,24 @@ MonoBehaviour:
   character: {fileID: 0}
   _target: {fileID: 0}
   SightRayHeight: 0
+--- !u!114 &1287431119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287431112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ba0e8f624c0b24fa0f9ef07440b58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 100
+  currentHealth: 0
+  healthSlider: {fileID: 0}
+  damageImage: {fileID: 0}
+  flashSpeed: 5
+  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
 --- !u!1 &1325339389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,7 +2121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1933240293}
   character: {fileID: 1933240292}
-  _target: {fileID: 1287431112}
+  _target: {fileID: 1287431113}
   SightRayHeight: 1.4
   waypoints:
   - {fileID: 1273928459}
