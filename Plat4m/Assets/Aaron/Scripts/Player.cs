@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
 
     CollisionManager collisionManager;
 
-    public SimpleHealthBar healthBar;
     public PlayerHealth playerHealth;
 
     public float jumpLimit = 2;

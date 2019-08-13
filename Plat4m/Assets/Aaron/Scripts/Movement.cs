@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
             MoveBackWard();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && player.jumpLimit > 0 && player.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && player.jumpLimit > 0)
         {
             player.Jump();
         }
