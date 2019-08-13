@@ -1,0 +1,495 @@
+fileFormatVersion: 2
+guid: 392c10f70a65f17419c332e13981ea72
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Car
+    100002: Car.001
+    100004: Car.002
+    100006: Car_House
+    100008: Chimeny
+    100010: Cube.001
+    100012: Cube.002
+    100014: Cylinder
+    100016: Cylinder.001
+    100018: Cylinder.002
+    100020: Cylinder.003
+    100022: Cylinder.004
+    100024: Door
+    100026: Door_Center_Front
+    100028: Door_Cross
+    100030: Door_Cross_Front
+    100032: Door_Frame_Upper
+    100034: Door_Left
+    100036: Door_Right
+    100038: Door_Top
+    100040: House
+    100042: House_Suport
+    100044: House_Support
+    100046: House_Support.001
+    100048: House_Support.002
+    100050: House_Support.003
+    100052: House_Support.004
+    100054: House_Support.005
+    100056: House_Support.006
+    100058: House_Support.007
+    100060: House_Support.008
+    100062: House_Support.009
+    100064: House_Support.010
+    100066: House_Support.012
+    100068: House_Support.013
+    100070: House_Support.014
+    100072: House_Support.016
+    100074: Metal Scrap
+    100076: Metal Scrap.001
+    100078: Metal Scrap.002
+    100080: Metal Scrap.003
+    100082: Metal Scrap.004
+    100084: Metal Scrap.005
+    100086: Metal Scrap.006
+    100088: Metal Scrap.007
+    100090: Metal Scrap.008
+    100092: Metal Scrap.009
+    100094: Metal Scrap.010
+    100096: Metal Scrap.011
+    100098: Metal Scrap.012
+    100100: Metal Scrap.013
+    100102: Metal Scrap.014
+    100104: Metal Scrap.015
+    100106: Metal Scrap.016
+    100108: Metal Scrap.017
+    100110: Metal Scrap.018
+    100112: Metal Scrap.019
+    100114: Metal Scrap.020
+    100116: Metal Scrap.021
+    100118: Metal Scrap.022
+    100120: Metal Scrap.023
+    100122: Metal Scrap.024
+    100124: Metal Scrap.025
+    100126: Metal Scrap.026
+    100128: Metal Scrap.027
+    100130: Metal Scrap.028
+    100132: Metal Scrap.029
+    100134: //RootNode
+    100136: Rock_BIg
+    100138: Scrap Walls
+    100140: Sphere.001
+    100142: Sun
+    400000: Car
+    400002: Car.001
+    400004: Car.002
+    400006: Car_House
+    400008: Chimeny
+    400010: Cube.001
+    400012: Cube.002
+    400014: Cylinder
+    400016: Cylinder.001
+    400018: Cylinder.002
+    400020: Cylinder.003
+    400022: Cylinder.004
+    400024: Door
+    400026: Door_Center_Front
+    400028: Door_Cross
+    400030: Door_Cross_Front
+    400032: Door_Frame_Upper
+    400034: Door_Left
+    400036: Door_Right
+    400038: Door_Top
+    400040: House
+    400042: House_Suport
+    400044: House_Support
+    400046: House_Support.001
+    400048: House_Support.002
+    400050: House_Support.003
+    400052: House_Support.004
+    400054: House_Support.005
+    400056: House_Support.006
+    400058: House_Support.007
+    400060: House_Support.008
+    400062: House_Support.009
+    400064: House_Support.010
+    400066: House_Support.012
+    400068: House_Support.013
+    400070: House_Support.014
+    400072: House_Support.016
+    400074: Metal Scrap
+    400076: Metal Scrap.001
+    400078: Metal Scrap.002
+    400080: Metal Scrap.003
+    400082: Metal Scrap.004
+    400084: Metal Scrap.005
+    400086: Metal Scrap.006
+    400088: Metal Scrap.007
+    400090: Metal Scrap.008
+    400092: Metal Scrap.009
+    400094: Metal Scrap.010
+    400096: Metal Scrap.011
+    400098: Metal Scrap.012
+    400100: Metal Scrap.013
+    400102: Metal Scrap.014
+    400104: Metal Scrap.015
+    400106: Metal Scrap.016
+    400108: Metal Scrap.017
+    400110: Metal Scrap.018
+    400112: Metal Scrap.019
+    400114: Metal Scrap.020
+    400116: Metal Scrap.021
+    400118: Metal Scrap.022
+    400120: Metal Scrap.023
+    400122: Metal Scrap.024
+    400124: Metal Scrap.025
+    400126: Metal Scrap.026
+    400128: Metal Scrap.027
+    400130: Metal Scrap.028
+    400132: Metal Scrap.029
+    400134: //RootNode
+    400136: Rock_BIg
+    400138: Scrap Walls
+    400140: Sphere.001
+    400142: Sun
+    2100000: m_Car_Body
+    2100002: m_Car_Tire
+    2100004: m_Car_Bumper
+    2100006: m_Car_Glass
+    2100008: m_Roof
+    2100010: m_House_Chimeny
+    2100012: m_Wood_Beam
+    2100014: m_House_Rock
+    2100016: m_Scrap_Wall
+    2100018: m_House_Base
+    2300000: Car
+    2300002: Car.001
+    2300004: Car.002
+    2300006: Chimeny
+    2300008: Cube.001
+    2300010: Cube.002
+    2300012: Cylinder
+    2300014: Cylinder.001
+    2300016: Cylinder.002
+    2300018: Cylinder.003
+    2300020: Cylinder.004
+    2300022: Door_Center_Front
+    2300024: Door_Cross
+    2300026: Door_Cross_Front
+    2300028: Door_Frame_Upper
+    2300030: Door_Left
+    2300032: Door_Right
+    2300034: Door_Top
+    2300036: House
+    2300038: House_Support
+    2300040: House_Support.001
+    2300042: House_Support.002
+    2300044: House_Support.003
+    2300046: House_Support.004
+    2300048: House_Support.005
+    2300050: House_Support.006
+    2300052: House_Support.007
+    2300054: House_Support.008
+    2300056: House_Support.009
+    2300058: House_Support.010
+    2300060: House_Support.012
+    2300062: House_Support.013
+    2300064: House_Support.014
+    2300066: House_Support.016
+    2300068: Metal Scrap
+    2300070: Metal Scrap.001
+    2300072: Metal Scrap.002
+    2300074: Metal Scrap.003
+    2300076: Metal Scrap.004
+    2300078: Metal Scrap.005
+    2300080: Metal Scrap.006
+    2300082: Metal Scrap.007
+    2300084: Metal Scrap.008
+    2300086: Metal Scrap.009
+    2300088: Metal Scrap.010
+    2300090: Metal Scrap.011
+    2300092: Metal Scrap.012
+    2300094: Metal Scrap.013
+    2300096: Metal Scrap.014
+    2300098: Metal Scrap.015
+    2300100: Metal Scrap.016
+    2300102: Metal Scrap.017
+    2300104: Metal Scrap.018
+    2300106: Metal Scrap.019
+    2300108: Metal Scrap.020
+    2300110: Metal Scrap.021
+    2300112: Metal Scrap.022
+    2300114: Metal Scrap.023
+    2300116: Metal Scrap.024
+    2300118: Metal Scrap.025
+    2300120: Metal Scrap.026
+    2300122: Metal Scrap.027
+    2300124: Metal Scrap.028
+    2300126: Metal Scrap.029
+    2300128: Rock_BIg
+    2300130: Sphere.001
+    3300000: Car
+    3300002: Car.001
+    3300004: Car.002
+    3300006: Chimeny
+    3300008: Cube.001
+    3300010: Cube.002
+    3300012: Cylinder
+    3300014: Cylinder.001
+    3300016: Cylinder.002
+    3300018: Cylinder.003
+    3300020: Cylinder.004
+    3300022: Door_Center_Front
+    3300024: Door_Cross
+    3300026: Door_Cross_Front
+    3300028: Door_Frame_Upper
+    3300030: Door_Left
+    3300032: Door_Right
+    3300034: Door_Top
+    3300036: House
+    3300038: House_Support
+    3300040: House_Support.001
+    3300042: House_Support.002
+    3300044: House_Support.003
+    3300046: House_Support.004
+    3300048: House_Support.005
+    3300050: House_Support.006
+    3300052: House_Support.007
+    3300054: House_Support.008
+    3300056: House_Support.009
+    3300058: House_Support.010
+    3300060: House_Support.012
+    3300062: House_Support.013
+    3300064: House_Support.014
+    3300066: House_Support.016
+    3300068: Metal Scrap
+    3300070: Metal Scrap.001
+    3300072: Metal Scrap.002
+    3300074: Metal Scrap.003
+    3300076: Metal Scrap.004
+    3300078: Metal Scrap.005
+    3300080: Metal Scrap.006
+    3300082: Metal Scrap.007
+    3300084: Metal Scrap.008
+    3300086: Metal Scrap.009
+    3300088: Metal Scrap.010
+    3300090: Metal Scrap.011
+    3300092: Metal Scrap.012
+    3300094: Metal Scrap.013
+    3300096: Metal Scrap.014
+    3300098: Metal Scrap.015
+    3300100: Metal Scrap.016
+    3300102: Metal Scrap.017
+    3300104: Metal Scrap.018
+    3300106: Metal Scrap.019
+    3300108: Metal Scrap.020
+    3300110: Metal Scrap.021
+    3300112: Metal Scrap.022
+    3300114: Metal Scrap.023
+    3300116: Metal Scrap.024
+    3300118: Metal Scrap.025
+    3300120: Metal Scrap.026
+    3300122: Metal Scrap.027
+    3300124: Metal Scrap.028
+    3300126: Metal Scrap.029
+    3300128: Rock_BIg
+    3300130: Sphere.001
+    4300000: Car.002
+    4300002: Car.001
+    4300004: Sphere.001
+    4300006: Cylinder.004
+    4300008: Cylinder.003
+    4300010: Cylinder.002
+    4300012: Cylinder.001
+    4300014: Cube.002
+    4300016: Cube.001
+    4300018: Car
+    4300020: Cylinder
+    4300022: Chimeny
+    4300024: House_Support.006
+    4300026: House_Support.016
+    4300028: House_Support.013
+    4300030: House_Support.014
+    4300032: Rock_BIg
+    4300034: Metal Scrap.012
+    4300036: Metal Scrap.006
+    4300038: Metal Scrap.029
+    4300040: Metal Scrap.028
+    4300042: Metal Scrap.027
+    4300044: Metal Scrap.026
+    4300046: Metal Scrap.025
+    4300048: Metal Scrap.024
+    4300050: Metal Scrap.023
+    4300052: Metal Scrap.022
+    4300054: Metal Scrap.021
+    4300056: Metal Scrap.020
+    4300058: Metal Scrap.019
+    4300060: Metal Scrap.018
+    4300062: Metal Scrap.017
+    4300064: Metal Scrap.016
+    4300066: Metal Scrap.015
+    4300068: Metal Scrap.014
+    4300070: Metal Scrap.013
+    4300072: Metal Scrap.011
+    4300074: Metal Scrap.010
+    4300076: Metal Scrap.009
+    4300078: Metal Scrap.008
+    4300080: Metal Scrap.007
+    4300082: Metal Scrap.005
+    4300084: Metal Scrap.004
+    4300086: Metal Scrap.003
+    4300088: Metal Scrap.002
+    4300090: Metal Scrap.001
+    4300092: Metal Scrap
+    4300094: House_Support.012
+    4300096: House_Support.008
+    4300098: House_Support.009
+    4300100: House_Support.007
+    4300102: House_Support.005
+    4300104: House_Support.010
+    4300106: House_Support.004
+    4300108: House_Support.003
+    4300110: House_Support.002
+    4300112: House_Support.001
+    4300114: House_Support
+    4300116: Door_Frame_Upper
+    4300118: Door_Center_Front
+    4300120: Door_Cross_Front
+    4300122: Door_Top
+    4300124: Door_Right
+    4300126: Door_Left
+    4300128: Door_Cross
+    4300130: House
+    10800000: Sun
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Car_Body
+    second: {fileID: 2100000, guid: 57504207db342cd4ab0858010f0dccff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Car_Bumper
+    second: {fileID: 2100000, guid: 19e6b79eb01504e489f696feeccbd0b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Car_Glass
+    second: {fileID: 2100000, guid: 44f16782ff125c54293e2910366ebc39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Car_Tire
+    second: {fileID: 2100000, guid: 5f184f3a266344641bc0a9bbeedef7d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_House_Base
+    second: {fileID: 2100000, guid: 20a0263b2413aa54d8fc8d7e2d18ab70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_House_Chimeny
+    second: {fileID: 2100000, guid: 3f0fe4ffa8414cc48b20bf577fdc69b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_House_Rock
+    second: {fileID: 2100000, guid: 002b53789360d06499acbabe48166a6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Roof
+    second: {fileID: 2100000, guid: 18b409e42c59e174ea0cea82ce7f5cfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Scrap_Wall
+    second: {fileID: 2100000, guid: 691f25098e460c248ade6b6617f3153f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Wood_Beam
+    second: {fileID: 2100000, guid: 2a6c12eebff0862439a073e81b2094fb, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
