@@ -12,10 +12,14 @@ public class CollisionManager : MonoBehaviour
     public bool collidedWithWall = false;
     public bool collisionEnded = false;
 
+    PlayerHealth playerHealth;
+
     void Start()
     {
         yeet = GetComponent<Yeet>();
         player = GetComponent<Player>();
+        playerBody = player.GetComponent<Rigidbody>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         Hit = yeet.hit;
     }
 
@@ -27,7 +31,7 @@ public class CollisionManager : MonoBehaviour
             {
                 yeet.wasYeeted = false;
             }
-            playerBody.freezeRotation = true;
+    
             player.isGrounded = true;
             player.isJumping = false;
             player.ResetJump();
@@ -36,6 +40,11 @@ public class CollisionManager : MonoBehaviour
         if (collision.transform.tag == "MovingPlatform")
         {
             playerBody.transform.parent = collision.transform;
+        }
+
+        if(collision.transform.tag == "Untagged")
+        {
+            playerHealth.TakeDamage(10);
         }
     }
 

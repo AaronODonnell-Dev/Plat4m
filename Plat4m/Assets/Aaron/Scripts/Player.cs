@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public bool isJumping;
-    public bool isGrounded;
+    public bool isJumping = false;
+    public bool isGrounded = true;
 
     Rigidbody p1Body;
     Rigidbody _p2body;
     public Rigidbody currentBody;
 
     CollisionManager collisionManager;
+
+    public PlayerHealth playerHealth;
 
     public float jumpLimit = 2;
 
@@ -55,7 +57,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnCollisionEnter(Collision collider)
