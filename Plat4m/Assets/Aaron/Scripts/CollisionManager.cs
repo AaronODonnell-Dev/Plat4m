@@ -47,10 +47,21 @@ public class CollisionManager : MonoBehaviour
             playerBody.transform.parent = collision.transform;
         }
 
+        if(collision.transform.tag == "CollidableObject")
+        {
+            Vector3 direction = collision.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+
+            playerBody.AddForce(direction * 4);
+        }
+
         if(collision.transform.tag == "EnemyKeg")
         {
             playerHealth.TakeDamage(10);
-            playerBody.AddForce(Vector3.up * 12);
+            Vector3 direction = collision.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+
+            playerBody.AddForce(direction * 10 + Vector3.up);
             if (EnemiesHit == 0)
             {
                 SarcasticHealthResponse.SetActive(true);
