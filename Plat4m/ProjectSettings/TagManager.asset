@@ -23,7 +23,8 @@ TagManager:
   - Enemy
   - MovingWall
   - MovingClimbable
-  - TutorialCanvas
+  - SarcasticResponse
+  - EnemyKeg
   layers:
   - Default
   - TransparentFX

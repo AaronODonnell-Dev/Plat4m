@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Range(1, 100)]
-    public float force = 5;
+    public float force = 35;
     float angle;
     int count = 0;
 
