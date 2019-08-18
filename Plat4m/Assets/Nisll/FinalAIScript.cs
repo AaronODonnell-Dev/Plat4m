@@ -23,7 +23,7 @@ public class FinalAIScript : MonoBehaviour
     private Vector3 _destination;
     private Quaternion _desiredRotation;
     private Vector3 _direction;
-    public BoxCollider _target;
+    public CapsuleCollider _target;
     private State _currentState;
     [Range(0, 5)]
     public float SightRayHeight; //1.4 seems good for default character.
@@ -47,7 +47,7 @@ public class FinalAIScript : MonoBehaviour
         character = GetComponent<ThirdPersonCharacter>();
 
         agent.updatePosition = true;
-        agent.updateRotation = false;
+        agent.updateRotation = true;
 
         waypoints = GameObject.FindGameObjectsWithTag("Node");
         waypointInd = Random.Range(0, waypoints.Length);
@@ -147,23 +147,44 @@ public class FinalAIScript : MonoBehaviour
         {
             case State.PATROL:
 
-                #region Node Pathing
-                agent.speed = patrolSpeed;
-                if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
+                var targetToAggro = CheckForAggro();
+
+                if (targetToAggro != null)
                 {
-                    agent.SetDestination(waypoints[waypointInd].transform.position);
-                    character.Move(agent.desiredVelocity, false, false);
+                    Debug.Log("targetToAggro");
+                    agent.SetDestination(_target.transform.position);
+                    waypoints = GameObject.FindGameObjectsWithTag("ThisRemovesNodes");
+                    _target = targetToAggro.GetComponent<CapsuleCollider>();
+                    //GetDestination();
+                    _currentState = State.CHASE;
                 }
-                else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
+                else if (targetToAggro == null)
                 {
-                    waypointInd = Random.Range(0, waypoints.Length);
+                    Debug.Log("Nodes");
+                    #region Node Pathing
+                    agent.speed = patrolSpeed;
+                    if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
+                    {
+                        agent.SetDestination(waypoints[waypointInd].transform.position);
+                        character.Move(agent.desiredVelocity, false, false);
+                    }
+                    else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
+                    {
+                        waypointInd = Random.Range(0, waypoints.Length);
+                    }
+                    else
+                    {
+                        character.Move(Vector3.zero, false, false);
+                    }
+                    #endregion
                 }
                 else
                 {
-                    character.Move(Vector3.zero, false, false);
+                    Debug.Log("Frick");
                 }
-                #endregion
 
+
+                #region
                 //if (NeedsDestination())
                 {
                     GetDestination();
@@ -174,41 +195,58 @@ public class FinalAIScript : MonoBehaviour
                 //transform.Translate(Vector3.forward * Time.deltaTime * 5f);
 
 
-                var targetToAggro = CheckForAggro();
+                //var targetToAggro = CheckForAggro();
 
-                if (targetToAggro != null)
-                {
-                    _target = targetToAggro.GetComponent<BoxCollider>();
-                    _currentState = State.CHASE;
-                }
+                //if (targetToAggro != null)
+                //{
+                //    _target = targetToAggro.GetComponent<CapsuleCollider>();
+                //    _currentState = State.CHASE;
+                //}
+                #endregion
                 break;
 
             case State.CHASE:
+                Debug.Log("CHASE");
                 if (_target == null)
                 {
-                    Debug.Log("CHASE");
+                    Debug.Log("Chase Target is Null");
                     _currentState = State.PATROL;
+                    //_currentState = State.ATTACK;
                     //return;
                 }
-
-                transform.LookAt(_target.transform);
-                transform.Translate(Vector3.forward * Time.deltaTime * 5f);
-
-                if (Vector3.Distance(transform.position, _target.transform.position) < _attackRange)
+                else
                 {
-                    _currentState = State.ATTACK;
+                    Debug.Log("Chase _target is " + _target);
+                    transform.LookAt(_target.transform);
+                    transform.Translate(Vector3.forward * Time.deltaTime * 5f);
+
+                    if (Vector3.Distance(transform.position, _target.transform.position) < _attackRange)
+                    {
+                        _currentState = State.ATTACK;
+                    }
+                    else
+                    {
+                        _currentState = State.PATROL;
+                    }
                 }
                 break;
 
             case State.ATTACK:
+                Debug.Log("ATTACK");
                 if (_target != null)
                 {
-                    Debug.Log("ATTACK");
+                    Debug.Log("inside if statement " + _target);
                     //Destroy(_target.gameObject);
                     //Need to set instance to lower player health and fix the 45 degree angle the enemy kills him at
                 }
-
-                _currentState = State.PATROL;
+                //if (_target == null)
+                else
+                {
+                    Debug.Log("outside if statement " + _target);
+                    _currentState = State.PATROL;
+                }
+                _target = null;
+                Debug.Log("Break");
                 break;
 
             default:
@@ -219,9 +257,11 @@ public class FinalAIScript : MonoBehaviour
 
     private void GetDestination()
     {
-        Vector3 testPosition = (transform.position + (transform.forward * 4f)) +
-                               new Vector3(UnityEngine.Random.Range(-4.5f, 4.5f), 0f,
-                                   UnityEngine.Random.Range(-4.5f, 4.5f));
+        //Vector3 testPosition = (transform.position + (transform.forward * 4f)) +
+        //                       new Vector3(UnityEngine.Random.Range(-4.5f, 4.5f), 0f,
+        //                           UnityEngine.Random.Range(-4.5f, 4.5f));
+
+        Vector3 testPosition = (transform.position + (transform.forward * 4f));
 
         _destination = new Vector3(testPosition.x, 1f, testPosition.z);
 
@@ -259,14 +299,13 @@ public class FinalAIScript : MonoBehaviour
         {
             if (Physics.Raycast(pos + new Vector3(0, SightRayHeight, 0), direction, out hit, aggroRadius))
             {
-                var targetPlayer = hit.collider.GetComponent<BoxCollider>();
+                var targetPlayer = hit.collider.GetComponent<CapsuleCollider>();
                 if (targetPlayer != null && (targetPlayer.tag == "Player" || targetPlayer.tag == "Player2"))
                 {
                     Debug.DrawRay(pos + new Vector3(0, SightRayHeight, 0), direction * hit.distance, Color.red);
                     Debug.Log("(if) targetPlayer is " + targetPlayer);
                     return targetPlayer.transform;
                 }
-
                 else
                 {
                     Debug.DrawRay(pos + new Vector3(0, SightRayHeight, 0), direction * hit.distance, Color.yellow);
@@ -279,7 +318,6 @@ public class FinalAIScript : MonoBehaviour
             }
             direction = stepAngle * direction;
         }
-
         return null;
     }
 }
