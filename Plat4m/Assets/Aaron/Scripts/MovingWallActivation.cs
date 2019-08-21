@@ -29,7 +29,7 @@ public class MovingWallActivation : MonoBehaviour
         {
             instructionMessage.SetActive(true);
 
-            if(Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 activateLever = !activateLever;
                 instructionMessage.SetActive(false);
