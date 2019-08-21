@@ -27,7 +27,27 @@ ModelImporter:
     4300002: Lever_Base
     7400000: Lever|LeverAction
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Lever_Base
+    second: {fileID: 2100000, guid: 7780dc72a6c1862449e08efff1105cfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Lever_Knob
+    second: {fileID: 2100000, guid: 902b75bb263958a4dac4d788ca4481ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Lever_Shaft
+    second: {fileID: 2100000, guid: aa8293e2fad486b4c8c5724e9221ed11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Lever_ShaftBase
+    second: {fileID: 2100000, guid: 992e9d3edbaba764e99abb37dace9948, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

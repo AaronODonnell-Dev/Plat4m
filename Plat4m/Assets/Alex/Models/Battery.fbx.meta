@@ -16,17 +16,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Battery_Bottom
-    second: {fileID: 2100000, guid: a04b3f624d5583a408cd2d89947f0641, type: 2}
+    second: {fileID: 2100000, guid: 42125845f29bc294caf1fa9440bfb364, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Battery_Copper
-    second: {fileID: 2100000, guid: 07521ed0765f9df4d962637b75601f84, type: 2}
+    second: {fileID: 2100000, guid: d98adba6086ea0848a3070a028d7a610, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Battery_Top
-    second: {fileID: 2100000, guid: 19c0a6223cbd9864a816630e3f888ba9, type: 2}
+    second: {fileID: 2100000, guid: 9513244590257194e88d9bd3e53e4bc8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

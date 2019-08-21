@@ -14,7 +14,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_FireHydrant
-    second: {fileID: 2100000, guid: f4c3e3b97019ceb418a049d04b618641, type: 3}
+    second: {fileID: 2100000, guid: a71c4f80e6559d24982b69f78ffb55d5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

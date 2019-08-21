@@ -74,7 +74,6 @@ ModelImporter:
     100136: Rock_BIg
     100138: Scrap Walls
     100140: Sphere.001
-    100142: Sun
     400000: Car
     400002: Car.001
     400004: Car.002
@@ -146,7 +145,6 @@ ModelImporter:
     400136: Rock_BIg
     400138: Scrap Walls
     400140: Sphere.001
-    400142: Sun
     2100000: m_Car_Body
     2100002: m_Car_Tire
     2100004: m_Car_Bumper
@@ -355,59 +353,58 @@ ModelImporter:
     4300126: Door_Left
     4300128: Door_Cross
     4300130: House
-    10800000: Sun
     2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Car_Body
-    second: {fileID: 2100000, guid: 57504207db342cd4ab0858010f0dccff, type: 2}
+    second: {fileID: 2100000, guid: dc892b0019f63eb409d86c3835739009, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Car_Bumper
-    second: {fileID: 2100000, guid: 19e6b79eb01504e489f696feeccbd0b9, type: 2}
+    second: {fileID: 2100000, guid: a23371b2131ac594396073aa43daafe8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Car_Glass
-    second: {fileID: 2100000, guid: 44f16782ff125c54293e2910366ebc39, type: 2}
+    second: {fileID: 2100000, guid: 986d2fe7c6d0df94c90da92d99affe5b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Car_Tire
-    second: {fileID: 2100000, guid: 5f184f3a266344641bc0a9bbeedef7d3, type: 2}
+    second: {fileID: 2100000, guid: fbdd05f5b3c1f9f4097581757c4343e1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_House_Base
-    second: {fileID: 2100000, guid: 20a0263b2413aa54d8fc8d7e2d18ab70, type: 2}
+    second: {fileID: 2100000, guid: 44523bef6b32b15489d231464e612653, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_House_Chimeny
-    second: {fileID: 2100000, guid: 3f0fe4ffa8414cc48b20bf577fdc69b6, type: 2}
+    second: {fileID: 2100000, guid: 454fc85fb6d11a344ae2b038152314e2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_House_Rock
-    second: {fileID: 2100000, guid: 002b53789360d06499acbabe48166a6e, type: 2}
+    second: {fileID: 2100000, guid: 01ff6df4afbf0be40b1e32bc5bed10fb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Roof
-    second: {fileID: 2100000, guid: 18b409e42c59e174ea0cea82ce7f5cfe, type: 2}
+    second: {fileID: 2100000, guid: 6a7c7cdb44f10944380829a03fbb2b52, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Scrap_Wall
-    second: {fileID: 2100000, guid: 691f25098e460c248ade6b6617f3153f, type: 2}
+    second: {fileID: 2100000, guid: c0a2d143b42151b44bad4e623c12f8ea, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_Wood_Beam
-    second: {fileID: 2100000, guid: 2a6c12eebff0862439a073e81b2094fb, type: 2}
+    second: {fileID: 2100000, guid: 4ec389708ac711f4d8e3a0dc43295d04, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

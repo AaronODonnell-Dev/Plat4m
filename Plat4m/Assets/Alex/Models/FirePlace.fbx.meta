@@ -192,7 +192,22 @@ ModelImporter:
     4300066: Rock001
     4300068: RoastStake.001
     4300070: RoastStake
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_RoastSteak
+    second: {fileID: 2100000, guid: 4f105820557b61a4fbfe2c6da55e2318, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Rock001.004
+    second: {fileID: 2100000, guid: c2aecd98c2d0ab34ca5f4968b8a0d118, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Rock002.002
+    second: {fileID: 2100000, guid: 51fd8f8b78384d1499cbee764922de4d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

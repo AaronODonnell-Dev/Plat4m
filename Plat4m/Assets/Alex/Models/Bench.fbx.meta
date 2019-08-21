@@ -4,27 +4,24 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cube
-    100004: Cylinder
-    100006: Cylinder.001
-    100008: Sun
+    100002: Bench
+    100004: Bench_Leg.L
+    100006: Bench_Leg.R
     400000: //RootNode
-    400002: Cube
-    400004: Cylinder
-    400006: Cylinder.001
-    400008: Sun
+    400002: Bench
+    400004: Bench_Leg.L
+    400006: Bench_Leg.R
     2100000: m_Bench_Top
     2100002: m_Bench_Legs
-    2300000: Cube
-    2300002: Cylinder
-    2300004: Cylinder.001
-    3300000: Cube
-    3300002: Cylinder
-    3300004: Cylinder.001
-    4300000: Cube
-    4300002: Cylinder.001
-    4300004: Cylinder
-    10800000: Sun
+    2300000: Bench
+    2300002: Bench_Leg.L
+    2300004: Bench_Leg.R
+    3300000: Bench
+    3300002: Bench_Leg.L
+    3300004: Bench_Leg.R
+    4300000: Bench
+    4300002: Bench_Leg.R
+    4300004: Bench_Leg.L
   externalObjects:
   - first:
       type: UnityEngine:Material

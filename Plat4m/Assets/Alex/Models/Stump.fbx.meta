@@ -6,11 +6,21 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: m_Stump_Bark
-    2100002: m_Stump_Wood
+    2100002: m_Stump_Inside
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cylinder
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Stump_Bark
+    second: {fileID: 2100000, guid: 4badae0b959c51f43bf3e57b2a6b030e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Stump_Inside
+    second: {fileID: 2100000, guid: 76767fc889c99fa428617ff7ca5f3a47, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
