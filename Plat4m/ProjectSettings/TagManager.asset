@@ -25,6 +25,8 @@ TagManager:
   - MovingClimbable
   - SarcasticResponse
   - EnemyKeg
+  - TutorialCanvas
+  - CollidableObject
   layers:
   - Default
   - TransparentFX

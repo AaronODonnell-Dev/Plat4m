@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
     public Rigidbody currentBody;
 
     CollisionManager collisionManager;
+    MovingPlatform movingPlatform;
 
     public PlayerHealth playerHealth;
     public GameObject HealthCanvas;
+    public GameObject lever;
 
     public float jumpLimit = 2;
     int count;
@@ -69,6 +71,23 @@ public class Player : MonoBehaviour
         {
             HealthCanvas.SetActive(false);
         }
+
+        #region Moving Platform Activation
+        var heading = this.transform.position - lever.transform.position;
+
+        var distance = heading.magnitude;
+        var direction = heading / distance; // This is now the normalized direction.
+
+        if (heading.sqrMagnitude < 7 * 7)
+        {
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                movingPlatform.ChangeTarget();
+            }
+        }
+
+        #endregion
     }
 
     private void OnCollisionEnter(Collision collider)
