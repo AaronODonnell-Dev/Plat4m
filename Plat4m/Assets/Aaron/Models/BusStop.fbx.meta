@@ -3,58 +3,58 @@ guid: b960135d2dc3411419e564fff878384d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cube
-    100004: Cube.001
-    100006: Cube.003
-    100008: Cube.004
-    100010: Cube.005
-    400000: //RootNode
-    400002: Cube
-    400004: Cube.001
-    400006: Cube.003
-    400008: Cube.004
-    400010: Cube.005
+    100000: Bus_Stop_Back
+    100002: Bus_Stop_Bench
+    100004: Bus_Stop_Left
+    100006: Bus_Stop_Right
+    100008: Bus_Stop_Roof
+    100010: //RootNode
+    400000: Bus_Stop_Back
+    400002: Bus_Stop_Bench
+    400004: Bus_Stop_Left
+    400006: Bus_Stop_Right
+    400008: Bus_Stop_Roof
+    400010: //RootNode
     2100000: m_BusStop_Back
     2100002: m_BusStop_BenchTop
     2100004: m_BusStop_Bench
     2100006: m_BusStop_Roof
-    2300000: Cube
-    2300002: Cube.001
-    2300004: Cube.003
-    2300006: Cube.004
-    2300008: Cube.005
-    3300000: Cube
-    3300002: Cube.001
-    3300004: Cube.003
-    3300006: Cube.004
-    3300008: Cube.005
-    4300000: Cube.001
-    4300002: Cube.005
-    4300004: Cube.004
-    4300006: Cube.003
-    4300008: Cube
+    2300000: Bus_Stop_Back
+    2300002: Bus_Stop_Bench
+    2300004: Bus_Stop_Left
+    2300006: Bus_Stop_Right
+    2300008: Bus_Stop_Roof
+    3300000: Bus_Stop_Back
+    3300002: Bus_Stop_Bench
+    3300004: Bus_Stop_Left
+    3300006: Bus_Stop_Right
+    3300008: Bus_Stop_Roof
+    4300000: Bus_Stop_Right
+    4300002: Bus_Stop_Left
+    4300004: Bus_Stop_Bench
+    4300006: Bus_Stop_Roof
+    4300008: Bus_Stop_Back
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_BusStop_Back
-    second: {fileID: 2100000, guid: 5ca7a1a5ffd6cd746adabc7cce32a19a, type: 2}
+    second: {fileID: 2100000, guid: eb433ec808cb2a641b27bf56418dbd69, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_BusStop_Bench
-    second: {fileID: 2100000, guid: 64fc6a158d9b99540983324a391ea8aa, type: 2}
+    second: {fileID: 2100000, guid: 9463876c3fdd06043bb5635cdef189c6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_BusStop_BenchTop
-    second: {fileID: 2100000, guid: f60e6444adfb4c648aace0c148965c32, type: 2}
+    second: {fileID: 2100000, guid: 17508331039d20c47829310d7642f19a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: m_BusStop_Roof
-    second: {fileID: 2100000, guid: eb7cf9d172e4df343b5331d30f19844f, type: 2}
+    second: {fileID: 2100000, guid: 20cadf9511643714dbba5e8d48adebfb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
