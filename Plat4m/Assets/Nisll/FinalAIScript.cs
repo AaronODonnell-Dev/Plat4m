@@ -28,7 +28,7 @@ public class FinalAIScript : MonoBehaviour
     [Range(0, 5)]
     public float SightRayHeight; //1.4 seems good for default character.
 
-    #region Legacy Code (All Commented)
+    #region Legacy Code ()
     //public State state;
     //private bool alive;
 
@@ -152,9 +152,9 @@ public class FinalAIScript : MonoBehaviour
                 if (targetToAggro != null)
                 {
                     Debug.Log("targetToAggro");
-                    agent.SetDestination(_target.transform.position);
-                    waypoints = GameObject.FindGameObjectsWithTag("ThisRemovesNodes");
                     _target = targetToAggro.GetComponent<CapsuleCollider>();
+                    //agent.SetDestination(_target.transform.position);
+                    //waypoints = GameObject.FindGameObjectsWithTag("ThisRemovesNodes");
                     //GetDestination();
                     _currentState = State.CHASE;
                 }
@@ -162,11 +162,13 @@ public class FinalAIScript : MonoBehaviour
                 {
                     Debug.Log("Nodes");
                     #region Node Pathing
-                    agent.speed = patrolSpeed;
+                    //agent.speed = patrolSpeed;
                     if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
                     {
+                        Debug.Log("Millsy");
                         agent.SetDestination(waypoints[waypointInd].transform.position);
-                        character.Move(agent.desiredVelocity, false, false);
+                        Debug.Log("Waypoint: " + waypoints[waypointInd].transform.position);
+                        //character.Move(agent.desiredVelocity, false, false);
                     }
                     else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
                     {
@@ -174,7 +176,8 @@ public class FinalAIScript : MonoBehaviour
                     }
                     else
                     {
-                        character.Move(Vector3.zero, false, false);
+                        //agent.SetDestination(waypoints[waypointInd].transform.position);
+                        //character.Move(agent.desiredVelocity, false, false);
                     }
                     #endregion
                 }
@@ -218,7 +221,11 @@ public class FinalAIScript : MonoBehaviour
                 {
                     Debug.Log("Chase _target is " + _target);
                     transform.LookAt(_target.transform);
-                    transform.Translate(Vector3.forward * Time.deltaTime * 5f);
+                    agent.SetDestination(_target.transform.position);
+                    Debug.Log("Player Chase Location: " + _target.transform.position);
+                    //waypoints = GameObject.FindGameObjectsWithTag("ThisRemovesNodes");
+                    Debug.Log("LOOK HERE" + _target.transform.position);
+                    //transform.Translate(Vector3.forward * Time.deltaTime * 5f);
 
                     if (Vector3.Distance(transform.position, _target.transform.position) < _attackRange)
                     {
@@ -236,16 +243,16 @@ public class FinalAIScript : MonoBehaviour
                 if (_target != null)
                 {
                     Debug.Log("inside if statement " + _target);
-                    //Destroy(_target.gameObject);
+                    Destroy(_target.gameObject);
                     //Need to set instance to lower player health and fix the 45 degree angle the enemy kills him at
                 }
                 //if (_target == null)
-                else
+                else if (_target == null)
                 {
                     Debug.Log("outside if statement " + _target);
                     _currentState = State.PATROL;
                 }
-                _target = null;
+                //_target = null;
                 Debug.Log("Break");
                 break;
 
