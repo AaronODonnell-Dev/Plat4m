@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Range(1, 100)]
-    public float force = 5;
+    public float force = 35;
     float angle;
     int count = 0;
 
@@ -37,11 +37,11 @@ public class Movement : MonoBehaviour
 
         #region - Player Movement calls & Jump-
 
-        if (Input.GetAxisRaw("Horizontal") == 1)
+        if (Input.GetAxisRaw("Horizontal") == 1 && player.isGrounded)
         {
             MoveRight();
         }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
+        else if (Input.GetAxisRaw("Horizontal") == -1 && player.isGrounded)
         {
             MoveLeft();
         }
@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
         {
             MoveFoward();
         }
-        else if (Input.GetAxisRaw("Vertical") == -1)
+        else if (Input.GetAxisRaw("Vertical") == -1 && player.isGrounded)
         {
             MoveBackWard();
         }
@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
     void MoveFoward()
     {
         _currentBody.AddForce(_currentBody.transform.forward * force, ForceMode.Force);
-        //for rotating the plapyer. slerp is slower than lerp
+        //for rotating the player. slerp is slower than lerp
         //transform.rotation = mainCamera.transform.rotation;
     }
 

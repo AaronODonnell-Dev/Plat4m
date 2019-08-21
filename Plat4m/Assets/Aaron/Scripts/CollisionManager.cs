@@ -6,17 +6,26 @@ public class CollisionManager : MonoBehaviour
 {
     Player player;
     public Rigidbody playerBody;
+    public GameObject SarcasticHealthResponse;
     RaycastHit Hit;
     Yeet yeet;
+
+    int EnemiesHit = 0;
 
     public bool collidedWithWall = false;
     public bool collisionEnded = false;
 
+    PlayerHealth playerHealth;
+
     void Start()
     {
+        SarcasticHealthResponse.SetActive(false);
         yeet = GetComponent<Yeet>();
         player = GetComponent<Player>();
+        playerBody = player.GetComponent<Rigidbody>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         Hit = yeet.hit;
+        EnemiesHit = 0;
     }
 
     public void BasicCollision(Collision collision)
@@ -27,7 +36,7 @@ public class CollisionManager : MonoBehaviour
             {
                 yeet.wasYeeted = false;
             }
-            playerBody.freezeRotation = true;
+    
             player.isGrounded = true;
             player.isJumping = false;
             player.ResetJump();
@@ -36,6 +45,17 @@ public class CollisionManager : MonoBehaviour
         if (collision.transform.tag == "MovingPlatform")
         {
             playerBody.transform.parent = collision.transform;
+        }
+
+        if(collision.transform.tag == "EnemyKeg")
+        {
+            playerHealth.TakeDamage(10);
+            playerBody.AddForce(Vector3.up * 12);
+            if (EnemiesHit == 0)
+            {
+                SarcasticHealthResponse.SetActive(true);
+            }
+            else SarcasticHealthResponse.SetActive(false);
         }
     }
 
@@ -46,6 +66,11 @@ public class CollisionManager : MonoBehaviour
             playerBody.transform.parent = null;
             //playerBody.freezeRotation = false;
             player.isGrounded = false;
+        }
+
+        if(collision.transform.tag == "EnemyKeg")
+        {
+            EnemiesHit++;
         }
     }
 }
