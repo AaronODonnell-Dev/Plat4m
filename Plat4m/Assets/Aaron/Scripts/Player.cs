@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     MovingPlatform movingPlatform;
 
     public PlayerHealth playerHealth;
-    public GameObject HealthCanvas;
+    public GameObject HealthTutorial;
     public GameObject lever;
 
     public float jumpLimit = 2;
@@ -64,12 +64,12 @@ public class Player : MonoBehaviour
         count++;
         if(count == 100)
         {
-            HealthCanvas.SetActive(true);
+            HealthTutorial.SetActive(true);
         }
 
         if(count == 250)
         {
-            HealthCanvas.SetActive(false);
+            HealthTutorial.SetActive(false);
         }
 
         #region Moving Platform Activation
