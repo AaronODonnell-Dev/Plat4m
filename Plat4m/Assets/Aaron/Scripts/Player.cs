@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     MovingPlatform movingPlatform;
 
     public PlayerHealth playerHealth;
-    public GameObject HealthTutorial;
     public GameObject lever;
 
     public float jumpLimit = 2;
@@ -62,16 +61,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         count++;
-        if(count == 100)
-        {
-            HealthTutorial.SetActive(true);
-        }
-
-        if(count == 250)
-        {
-            HealthTutorial.SetActive(false);
-        }
-
         #region Moving Platform Activation
         var heading = this.transform.position - lever.transform.position;
 

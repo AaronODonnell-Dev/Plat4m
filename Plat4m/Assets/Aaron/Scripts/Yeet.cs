@@ -9,10 +9,10 @@ public class Yeet : MonoBehaviour
     public bool isYeeting;
     public bool wasYeeted;
     public GameObject ArrowTip;
-    public Canvas Landing;
     public RaycastHit hit;
 
-    float YeetForce = 15;
+    [Range(1, 100)]
+    public float YeetForce = 15;
     Animation arrowMove;
     Player player;
     Vector3 direction;
@@ -28,7 +28,6 @@ public class Yeet : MonoBehaviour
         wasYeeted = false;
         isAirborne = false;
         arrow.gameObject.SetActive(false);
-        Landing.gameObject.SetActive(false);
         TutorialCanvas = GameObject.FindGameObjectWithTag("TutorialCanvas");
         TutorialCanvas.gameObject.SetActive(true);
     }
@@ -50,12 +49,6 @@ public class Yeet : MonoBehaviour
         if(!player.isGrounded)
         {
             isAirborne = true;
-            PredictedLanding();
-        }
-
-        else if(!isAirborne)
-        {
-            Landing.gameObject.SetActive(false);
         }
         
     }
@@ -98,20 +91,5 @@ public class Yeet : MonoBehaviour
         float rot_z = Input.GetAxis("Mouse X") * 2;
 
         arrow.transform.RotateAround(ArrowTip.transform.position, new Vector3(0,0,1), + rot_z);
-    }
-
-    public void PredictedLanding()
-    {
-        if(isAirborne && wasYeeted)
-        {
-            if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
-            {
-                Landing.gameObject.SetActive(true);
-
-                Landing.transform.position = new Vector3(Landing.transform.position.x, hit.point.y + 0.2f, Landing.transform.position.z);
-
-                isAirborne = false;
-            }
-        }
     }
 }

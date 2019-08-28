@@ -1445,19 +1445,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1353136801}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &461476290
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461476288}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &478425624
 GameObject:
   m_ObjectHideFlags: 0
@@ -3526,11 +3513,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWithClimbing
       objectReference: {fileID: 0}
-    - target: {fileID: 6239111246996700956, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
-        type: 3}
-      propertyPath: m_TagString
-      value: GameCamPos
-      objectReference: {fileID: 0}
     - target: {fileID: 6239111245630696352, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3593,44 +3575,29 @@ PrefabInstance:
       objectReference: {fileID: 1457476732}
     - target: {fileID: 4709510506345741696, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
         type: 3}
-      propertyPath: playerBody
-      value: 
-      objectReference: {fileID: 2041144931}
-    - target: {fileID: 4709510506345741696, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
-        type: 3}
       propertyPath: SarcasticHealthResponse
       value: 
       objectReference: {fileID: 1089228622}
-    - target: {fileID: 6239111245630696363, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     - target: {fileID: 6239111245630696366, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
         type: 3}
-      propertyPath: force
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 6076351142488178796, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
-        type: 3}
-      propertyPath: HealthCanvas
+      propertyPath: Ground
       value: 
-      objectReference: {fileID: 195933633}
+      objectReference: {fileID: 1238473250}
     - target: {fileID: 6076351142488178796, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
         type: 3}
       propertyPath: lever
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6076351142488178796, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
+      objectReference: {fileID: 1828960790}
+    - target: {fileID: 4595395828457236889, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
         type: 3}
-      propertyPath: HealthTutorial
+      propertyPath: healthSlider
       value: 
-      objectReference: {fileID: 195933633}
-    - target: {fileID: 6239111246996700959, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
+      objectReference: {fileID: 1586559048}
+    - target: {fileID: 4595395828457236889, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10.49
-      objectReference: {fileID: 0}
+      propertyPath: damageImage
+      value: 
+      objectReference: {fileID: 1598079523}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21203583b3b5f1346857f9dc1a3f8ad3, type: 3}
 --- !u!4 &1400917487 stripped
@@ -4043,7 +4010,6 @@ MonoBehaviour:
   isGrounded: 0
   currentBody: {fileID: 0}
   playerHealth: {fileID: 0}
-  HealthTutorial: {fileID: 0}
   lever: {fileID: 0}
   jumpLimit: 2
 --- !u!1 &1458381388
@@ -5002,6 +4968,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f33557b8c03784fb5b1e96396d9768, type: 3}
+--- !u!1 &1828960790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: e8f33557b8c03784fb5b1e96396d9768,
+    type: 3}
+  m_PrefabInstance: {fileID: 1828960789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1840272136
 GameObject:
   m_ObjectHideFlags: 0
@@ -5337,30 +5309,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1353136801}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &2041144931 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 6239111245630696363, guid: 21203583b3b5f1346857f9dc1a3f8ad3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1353136801}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2041144941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041144929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9c490e318c9cb4aa237db9b58b14ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 100
-  currentHealth: 0
-  healthSlider: {fileID: 1586559048}
-  damageImage: {fileID: 1598079523}
-  flashSpeed: 5
-  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
 --- !u!1001 &2058460129
 PrefabInstance:
   m_ObjectHideFlags: 0
