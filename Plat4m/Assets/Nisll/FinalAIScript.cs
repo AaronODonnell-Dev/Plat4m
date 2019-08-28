@@ -16,19 +16,24 @@ public class FinalAIScript : MonoBehaviour
         ATTACK
     }
 
-    private float _attackRange = 3f;
+    private float _attackRange = 2f;
     private float _rayDistance = 3f;
     private float _stoppingDistance = 3f;
+    private float attackTimer = 3f;
+    public float chaseDistance; 
+    public bool debug = true;
+    public bool targetedPlayer = false;
 
     private Vector3 _destination;
     private Quaternion _desiredRotation;
     private Vector3 _direction;
     public CapsuleCollider _target;
+    public GameObject AttackCube;
     private State _currentState;
     [Range(0, 5)]
     public float SightRayHeight; //1.4 seems good for default character.
 
-    #region Legacy Code ()
+    #region Nodeish Codeish ()
     //public State state;
     //private bool alive;
 
@@ -45,6 +50,7 @@ public class FinalAIScript : MonoBehaviour
         #region Start Code
         agent = GetComponent<NavMeshAgent>();
         character = GetComponent<ThirdPersonCharacter>();
+        
 
         agent.updatePosition = true;
         agent.updateRotation = true;
@@ -52,6 +58,7 @@ public class FinalAIScript : MonoBehaviour
         waypoints = GameObject.FindGameObjectsWithTag("Node");
         waypointInd = Random.Range(0, waypoints.Length);
 
+        _currentState = State.PATROL;
         //state = alexEnemyScript.State.PATROL;
 
         //alive = true;
@@ -61,114 +68,46 @@ public class FinalAIScript : MonoBehaviour
     private void Update()
     {
         StartCoroutine(FSM());
-        #region
-        //Debug.Log("Target is " + _target);
 
-        //switch (_currentState)
-        //{
-        //    case State.PATROL:
-
-        //        #region Node Pathing
-        //        agent.speed = patrolSpeed;  
-        //        if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
-        //        {
-        //            agent.SetDestination(waypoints[waypointInd].transform.position);
-        //            character.Move(agent.desiredVelocity, false, false);
-        //        }
-        //        else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
-        //        {
-        //            waypointInd = Random.Range(0, waypoints.Length);
-        //        }
-        //        else
-        //        {
-        //            character.Move(Vector3.zero, false, false);
-        //        }
-        //        #endregion
-
-        //        //if (NeedsDestination())
-        //        {
-        //            GetDestination();
-        //        }
-
-        //        //transform.rotation = _desiredRotation;
-
-        //        //transform.Translate(Vector3.forward * Time.deltaTime * 5f);
-
-
-        //        var targetToAggro = CheckForAggro();
-
-        //        if (targetToAggro != null)
-        //        {
-        //            _target = targetToAggro.GetComponent<BoxCollider>();
-        //            _currentState = State.CHASE;
-        //        }
-        //        break;
-
-        //    case State.CHASE:
-        //        if (_target == null)
-        //        {
-        //            Debug.Log("CHASE");
-        //            _currentState = State.PATROL;
-        //            return;
-        //        }
-
-        //        transform.LookAt(_target.transform);
-        //        transform.Translate(Vector3.forward * Time.deltaTime * 5f);
-
-        //        if (Vector3.Distance(transform.position, _target.transform.position) < _attackRange)
-        //        {
-        //            _currentState = State.ATTACK;
-        //        }
-        //        break;
-
-        //    case State.ATTACK:
-        //        if (_target != null && playerHealth.currentHealth != 0)
-        //        {
-        //            Debug.Log("ATTACK");
-        //            //playerHealth.currentHealth--;
-        //            //Destroy(_target.gameObject);
-        //            //Need to set instance to lower player health and fix the 45 degree angle the enemy kills him at
-        //        }
-
-        //        _currentState = State.PATROL;
-        //        break;
-
-        //    default:
-        //        break;
-        //}
-        #endregion
     }
 
     IEnumerator FSM()
     {
         //Debug.Log("Target is " + _target);
+        //timer for attacking so there is a delay between attacs.
+        attackTimer -= Time.deltaTime;
+
+        // testing each update for if a target is within he raycasts
+        // then setting _target to be the colider of the target.
+        var targetToAggro = CheckForAggro();
+        if (targetToAggro != null)
+        {
+            _target = targetToAggro.GetComponent<CapsuleCollider>();
+            Debug.Log("Distance between objects : " + Vector3.Distance(transform.position, _target.transform.position));
+            if (targetToAggro.tag == "Player" || targetToAggro.tag == "Player2")
+            {
+                targetedPlayer = true;
+            }
+            else
+            {
+                targetedPlayer = false;
+            }
+        }
 
         switch (_currentState)
         {
             case State.PATROL:
 
-                var targetToAggro = CheckForAggro();
-
-                if (targetToAggro != null)
+                if (targetedPlayer == true)
                 {
-                    Debug.Log("targetToAggro");
-                    _target = targetToAggro.GetComponent<CapsuleCollider>();
-                    //agent.SetDestination(_target.transform.position);
-                    //waypoints = GameObject.FindGameObjectsWithTag("ThisRemovesNodes");
-                    //GetDestination();
                     _currentState = State.CHASE;
                 }
-                else if (targetToAggro == null)
+                else if (targetedPlayer == false)
                 {
-                    Debug.Log("Nodes");
                     #region Node Pathing
-                    //agent.speed = patrolSpeed;
                     if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
                     {
-                        Debug.Log("Millsy");
-                        agent.SetDestination(waypoints[waypointInd].transform.position);
-                        Debug.Log("Waypoint: " + waypoints[waypointInd].transform.position);
-                        //character.Move(agent.desiredVelocity, false, false);
+                        agent.SetDestination(waypoints[waypointInd].transform.position);                   
                     }
                     else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
                     {
@@ -181,85 +120,83 @@ public class FinalAIScript : MonoBehaviour
                     }
                     #endregion
                 }
-                else
-                {
-                    Debug.Log("Frick");
-                }
-
-
-                #region
-                //if (NeedsDestination())
-                {
-                    GetDestination();
-                }
-
-                //transform.rotation = _desiredRotation;
-
-                //transform.Translate(Vector3.forward * Time.deltaTime * 5f);
-
-
-                //var targetToAggro = CheckForAggro();
-
-                //if (targetToAggro != null)
-                //{
-                //    _target = targetToAggro.GetComponent<CapsuleCollider>();
-                //    _currentState = State.CHASE;
-                //}
-                #endregion
                 break;
 
             case State.CHASE:
-                Debug.Log("CHASE");
-                if (_target == null)
+                if (targetedPlayer == false)
                 {
-                    Debug.Log("Chase Target is Null");
                     _currentState = State.PATROL;
-                    //_currentState = State.ATTACK;
-                    //return;
                 }
                 else
                 {
-                    Debug.Log("Chase _target is " + _target);
                     transform.LookAt(_target.transform);
-                    agent.SetDestination(_target.transform.position);
-                    Debug.Log("Player Chase Location: " + _target.transform.position);
-                    //waypoints = GameObject.FindGameObjectsWithTag("ThisRemovesNodes");
-                    Debug.Log("LOOK HERE" + _target.transform.position);
-                    //transform.Translate(Vector3.forward * Time.deltaTime * 5f);
-
-                    if (Vector3.Distance(transform.position, _target.transform.position) < _attackRange)
-                    {
-                        _currentState = State.ATTACK;
-                    }
-                    else
-                    {
-                        _currentState = State.PATROL;
-                    }
+                    MoveToAttackDistance();
                 }
                 break;
 
             case State.ATTACK:
-                Debug.Log("ATTACK");
-                if (_target != null)
+                
+                if (targetedPlayer == false)
                 {
-                    Debug.Log("inside if statement " + _target);
-                    Destroy(_target.gameObject);
-                    //Need to set instance to lower player health and fix the 45 degree angle the enemy kills him at
-                }
-                //if (_target == null)
-                else if (_target == null)
-                {
-                    Debug.Log("outside if statement " + _target);
                     _currentState = State.PATROL;
                 }
-                //_target = null;
-                Debug.Log("Break");
+                else if ((Vector3.Distance(transform.position, _target.transform.position) <= chaseDistance) && (Vector3.Distance(transform.position, _target.transform.position) >= _attackRange))
+                {
+                    _currentState = State.CHASE;
+                }
+                else if (Vector3.Distance(transform.position, _target.transform.position) >= _rayDistance)
+                {
+                    targetedPlayer = false;
+                    _currentState = State.PATROL;
+                }
+                else if (targetedPlayer)
+                {
+                    Attack();
+                }
                 break;
 
             default:
                 break;
         }
         yield return null;
+    }
+
+    #region-Methods-
+
+    private void MoveToAttackDistance()
+    {
+        /* 
+         * moves to a point a short distance from the player.
+         * when at this point sets its destination to be its own destination
+         * then changes state to be attack where the all attacking logic is held.
+        */
+
+        if (Vector3.Distance(transform.position, _target.transform.position) >= _attackRange)
+        {
+            agent.SetDestination(_target.transform.position);
+        }
+        else if ((Vector3.Distance(transform.position, _target.transform.position) <= _attackRange))
+        {
+            agent.SetDestination(transform.position);
+            _currentState = State.ATTACK;
+        }
+    }
+
+    private void Attack()
+    {
+        /* set the position of the accack cube to be a foward facing offset of the enemy.
+         * set the rotation of the attack cube to be the same as the enemy.
+         * instantiate the attack cube.
+         * the cube will then exicute its own code
+         */
+
+        if (attackTimer <= 0)
+        {
+            AttackCube.transform.position = transform.position + transform.forward;
+            AttackCube.transform.rotation = transform.rotation;
+            Instantiate(AttackCube);
+            attackTimer = 3f;
+        }
     }
 
     private void GetDestination()
@@ -296,7 +233,7 @@ public class FinalAIScript : MonoBehaviour
 
     private Transform CheckForAggro()
     {
-        float aggroRadius = 5f;
+        float aggroRadius = 7f;
 
         RaycastHit hit;
         var angle = transform.rotation * startingAngle;
@@ -311,7 +248,9 @@ public class FinalAIScript : MonoBehaviour
                 {
                     Debug.DrawRay(pos + new Vector3(0, SightRayHeight, 0), direction * hit.distance, Color.red);
                     Debug.Log("(if) targetPlayer is " + targetPlayer);
+                    //return transform minus the players height as to get a position that is on the ground
                     return targetPlayer.transform;
+                    // method can not return position. logic must be done in the switch
                 }
                 else
                 {
@@ -327,6 +266,105 @@ public class FinalAIScript : MonoBehaviour
         }
         return null;
     }
+    #endregion
+
+    #region-OldSwitch-
+    //Debug.Log("Target is " + _target);
+
+    //switch (_currentState)
+    //{
+    //    case State.PATROL:
+
+    //        #region Node Pathing
+    //        agent.speed = patrolSpeed;  
+    //        if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
+    //        {
+    //            agent.SetDestination(waypoints[waypointInd].transform.position);
+    //            character.Move(agent.desiredVelocity, false, false);
+    //        }
+    //        else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
+    //        {
+    //            waypointInd = Random.Range(0, waypoints.Length);
+    //        }
+    //        else
+    //        {
+    //            character.Move(Vector3.zero, false, false);
+    //        }
+    //        #endregion
+
+    //        //if (NeedsDestination())
+    //        {
+    //            GetDestination();
+    //        }
+
+    //        //transform.rotation = _desiredRotation;
+
+    //        //transform.Translate(Vector3.forward * Time.deltaTime * 5f);
+
+
+    //        var targetToAggro = CheckForAggro();
+
+    //        if (targetToAggro != null)
+    //        {
+    //            _target = targetToAggro.GetComponent<BoxCollider>();
+    //            _currentState = State.CHASE;
+    //        }
+    //        break;
+
+    //    case State.CHASE:
+    //        if (_target == null)
+    //        {
+    //            Debug.Log("CHASE");
+    //            _currentState = State.PATROL;
+    //            return;
+    //        }
+
+    //        transform.LookAt(_target.transform);
+    //        transform.Translate(Vector3.forward * Time.deltaTime * 5f);
+
+    //        if (Vector3.Distance(transform.position, _target.transform.position) < _attackRange)
+    //        {
+    //            _currentState = State.ATTACK;
+    //        }
+    //        break;
+
+    //    case State.ATTACK:
+    //        if (_target != null && playerHealth.currentHealth != 0)
+    //        {
+    //            Debug.Log("ATTACK");
+    //            //playerHealth.currentHealth--;
+    //            //Destroy(_target.gameObject);
+    //            //Need to set instance to lower player health and fix the 45 degree angle the enemy kills him at
+    //        }
+
+    //        _currentState = State.PATROL;
+    //        break;
+
+    //    default:
+    //        break;
+    //}
+
+    #endregion
+
+    #region-Old Code-
+                //if (NeedsDestination())
+                //{
+                    //GetDestination();
+                //}
+
+                //transform.rotation = _desiredRotation;
+
+                //transform.Translate(Vector3.forward * Time.deltaTime * 5f);
+
+
+                //var targetToAggro = CheckForAggro();
+
+                //if (targetToAggro != null)
+                //{
+                //    _target = targetToAggro.GetComponent<CapsuleCollider>();
+                //    _currentState = State.CHASE;
+                //}
+                #endregion
 }
 
 /*

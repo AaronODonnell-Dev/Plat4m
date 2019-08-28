@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390419899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: 10.65, y: 0.5, z: -1.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -637,7 +637,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 968851020}
   character: {fileID: 0}
+  debug: 1
   _target: {fileID: 390419900}
+  AttackCube: {fileID: 0}
   SightRayHeight: 0.5
   waypoints:
   - {fileID: 1089657344}
@@ -920,7 +922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226276346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 9.86, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1151,7 +1153,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1452378555}
   character: {fileID: 0}
+  debug: 1
   _target: {fileID: 390419900}
+  AttackCube: {fileID: 2699633791382438417, guid: 9a669bec82b2c27479064afff3ea7e8e,
+    type: 3}
   SightRayHeight: 0.3
   waypoints:
   - {fileID: 1089657344}
