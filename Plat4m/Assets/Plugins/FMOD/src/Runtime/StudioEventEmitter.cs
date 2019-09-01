@@ -4,12 +4,13 @@ using System;
 namespace FMODUnity
 {
     [AddComponentMenu("FMOD Studio/FMOD Studio Event Emitter")]
-    public class StudioEventEmitter : EventHandler
+    public class StudioEventEmitter : MonoBehaviour
     {
         [EventRef]
         public string Event = "";
         public EmitterGameEvent PlayEvent = EmitterGameEvent.None;
         public EmitterGameEvent StopEvent = EmitterGameEvent.None;
+        public string CollisionTag = "";
         public bool AllowFadeout = true;
         public bool TriggerOnce = false;
         public bool Preload = false;
@@ -26,9 +27,6 @@ namespace FMODUnity
 
         private bool hasTriggered = false;
         private bool isQuitting = false;
-        private bool isOneshot = false;
-
-        private const string SnapshotString = "snapshot";
 
         void Start() 
         {
@@ -66,11 +64,6 @@ namespace FMODUnity
                 if (instance.isValid())
                 {
                     RuntimeManager.DetachInstanceFromGameObject(instance);
-                    if (eventDescription.isValid() && isOneshot)
-                    {
-                        instance.release();
-                        instance.clearHandle();
-                    }
                 }
 
                 if (Preload)
@@ -80,7 +73,69 @@ namespace FMODUnity
             }
         }
 
-        protected override void HandleGameEvent(EmitterGameEvent gameEvent)
+        void OnEnable()
+        {
+            HandleGameEvent(EmitterGameEvent.ObjectEnable);
+        }
+
+        void OnDisable()
+        {
+            HandleGameEvent(EmitterGameEvent.ObjectDisable);
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
+            {
+                HandleGameEvent(EmitterGameEvent.TriggerEnter);
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
+            {
+                HandleGameEvent(EmitterGameEvent.TriggerExit);
+            }
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
+            {
+                HandleGameEvent(EmitterGameEvent.TriggerEnter2D);
+            }
+        }
+
+        void OnTriggerExit2D(Collider2D other)
+        {
+            if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
+            {
+                HandleGameEvent(EmitterGameEvent.TriggerExit2D);
+            }
+        }
+
+        void OnCollisionEnter()
+        {
+            HandleGameEvent(EmitterGameEvent.CollisionEnter);
+        }
+
+        void OnCollisionExit()
+        {
+            HandleGameEvent(EmitterGameEvent.CollisionExit);
+        }
+
+        void OnCollisionEnter2D()
+        {
+            HandleGameEvent(EmitterGameEvent.CollisionEnter2D);
+        }
+
+        void OnCollisionExit2D()
+        {
+            HandleGameEvent(EmitterGameEvent.CollisionExit2D);
+        }
+
+        void HandleGameEvent(EmitterGameEvent gameEvent)
         {
             if (PlayEvent == gameEvent)
             {
@@ -95,16 +150,6 @@ namespace FMODUnity
         void Lookup()
         {
             eventDescription = RuntimeManager.GetEventDescription(Event);
-
-            if (eventDescription.isValid())
-            {
-                for (int i = 0; i < Params.Length; i++)
-                {
-                    FMOD.Studio.PARAMETER_DESCRIPTION param;
-                    eventDescription.getParameterDescriptionByName(Params[i].Name, out param);
-                    Params[i].ID = param.id;
-                }
-            }
         }
 
         public void Play()
@@ -124,7 +169,8 @@ namespace FMODUnity
                 Lookup();
             }
 
-            if (!Event.StartsWith(SnapshotString, StringComparison.CurrentCultureIgnoreCase))
+            bool isOneshot = false;
+            if (!Event.StartsWith("snapshot", StringComparison.CurrentCultureIgnoreCase))
             {
                 eventDescription.isOneshot(out isOneshot);
             }
@@ -189,14 +235,6 @@ namespace FMODUnity
                 instance.stop(AllowFadeout ? FMOD.Studio.STOP_MODE.ALLOWFADEOUT : FMOD.Studio.STOP_MODE.IMMEDIATE);
                 instance.release();
                 instance.clearHandle();
-            }
-        }
-
-        public void SetParameter(FMOD.Studio.PARAMETER_ID id, float value)
-        {
-            if (instance.isValid())
-            {
-                instance.setParameterByID(id, value);
             }
         }
 

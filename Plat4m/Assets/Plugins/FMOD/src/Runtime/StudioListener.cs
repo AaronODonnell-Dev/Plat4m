@@ -15,20 +15,13 @@ namespace FMODUnity
             RuntimeUtils.EnforceLibraryOrder();
             rigidBody = gameObject.GetComponent<Rigidbody>();
             rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
-            if (RuntimeManager.AddListener(ListenerNumber) == false)
-            {
-                ListenerNumber = -1;
-                this.enabled = false;
-            }
-            else
-            {
-                SetListenerLocation();
-            }
+            RuntimeManager.HasListener[ListenerNumber] = true;
+            SetListenerLocation();
         }
 
         void OnDisable()
         {
-            RuntimeManager.RemoveListener(ListenerNumber);
+            RuntimeManager.HasListener[ListenerNumber] = false;
         }
 
         void Update()

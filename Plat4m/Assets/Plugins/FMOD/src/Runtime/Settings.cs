@@ -191,9 +191,6 @@ namespace FMODUnity
 
         [SerializeField]
         public bool AutomaticSampleLoading;
-
-        [SerializeField]
-        public string EncryptionKey;
         
         [SerializeField]
         public ImportType ImportType;
