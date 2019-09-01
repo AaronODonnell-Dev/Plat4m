@@ -16,9 +16,16 @@ public class PointerController : MonoBehaviour
     private float[] pointerPositions = { 1.04f, 0.28f, -0.36f };
 
     public string level;
+
+    public AudioClip click;
+
+    private AudioSource source;
+    private AudioSource backGroundMusic;
     // Start is called before the first frame update
     void Start()
     {
+        source = GetComponent<AudioSource>();
+
         xPosition = transform.position.x;
         yPosition = transform.position.y;
         zPosition = transform.position.z;
@@ -44,9 +51,15 @@ public class PointerController : MonoBehaviour
 
         //Inputs
         if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            source.PlayOneShot(click);
             index--;
+        }
         else if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            source.PlayOneShot(click);
             index++;
+        }
 
         if (index >= 2)
         {
@@ -59,11 +72,17 @@ public class PointerController : MonoBehaviour
 
         if (index == 0)
             if (Input.GetKeyUp(KeyCode.Return))
+            {
+                source.PlayOneShot(click);
                 Initiate.Fade(level, Color.black, multiplier);
+                backGroundMusic.Stop();
+            }
 
         if (index == 1)
             if (Input.GetKeyUp(KeyCode.Return))
             {
+                source.PlayOneShot(click);
+
                 Application.Quit();
 #if UNITY_EDITOR
                 EditorApplication.isPlaying = false;
