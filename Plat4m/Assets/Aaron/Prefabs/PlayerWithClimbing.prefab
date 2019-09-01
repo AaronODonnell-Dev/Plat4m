@@ -19,8 +19,6 @@ GameObject:
   - component: {fileID: 6239111245630696365}
   - component: {fileID: 6239111245630696363}
   - component: {fileID: 6522669588162100507}
-  - component: {fileID: 2041144941}
-  - component: {fileID: 4595395828457236889}
   m_Layer: 0
   m_Name: PlayerWithClimbing
   m_TagString: Player
@@ -64,8 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a1dba81995ca1459b9d53e155b417a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 30
-  Ground: {fileID: 0}
+  force: 5
 --- !u!114 &6076351142488178796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,10 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isJumping: 0
-  isGrounded: 1
+  isGrounded: 0
   currentBody: {fileID: 0}
-  playerHealth: {fileID: 0}
-  lever: {fileID: 0}
   jumpLimit: 2
 --- !u!114 &4709510506345741696
 MonoBehaviour:
@@ -96,8 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af5d58351abce941a19e51746274d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBody: {fileID: 6239111245630696363}
-  SarcasticHealthResponse: {fileID: 0}
+  playerBody: {fileID: 0}
   collidedWithWall: 0
   collisionEnded: 0
 --- !u!114 &491494276727172766
@@ -117,7 +111,7 @@ MonoBehaviour:
   isYeeting: 0
   wasYeeted: 0
   ArrowTip: {fileID: 8425317467952817689}
-  YeetForce: 15
+  Landing: {fileID: 0}
 --- !u!114 &6239111245630696364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +200,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &6522669588162100507
 CapsuleCollider:
@@ -222,42 +216,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2041144941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6239111245630696360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9c490e318c9cb4aa237db9b58b14ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 100
-  currentHealth: 0
-  healthSlider: {fileID: 0}
-  damageImage: {fileID: 0}
-  flashSpeed: 5
-  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
---- !u!114 &4595395828457236889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6239111245630696360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9c490e318c9cb4aa237db9b58b14ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 100
-  currentHealth: 0
-  healthSlider: {fileID: 0}
-  damageImage: {fileID: 0}
-  flashSpeed: 5
-  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
 --- !u!1 &6239111246996700956
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,11 +225,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6239111246996700959}
-  - component: {fileID: 461476290}
-  - component: {fileID: 3066345634931923279}
   m_Layer: 0
   m_Name: CameraPositionPlayer1
-  m_TagString: GameCamPos
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,38 +240,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6239111246996700956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.32, z: -10.49}
+  m_LocalPosition: {x: 0, y: 3.32, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6239111245630696352}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &461476290
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6239111246996700956}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &3066345634931923279
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6239111246996700956}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2228249099948113523
 PrefabInstance:
   m_ObjectHideFlags: 0

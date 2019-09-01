@@ -55,7 +55,7 @@ public class CollisionManager : MonoBehaviour
             playerBody.AddForce(direction * 4);
         }
 
-        if(collision.transform.tag == "Enemy")
+        if(collision.transform.tag == "EnemyKeg")
         {
             playerHealth.TakeDamage(10);
             Vector3 direction = collision.contacts[0].point - transform.position;
@@ -79,7 +79,7 @@ public class CollisionManager : MonoBehaviour
             player.isGrounded = false;
         }
 
-        if(collision.transform.tag == "Enemy")
+        if(collision.transform.tag == "EnemyKeg")
         {
             EnemiesHit++;
         }
