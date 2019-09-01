@@ -112,9 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_NavMeshData: {fileID: 0}
 --- !u!1 &58891134
 =======
+=======
+>>>>>>> Niall
   m_NavMeshData: {fileID: 23800000, guid: da7c2243242c0284ba7d5d242b461267, type: 2}
 --- !u!1 &167205255
 >>>>>>> Niall
