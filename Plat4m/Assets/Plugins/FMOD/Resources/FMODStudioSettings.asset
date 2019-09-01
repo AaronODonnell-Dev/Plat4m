@@ -15,12 +15,13 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Plat4m.fspro
-  SourceProjectPathUnformatted: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Plat4m.fspro
-  SourceBankPathUnformatted: D:\__College Folder\Plat4m\Plat4m\Plat4m\Plat4mFmod\Build
+  sourceProjectPath: C:\Users\Liam\Documents\GitHub\Plat4m\Plat4m\Plat4mLiam\Plat4mLiam.fspro
+  SourceProjectPathUnformatted: Plat4mLiam\Plat4mLiam.fspro
+  SourceBankPathUnformatted: Plat4mLiam\Build
   AutomaticEventLoading: 1
   BankLoadType: 0
   AutomaticSampleLoading: 0
+  EncryptionKey: 
   ImportType: 0
   TargetAssetPath: 
   LoggingLevel: 2
@@ -75,7 +76,8 @@ MonoBehaviour:
   - Platform: 20
     Value: 32
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
