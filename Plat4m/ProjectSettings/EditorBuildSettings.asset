@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Aaron.unity
     guid: e6ebdfab2825dfd41a70e5577dea098c
+  - enabled: 1
+    path: Assets/Scenes/Liam.unity
+    guid: 5dc681e0814e2714a8e49849a085cfd0
+  - enabled: 1
+    path: Assets/Scenes/Millsy.unity
+    guid: 5f2f443c10b8cba4eb0e97f4c2e5626d
   m_configObjects: {}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move_AirDash : PlayerMovement
+public class Move_AirDash /*: PlayerMovement*/
 {
 	GameObject airdashPlayer;
 	Rigidbody  airdashP1Body;

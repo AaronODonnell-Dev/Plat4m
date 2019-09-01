@@ -13,7 +13,7 @@ public class PointerController : MonoBehaviour
 
     private float multiplier = 2.0f;
 
-    private float[] pointerPositions = { 1.04f, 0.28f, -0.36f };
+    private float[] pointerPositions = { 0.63f, -0.05f };
 
     public string level;
 
@@ -24,12 +24,12 @@ public class PointerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        source = GetComponent<AudioSource>();
-
         xPosition = transform.position.x;
-        yPosition = transform.position.y;
+        yPosition = pointerPositions[0];
         zPosition = transform.position.z;
 
+
+        source = GetComponent<AudioSource>();
         index = 0;
     }
 
@@ -39,13 +39,11 @@ public class PointerController : MonoBehaviour
         switch(index)
         {
             case 0:
-                yPosition = pointerPositions[1];
-                transform.position = new Vector3(xPosition, yPosition, zPosition);
+                transform.position = new Vector3(xPosition, 65.47f, -85.35f);
                 break;
 
             case 1:
-                yPosition = pointerPositions[2];
-                transform.position = new Vector3(xPosition, yPosition, zPosition);
+                transform.position = new Vector3(xPosition, 64.9f, -85.89f);
                 break;
         }
 
