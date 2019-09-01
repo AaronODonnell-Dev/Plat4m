@@ -26,7 +26,14 @@ TagManager:
   - SarcasticResponse
   - EnemyKeg
   - TutorialCanvas
+<<<<<<< HEAD
   - CollidableObject
+=======
+  - EnemySightline
+  - Player2
+  - Ground
+  - AttackCube
+>>>>>>> Niall
   layers:
   - Default
   - TransparentFX

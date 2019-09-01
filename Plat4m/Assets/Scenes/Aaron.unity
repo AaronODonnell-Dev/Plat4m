@@ -111,8 +111,13 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
+<<<<<<< HEAD
   m_NavMeshData: {fileID: 0}
 --- !u!1 &58891134
+=======
+  m_NavMeshData: {fileID: 23800000, guid: da7c2243242c0284ba7d5d242b461267, type: 2}
+--- !u!1 &167205255
+>>>>>>> Niall
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
